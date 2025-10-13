@@ -234,18 +234,29 @@ h3.title,
 p.lead,
 .section-lead {
   margin: 6px 0 10px 0;
-  color: var(--muted);
+  color: #a0a0a0;
   text-align: center;
+  font-weight: 600;
 }
 
 [data-theme="dark"] p.lead,
 [data-theme="dark"] .section-lead {
-  color: #b0c4ff;
+  color: #a0a0a0;
 }
 
 [data-theme="light"] p.lead,
 [data-theme="light"] .section-lead {
-  color: #1e2a38;
+  color: #666666;
+}
+
+.section-lead a {
+  color: var(--accent);
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.section-lead a:hover {
+  opacity: 0.8;
 }
 
 /* ========== ABOUT SECTION ========== */
@@ -629,6 +640,17 @@ footer {
     width: 100% !important;
   }
 
+  /* Force About section images to scale properly */
+  #about img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Fix About section social icons */
+  #about > .container > div:first-child > div:first-child > div:last-child {
+    justify-content: center !important;
+  }
+
   /* Videos - Stack on mobile */
   #videos .container > div:last-child {
     grid-template-columns: 1fr !important;
@@ -654,7 +676,7 @@ footer {
 
   /* Schedule iframe */
   #schedule iframe {
-    height: 1000px !important;
+    height: 950px !important;
   }
 
   /* Testimonials */

@@ -239,6 +239,16 @@ p.lead,
   font-weight: 600;
 }
 
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr;
+  gap: 5rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 [data-theme="dark"] p.lead,
 [data-theme="dark"] .section-lead {
   color: #a0a0a0;
@@ -697,8 +707,11 @@ footer {
   }
 
   .tagline {
-    font-size: 0.7rem;
-  }
+  font-size: 0.9rem;
+  color: #0eff00;  /* Changed from #cbd5e1 */
+  font-weight: 600;  /* Changed from 500 */
+  letter-spacing: 0.3px;
+}
 
   .video-slider {
     height: 240px;

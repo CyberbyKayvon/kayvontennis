@@ -6,7 +6,7 @@
   <title>Video Library - Kayvon Tennis</title>
   <meta name="description" content="Browse all tennis coaching videos, tutorials, and tips from Kayvon Tennis." />
   <link rel="stylesheet" href="style.css">
-  <style>
+  <<style>
     body {
       background: #000000;
     }
@@ -117,8 +117,8 @@
     }
 
     .shorts-grid .video-thumbnail {
-      aspect-ratio: 9/14;
-      max-height: 320px;
+      aspect-ratio: 9/16;
+      max-height: 400px;
     }
 
     .video-thumbnail img {
@@ -160,37 +160,39 @@
     }
 
     .video-info {
-      padding: 20px;
+      padding: 24px;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      background: #2a2a2a;
+      gap: 16px;
+      background: #1a1a1a;
     }
 
     .video-info h3 {
-      margin: 0 0 16px 0;
+      margin: 0;
       color: #ffffff;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       font-weight: 700;
       line-height: 1.4;
+      flex-grow: 1;
     }
 
     .video-meta {
       display: flex;
       gap: 8px;
-      margin-bottom: 16px;
       flex-wrap: wrap;
     }
 
     .video-tag {
-      padding: 4px 12px;
+      padding: 6px 12px;
       background: rgba(0, 255, 0, 0.1);
       border: 1px solid #00ff00;
       border-radius: 20px;
       color: #00ff00;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .watch-btn {
@@ -198,26 +200,31 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      padding: 10px 18px;
+      padding: 12px 20px;
       background: #00ff00;
       color: #000;
-      border-radius: 20px;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       transition: all 0.2s;
-      align-self: flex-end;
+      margin-top: auto;
     }
 
     .watch-btn:hover {
       box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
-      transform: translateX(3px);
+      transform: translateY(-2px);
     }
 
     @media (max-width: 1024px) {
       .videos-grid,
       .shorts-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .shorts-grid .video-thumbnail {
+        max-height: 350px;
       }
     }
 
@@ -240,8 +247,21 @@
         gap: 24px;
       }
 
+      .video-info {
+        padding: 20px;
+      }
+
       .video-info h3 {
         font-size: 1.1rem;
+      }
+
+      .shorts-grid .video-thumbnail {
+        max-height: 500px;
+      }
+
+      .watch-btn {
+        padding: 14px 24px;
+        font-size: 1rem;
       }
     }
   </style>

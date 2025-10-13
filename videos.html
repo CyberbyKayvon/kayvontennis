@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Video Library - Kayvon Tennis</title>
+  <meta name="description" content="Browse all tennis coaching videos, tutorials, and tips from Kayvon Tennis." />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #000000;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 16px 0;
+    }
+
+    .page-header p {
+      font-size: 1.1rem;
+      color: #a0a0a0;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: #1a1a1a;
+      border: 2px solid #00ff00;
+      border-radius: 8px;
+      color: #00ff00;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      margin-bottom: 40px;
+    }
+
+    .back-link:hover {
+      background: #00ff00;
+      color: #000;
+      transform: translateX(-5px);
+    }
+
+    .videos-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .section-divider {
+      margin: 60px 0 40px;
+      text-align: center;
+    }
+
+    .section-divider h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #00ff00;
+      margin: 0 0 12px 0;
+      text-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+    }
+
+    .section-divider p {
+      font-size: 1rem;
+      color: #a0a0a0;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 60px;
+    }
+
+    .shorts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .video-card {
+      background: #1a1a1a;
+      border: 2px solid #00ff00;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s;
+      height: 100%;
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+    }
+
+    .video-thumbnail {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .shorts-grid .video-thumbnail {
+      aspect-ratio: 9/14;
+      max-height: 320px;
+    }
+
+    .video-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .video-card:hover .video-thumbnail img {
+      transform: scale(1.05);
+    }
+
+    .play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 255, 0, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .video-card:hover .play-overlay {
+      opacity: 1;
+    }
+
+    .play-overlay svg {
+      width: 24px;
+      height: 24px;
+      fill: #000;
+      margin-left: 4px;
+    }
+
+    .video-info {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #2a2a2a;
+    }
+
+    .video-info h3 {
+      margin: 0 0 16px 0;
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .video-meta {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .video-tag {
+      padding: 4px 12px;
+      background: rgba(0, 255, 0, 0.1);
+      border: 1px solid #00ff00;
+      border-radius: 20px;
+      color: #00ff00;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .watch-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      background: #00ff00;
+      color: #000;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      align-self: flex-end;
+    }
+
+    .watch-btn:hover {
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+      transform: translateX(3px);
+    }
+
+    @media (max-width: 1024px) {
+      .videos-grid,
+      .shorts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .page-header p {
+        font-size: 1rem;
+      }
+
+      .section-divider h2 {
+        font-size: 2rem;
+      }
+
+      .videos-grid,
+      .shorts-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .video-info h3 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="videos-container">
+    <a href="index.html" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Back to Home
+    </a>
+
+    <div class="page-header">
+      <h1>Video Library</h1>
+      <p>Expert tennis coaching tips, techniques, and tutorials</p>
+    </div>
+
+    <!-- Full Videos Section -->
+    <div class="section-divider">
+      <h2>Full Videos</h2>
+      <p>In-depth tutorials and coaching sessions</p>
+    </div>
+
+    <div class="videos-grid">
+      <!-- Video 1 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/V2Jj40Jfjrg/hqdefault.jpg" alt="Volley Technique">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>MY NUMBER 1 VOLLEY TIP!</h3>
+            <div class="video-meta">
+              <span class="video-tag">Technique</span>
+              <span class="video-tag">Net Play</span>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/watch?v=V2Jj40Jfjrg" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/65bneZCcLVA/hqdefault.jpg" alt="Wall Practice">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>Wall Practice - SLICE (Slicing n Dicing)</h3>
+            <div class="video-meta">
+              <span class="video-tag">Practice</span>
+              <span class="video-tag">Solo Training</span>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/watch?v=65bneZCcLVA" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+
+      <!-- Video 3 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/WQvCuUv1rY0/hqdefault.jpg" alt="Mental Game">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>Tennis Mental Game</h3>
+            <div class="video-meta">
+              <span class="video-tag">Mental</span>
+              <span class="video-tag">Strategy</span>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/watch?v=WQvCuUv1rY0" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+
+      <!-- Video 4 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/_4amFIGc5Vc/hqdefault.jpg" alt="Serve Technique">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>Number 1 Serve + 1 Tennis Tip</h3>
+            <div class="video-meta">
+              <span class="video-tag">Serve</span>
+              <span class="video-tag">Technique</span>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/watch?v=_4amFIGc5Vc" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+
+      <!-- Video 5 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/v50mq2jLK78/hqdefault.jpg" alt="Forehand Tips">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>3 Tennis Tips for Better Forehands</h3>
+            <div class="video-meta">
+              <span class="video-tag">Forehand</span>
+              <span class="video-tag">Tips</span>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/watch?v=v50mq2jLK78" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+
+      <!-- Video 6 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/eDNkts9Hrgw/hqdefault.jpg" alt="Backhand Wall">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>Wall Practice - Backhand</h3>
+            <div class="video-meta">
+              <span class="video-tag">Backhand</span>
+              <span class="video-tag">Wall Practice</span>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/watch?v=eDNkts9Hrgw" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shorts Section -->
+    <div class="section-divider">
+      <h2>Shorts</h2>
+      <p>Quick tips and techniques in under 60 seconds</p>
+    </div>
+
+    <div class="shorts-grid">
+      <!-- Short 1 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/NJfD9T1tPFQ/hqdefault.jpg" alt="Slice Teaching">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>This Is How I Would Teach a Slice</h3>
+          </div>
+          <a href="https://www.youtube.com/shorts/NJfD9T1tPFQ" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+
+      <!-- Short 2 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/iDCAHa5xkNo/hqdefault.jpg" alt="Kick Serve">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>Kick Serve Tip</h3>
+          </div>
+          <a href="https://www.youtube.com/shorts/iDCAHa5xkNo" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+
+      <!-- Short 3 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/0rGY_2HnuE8/hqdefault.jpg" alt="Confidence">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>How to Gain Confidence</h3>
+          </div>
+          <a href="https://www.youtube.com/shorts/0rGY_2HnuE8" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+
+      <!-- Short 4 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/h5tcbqgkAEE/hqdefault.jpg" alt="Touch Volley">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>Touch Volley Drill</h3>
+          </div>
+          <a href="https://www.youtube.com/shorts/h5tcbqgkAEE" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+
+      <!-- Short 5 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/EXqTfq7kpaA/hqdefault.jpg" alt="Forehand Trick">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>A Forehand Trick That Works</h3>
+          </div>
+          <a href="https://www.youtube.com/shorts/EXqTfq7kpaA" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+
+      <!-- Short 6 -->
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <img src="https://img.youtube.com/vi/7I6uO0Nc1AY/hqdefault.jpg" alt="Deep Shots">
+          <div class="play-overlay">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div>
+            <h3>5 Tips for Incoming Deep Shots</h3>
+          </div>
+          <a href="https://www.youtube.com/shorts/7I6uO0Nc1AY" target="_blank" class="watch-btn">
+            Watch Now →
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

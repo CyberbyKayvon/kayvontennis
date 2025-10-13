@@ -256,6 +256,82 @@ p.lead,
   padding: 80px 0;
 }
 
+/* ========== VIDEOS SECTION ========== */
+#videos {
+  background: #000000;
+  padding: 60px 0;
+}
+
+#videos .container > div:last-child {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+#videos .container > div:last-child > div {
+  background: #1a1a1a !important;
+  border: 2px solid #00ff00 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100%;
+}
+
+#videos .container > div:last-child > div > div:first-child {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16/9 !important;
+  overflow: hidden !important;
+  background: #000 !important;
+  flex-shrink: 0;
+}
+
+#videos .container > div:last-child > div > div:first-child img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#videos .container > div:last-child > div > div:last-child {
+  padding: 16px !important;
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+#videos .container > div:last-child > div h3 {
+  margin: 0 0 8px 0 !important;
+  color: #ffffff !important;
+  font-size: 1.1rem !important;
+}
+
+#videos .container > div:last-child > div p {
+  margin: 0 !important;
+  color: #e0e0e0 !important;
+  font-size: 0.9rem !important;
+}
+
+#videos .container > div:last-child > div a {
+  align-self: flex-end !important;
+  padding: 8px 12px !important;
+  background: #00ff00 !important;
+  color: #000 !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: all 0.2s !important;
+}
+
+#videos .container > div:last-child > div a:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.6) !important;
+}
+
 /* ========== CARDS & GRIDS ========== */
 .grid {
   display: grid;
@@ -551,6 +627,11 @@ footer {
 
   #about > .container > div:first-child > div {
     width: 100% !important;
+  }
+
+  /* Videos - Stack on mobile */
+  #videos .container > div:last-child {
+    grid-template-columns: 1fr !important;
   }
 
   /* Programs */

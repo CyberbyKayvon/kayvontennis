@@ -485,3 +485,27 @@ section[id], .hero-band{ scroll-margin-top: 120px; }
   background: #ccff00;  /* Keep your current light mode */
   color: #000000;
 }
+
+@media (max-width: 768px) {
+  nav {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    width: 100%;
+  }
+
+  nav a {
+    padding: 8px 4px !important;
+    font-size: 0.75rem !important;
+    text-align: center;
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  .brandwrap {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}

@@ -8,6 +8,7 @@
   --accent: #ccff00;
 }
 
+
 [data-theme="dark"] {
   --bg: #000000;
   --fg: #ffffff;
@@ -58,6 +59,7 @@ nav a{
   text-decoration:none; color:var(--fg); font-weight:700
 }
 nav a:hover{background:#eef4ff}
+
 
 /* ---------- Hero band ---------- */
 .hero-band{background:var(--band); border-bottom:1px solid var(--line)}

@@ -570,6 +570,7 @@ footer {
     margin-left: 0;
     padding: 0 var(--pad);
     padding-right: 50px;
+    text-align: center;
   }
 
   .tagline {
@@ -632,6 +633,137 @@ footer {
   .slider-overlay p {
     font-size: 1rem;
     margin-bottom: 20px;
+  }
+
+  .cta-button {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+  }
+
+  /* About Section - FIXED */
+  #about > .container > div:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    text-align: center !important;
+  }
+
+  #about > .container > div:first-child > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #about img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  #about > .container > div:first-child > div:first-child > div:last-child {
+    justify-content: center !important;
+  }
+
+  /* Videos - Stack on mobile */
+  #videos .container > div:last-child {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Programs - CENTERED */
+  .programs-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: center;
+  }
+
+  .program-card {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  /* Schedule iframe */
+  #schedule iframe {
+    height: 950px !important;
+  }
+
+  /* Testimonials */
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  nav a {
+    padding: 6px 8px;
+    font-size: 0.82rem;
+  }
+
+  .brand {
+    font-size: 1.35rem;
+  }
+
+  .tagline {
+    font-size: 0.7rem;
+  }
+
+  .video-slider {
+    height: 240px;
+  }
+
+  .slider-overlay h1 {
+    font-size: 1.4rem;
+  }
+
+  .slider-overlay p {
+    font-size: 0.85rem;
+  }
+
+  .cta-button {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+
+  #schedule iframe {
+    height: 1100px !important;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+}
+
+/* Desktop only - Typewriter effect */
+@media (min-width: 821px) {
+  .tagline {
+    overflow: hidden;
+    border-right: 2px solid var(--accent);
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+  }
+
+  .tagline.typed {
+    animation: none;
+    border-right: none;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--accent);
+  }
+}om: 20px;
   }
 
   .cta-button {

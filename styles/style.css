@@ -798,6 +798,38 @@ footer {
   }
 }
 
+/* Schedule iframe heights */
+@media (max-width: 1024px) {
+  .schedule-calendar iframe {
+    height: 1000px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .schedule-calendar iframe {
+    height: 1050px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .schedule-calendar iframe {
+    height: 1100px !important;
+  }
+}
+
+/* Right column cards container */
+.right-column-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+@media (max-width: 1024px) {
+  .right-column-cards {
+    order: 2;
+  }
+}
+
 @keyframes typing {
   from { width: 0; }
   to { width: 100%; }

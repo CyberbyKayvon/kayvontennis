@@ -16,18 +16,40 @@
   nav {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 4px !important;
+    gap: 2px !important;
     width: 100%;
-    padding: 0 8px;
-    margin-top: 8px;
+    padding: 0 4px;
+    margin-top: 6px;
   }
 
   nav a {
-    padding: 8px 4px !important;
-    font-size: 0.75rem !important;
+    padding: 6px 2px !important;
+    font-size: 0.65rem !important;
     text-align: center;
-    white-space: normal;
+    white-space: nowrap;
+    border-radius: 4px;
   }
+
+  nav a:hover {
+    background: #eef4ff;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    gap: 1px !important;
+    padding: 0 2px;
+  }
+
+  nav a {
+    padding: 5px 1px !important;
+    font-size: 0.6rem !important;
+  }
+
+  nav a:hover {
+    background: #eef4ff;
+  }
+}
 }
 
   .topbar {

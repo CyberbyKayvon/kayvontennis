@@ -93,10 +93,6 @@
     font-size: 0.9rem;
   }
 
-  .programs-grid {
-    grid-template-columns: 1fr !important;
-  }
-
   .section-title {
     font-size: 1.5rem;
   }
@@ -183,6 +179,25 @@
       --accent: #00ff00;
       --accent-dark: #00cc00;
     }
+
+<script>
+  // Force video autoplay
+  document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.slider-video');
+    if (video) {
+      video.muted = true;
+      video.play().catch(function(error) {
+        console.log('Autoplay prevented:', error);
+      });
+    }
+  });
+</script>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
 
     * {
       box-sizing: border-box;
@@ -505,9 +520,9 @@
     }
 
     /* Programs Grid */
-    .programs-grid {
+      .programs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       max-width: 1300px;
       margin: 0 auto;
@@ -775,10 +790,6 @@
         font-size: 1.5rem;
       }
 
-      .programs-grid {
-        grid-template-columns: 1fr;
-      }
-
       .bio-content {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -811,9 +822,9 @@
 
   <!-- Video Slider -->
   <section class="video-slider">
-    <video class="slider-video" autoplay muted loop playsinline>
-      <source src="media/rapid_video.mp4" type="video/mp4">
-    </video>
+    <video class="slider-video" autoplay muted loop playsinline preload="auto">
+  <source src="media/rapid_video.mp4" type="video/mp4">
+</video>
     <div class="slider-overlay">
       <h1>Elite Tennis Coaching</h1>
       <p>Master Your Game</p>
@@ -888,193 +899,129 @@
 </section>
 
   <!-- Videos Section -->
-<section id="videos" style="background: #000000; padding: 60px 0;">
+<section id="videos" style="background: linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #000000 100%); padding: 60px 0;">
   <div class="container">
     <h2 class="section-title">Videos</h2>
-    <p class="section-lead">Watch my latest tennis coaching tips and tutorials. <a href="videos.html">Click here for more videos</a></p>
+    <p class="section-lead">Watch my latest tennis coaching tips and tutorials. <a href="videos.html" style="color: var(--accent); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent);">Click here for more videos →</a></p>
 
-    <<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto;">
-
-  <!-- Video 1 -->
-  <div style="background: #1a1a1a; border: 2px solid #00ff00; border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); display: flex; flex-direction: column;">
-    <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
-      <img src="https://img.youtube.com/vi/V2Jj40Jfjrg/hqdefault.jpg" alt="Video 1" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <div style="padding: 16px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-      <div>
-        <h3 style="margin: 0 0 8px 0; color: #ffffff; font-size: 1.1rem;">Volley Technique Tips</h3>
-        <p style="margin: 0; color: #e0e0e0; font-size: 0.9rem;">Master the fundamentals</p>
+    <!-- Featured Video - Large -->
+    <div style="margin-bottom: 40px;">
+      <div style="background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border: 2px solid #00ff00; border-radius: 16px; overflow: hidden; box-shadow: 0 0 40px rgba(0, 255, 0, 0.4); max-width: 900px; margin: 0 auto;">
+        <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
+          <img src="https://img.youtube.com/vi/V2Jj40Jfjrg/maxresdefault.jpg" alt="Featured Video" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s;">
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(0, 255, 0, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="#000">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+          <div style="position: absolute; top: 16px; left: 16px; background: rgba(0, 255, 0, 0.9); padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; color: #000;">FEATURED</div>
+        </div>
+        <div style="padding: 32px; background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);">
+          <h3 style="margin: 0 0 12px 0; color: #00ff00; font-size: 1.8rem; font-weight: 800;">My Number 1 Volley Tip</h3>
+          <p style="margin: 0 0 20px 0; color: #b0b0b0; font-size: 1rem; line-height: 1.6;">Master the fundamentals of net play with this essential technique</p>
+          <a href="https://www.youtube.com/watch?v=V2Jj40Jfjrg" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: #00ff00; color: #000; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; box-shadow: 0 4px 20px rgba(0, 255, 0, 0.4);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 30px rgba(0,255,0,0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,255,0,0.4)'">
+            Watch Now →
+          </a>
+        </div>
       </div>
-      <a href="https://www.youtube.com/watch?v=V2Jj40Jfjrg" target="_blank" rel="noopener" style="align-self: flex-end; padding: 8px 12px; background: #00ff00; color: #000; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: all 0.2s;" onmouseover="this.style.boxShadow='0 0 15px rgba(0,255,0,0.6)'" onmouseout="this.style.boxShadow='none'">Watch →</a>
     </div>
-  </div>
 
-  <!-- Video 2 -->
-  <div style="background: #1a1a1a; border: 2px solid #00ff00; border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); display: flex; flex-direction: column;">
-    <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
-      <img src="https://img.youtube.com/vi/65bneZCcLVA/hqdefault.jpg" alt="Video 2" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <div style="padding: 16px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-      <div>
-        <h3 style="margin: 0 0 8px 0; color: #ffffff; font-size: 1.1rem;">Wall Practice</h3>
-        <p style="margin: 0; color: #e0e0e0; font-size: 0.9rem;">Improve your match game</p>
+    <!-- Video Grid - 2 columns then 3 columns -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto 24px;">
+
+      <!-- Video 1 -->
+      <div style="background: linear-gradient(135deg, #1a1a1a 0%, #111111 100%); border: 2px solid rgba(0, 255, 0, 0.3); border-radius: 12px; overflow: hidden; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.borderColor='#00ff00'; this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 30px rgba(0,255,0,0.3)'" onmouseout="this.style.borderColor='rgba(0,255,0,0.3)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
+          <img src="https://img.youtube.com/vi/65bneZCcLVA/hqdefault.jpg" alt="Video" style="width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(0, 255, 0, 0.85); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#000">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div style="padding: 20px;">
+          <h4 style="margin: 0 0 8px 0; color: #ffffff; font-size: 1.1rem; font-weight: 700;">Wall Practice</h4>
+          <p style="margin: 0 0 16px 0; color: #909090; font-size: 0.9rem;">Improve your match game</p>
+          <a href="https://www.youtube.com/watch?v=65bneZCcLVA" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; color: #00ff00; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: gap 0.3s;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
+            Watch Now →
+          </a>
+        </div>
       </div>
-      <a href="https://www.youtube.com/watch?v=65bneZCcLVA" target="_blank" rel="noopener" style="align-self: flex-end; padding: 8px 12px; background: #00ff00; color: #000; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: all 0.2s;" onmouseover="this.style.boxShadow='0 0 15px rgba(0,255,0,0.6)'" onmouseout="this.style.boxShadow='none'">Watch →</a>
-    </div>
-  </div>
 
-  <!-- Video 3 -->
-  <div style="background: #1a1a1a; border: 2px solid #00ff00; border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); display: flex; flex-direction: column;">
-    <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
-      <img src="https://img.youtube.com/vi/WQvCuUv1rY0/hqdefault.jpg" alt="Video 3" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <div style="padding: 16px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-      <div>
-        <h3 style="margin: 0 0 8px 0; color: #ffffff; font-size: 1.1rem;">Mental Game</h3>
-        <p style="margin: 0; color: #e0e0e0; font-size: 0.9rem;">Build confidence & focus</p>
+      <!-- Video 2 -->
+      <div style="background: linear-gradient(135deg, #1a1a1a 0%, #111111 100%); border: 2px solid rgba(0, 255, 0, 0.3); border-radius: 12px; overflow: hidden; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.borderColor='#00ff00'; this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 30px rgba(0,255,0,0.3)'" onmouseout="this.style.borderColor='rgba(0,255,0,0.3)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
+          <img src="https://img.youtube.com/vi/WQvCuUv1rY0/hqdefault.jpg" alt="Video" style="width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(0, 255, 0, 0.85); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#000">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div style="padding: 20px;">
+          <h4 style="margin: 0 0 8px 0; color: #ffffff; font-size: 1.1rem; font-weight: 700;">Mental Game</h4>
+          <p style="margin: 0 0 16px 0; color: #909090; font-size: 0.9rem;">Build confidence & focus</p>
+          <a href="https://www.youtube.com/watch?v=WQvCuUv1rY0" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 6px; color: #00ff00; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: gap 0.3s;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
+            Watch Now →
+          </a>
+        </div>
       </div>
-      <a href="https://www.youtube.com/watch?v=WQvCuUv1rY0" target="_blank" rel="noopener" style="align-self: flex-end; padding: 8px 12px; background: #00ff00; color: #000; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: all 0.2s;" onmouseover="this.style.boxShadow='0 0 15px rgba(0,255,0,0.6)'" onmouseout="this.style.boxShadow='none'">Watch →</a>
-    </div>
-  </div>
 
-  <!-- SHORT 1 -->
-  <div style="background: #1a1a1a; border: 2px solid #00ff00; border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); display: flex; flex-direction: column;">
-    <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
-      <img src="https://img.youtube.com/vi/NJfD9T1tPFQ/maxresdefault.jpg" alt="Short 1" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
-    <div style="padding: 16px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-      <div>
-        <h3 style="margin: 0 0 8px 0; color: #ffffff; font-size: 1.1rem;">Quick Tip #1</h3>
-        <p style="margin: 0; color: #e0e0e0; font-size: 0.9rem;">Short form coaching</p>
+
+    <!-- Bottom Row - 3 Shorts -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto;">
+
+      <!-- Short 1 -->
+      <div style="background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); border: 2px solid rgba(0, 255, 0, 0.2); border-radius: 12px; overflow: hidden; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.borderColor='#00ff00'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 25px rgba(0,255,0,0.3)'" onmouseout="this.style.borderColor='rgba(0,255,0,0.2)'; this.style.transform='scale(1)'; this.style.boxShadow='none'">
+        <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
+          <img src="https://img.youtube.com/vi/NJfD9T1tPFQ/maxresdefault.jpg" alt="Short" style="width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; top: 8px; right: 8px; background: rgba(255, 0, 0, 0.9); padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; color: white;">SHORT</div>
+        </div>
+        <div style="padding: 16px;">
+          <h5 style="margin: 0; color: #ffffff; font-size: 0.95rem; font-weight: 700;">Quick Tip #1</h5>
+          <a href="https://www.youtube.com/shorts/NJfD9T1tPFQ" target="_blank" rel="noopener" style="display: inline-block; margin-top: 12px; color: #00ff00; font-weight: 600; font-size: 0.85rem; text-decoration: none;">Watch →</a>
+        </div>
       </div>
-      <a href="https://www.youtube.com/shorts/NJfD9T1tPFQ" target="_blank" rel="noopener" style="align-self: flex-end; padding: 8px 12px; background: #00ff00; color: #000; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: all 0.2s;" onmouseover="this.style.boxShadow='0 0 15px rgba(0,255,0,0.6)'" onmouseout="this.style.boxShadow='none'">Watch →</a>
-    </div>
-  </div>
 
-  <!-- SHORT 2 -->
-  <div style="background: #1a1a1a; border: 2px solid #00ff00; border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); display: flex; flex-direction: column;">
-    <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
-      <img src="https://img.youtube.com/vi/YqmixuBd4JY/maxresdefault.jpg" alt="Short 2" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <div style="padding: 16px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-      <div>
-        <h3 style="margin: 0 0 8px 0; color: #ffffff; font-size: 1.1rem;">Quick Tip #2</h3>
-        <p style="margin: 0; color: #e0e0e0; font-size: 0.9rem;">Short form coaching</p>
+      <!-- Short 2 -->
+      <div style="background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); border: 2px solid rgba(0, 255, 0, 0.2); border-radius: 12px; overflow: hidden; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.borderColor='#00ff00'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 25px rgba(0,255,0,0.3)'" onmouseout="this.style.borderColor='rgba(0,255,0,0.2)'; this.style.transform='scale(1)'; this.style.boxShadow='none'">
+        <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
+          <img src="https://img.youtube.com/vi/YqmixuBd4JY/maxresdefault.jpg" alt="Short" style="width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; top: 8px; right: 8px; background: rgba(255, 0, 0, 0.9); padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; color: white;">SHORT</div>
+        </div>
+        <div style="padding: 16px;">
+          <h5 style="margin: 0; color: #ffffff; font-size: 0.95rem; font-weight: 700;">Quick Tip #2</h5>
+          <a href="https://www.youtube.com/shorts/YqmixuBd4JY" target="_blank" rel="noopener" style="display: inline-block; margin-top: 12px; color: #00ff00; font-weight: 600; font-size: 0.85rem; text-decoration: none;">Watch →</a>
+        </div>
       </div>
-      <a href="https://www.youtube.com/shorts/YqmixuBd4JY" target="_blank" rel="noopener" style="align-self: flex-end; padding: 8px 12px; background: #00ff00; color: #000; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: all 0.2s;" onmouseover="this.style.boxShadow='0 0 15px rgba(0,255,0,0.6)'" onmouseout="this.style.boxShadow='none'">Watch →</a>
-    </div>
-  </div>
 
-  <!-- SHORT 3 -->
-  <div style="background: #1a1a1a; border: 2px solid #00ff00; border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); display: flex; flex-direction: column;">
-    <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
-      <img src="https://img.youtube.com/vi/h5tcbqgkAEE/maxresdefault.jpg" alt="Short 3" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <div style="padding: 16px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
-      <div>
-        <h3 style="margin: 0 0 8px 0; color: #ffffff; font-size: 1.1rem;">Quick Tip #3</h3>
-        <p style="margin: 0; color: #e0e0e0; font-size: 0.9rem;">Short form coaching</p>
+      <!-- Short 3 -->
+      <div style="background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); border: 2px solid rgba(0, 255, 0, 0.2); border-radius: 12px; overflow: hidden; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.borderColor='#00ff00'; this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 25px rgba(0,255,0,0.3)'" onmouseout="this.style.borderColor='rgba(0,255,0,0.2)'; this.style.transform='scale(1)'; this.style.boxShadow='none'">
+        <div style="position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #000;">
+          <img src="https://img.youtube.com/vi/h5tcbqgkAEE/maxresdefault.jpg" alt="Short" style="width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; top: 8px; right: 8px; background: rgba(255, 0, 0, 0.9); padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; color: white;">SHORT</div>
+        </div>
+        <div style="padding: 16px;">
+          <h5 style="margin: 0; color: #ffffff; font-size: 0.95rem; font-weight: 700;">Quick Tip #3</h5>
+          <a href="https://www.youtube.com/shorts/h5tcbqgkAEE" target="_blank" rel="noopener" style="display: inline-block; margin-top: 12px; color: #00ff00; font-weight: 600; font-size: 0.85rem; text-decoration: none;">Watch →</a>
+        </div>
       </div>
-      <a href="https://www.youtube.com/shorts/h5tcbqgkAEE" target="_blank" rel="noopener" style="align-self: flex-end; padding: 8px 12px; background: #00ff00; color: #000; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.85rem; transition: all 0.2s;" onmouseover="this.style.boxShadow='0 0 15px rgba(0,255,0,0.6)'" onmouseout="this.style.boxShadow='none'">Watch →</a>
-    </div>
-  </div>
 
-</div>
+    </div>
+
+  </div>
 </section>
 
-  <!-- Programs & Rates -->
-  <section id="programs" style="background: #1a1a1a;">
-    <div class="container">
-      <h2 class="section-title">Programs & Rates</h2>
-      <p class="section-lead">Choose the perfect program for your level and goals</p>
-
-      <div class="programs-grid">
-        <!-- Program 1 -->
-        <div class="program-card">
-          <h3 class="program-title">Private Lesson</h3>
-          <p class="program-subtitle">One-on-one coaching</p>
-          <div class="program-price">$90</div>
-          <p class="program-duration">60 minutes</p>
-          <ul class="program-features">
-            <li>Personalized technique work</li>
-            <li>Tactical analysis</li>
-            <li>Mental coaching</li>
-          </ul>
-          <a href="#connect" class="btn">Book Now</a>
-        </div>
-
-        <!-- Program 2 -->
-        <div class="program-card">
-          <h3 class="program-title">Group Lessons</h3>
-          <p class="program-subtitle">Small group training</p>
-          <div class="program-price">$45</div>
-          <p class="program-duration">Per person</p>
-          <ul class="program-features">
-            <li>Collaborative drills</li>
-            <li>Competitive games</li>
-            <li>Community atmosphere</li>
-          </ul>
-          <a href="#connect" class="btn">Book Now</a>
-        </div>
-
-        <!-- Program 3 -->
-        <div class="program-card">
-          <h3 class="program-title">Weekly Clinics</h3>
-          <p class="program-subtitle">Group training sessions</p>
-          <div class="program-price">$25</div>
-          <p class="program-duration">Per session</p>
-          <ul class="program-features">
-            <li>Tuesday & Thursday</li>
-            <li>6:30 PM – 8:00 PM</li>
-            <li>90 minutes of training</li>
-          </ul>
-          <a href="#connect" class="btn">Book Now</a>
-        </div>
-
-        <!-- Program 4 - FEATURED -->
-        <div class="program-card featured">
-          <h3 class="program-title">5-Lesson Package</h3>
-          <p class="program-subtitle">Build momentum with savings</p>
-          <div class="program-price">$400</div>
-          <p class="program-duration">$80/lesson (save $50)</p>
-          <ul class="program-features">
-            <li>60 minutes each</li>
-            <li>Progressive training</li>
-            <li>Progress tracking</li>
-          </ul>
-          <a href="#connect" class="btn">Book Now</a>
-        </div>
-
-        <!-- Program 5 -->
-        <div class="program-card">
-          <h3 class="program-title">Video Analysis</h3>
-          <p class="program-subtitle">Remote technique feedback</p>
-          <div class="program-price">$60</div>
-          <p class="program-duration">Per analysis</p>
-          <ul class="program-features">
-            <li>Submit your video</li>
-            <li>Detailed PDF feedback</li>
-            <li>Technique breakdown</li>
-          </ul>
-          <a href="#connect" class="btn">Submit Video</a>
-        </div>
-
-        <!-- Program 6 -->
-        <div class="program-card">
-          <h3 class="program-title">Tournament Prep</h3>
-          <p class="program-subtitle">Competition training</p>
-          <div class="program-price">$120</div>
-          <p class="program-duration">90 minutes</p>
-          <ul class="program-features">
-            <li>Match simulation</li>
-            <li>Strategy development</li>
-            <li>Mental toughness</li>
-          </ul>
-          <a href="#connect" class="btn">Book Now</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Add responsive CSS for mobile -->
+<style>
+@media (max-width: 768px) {
+  #videos .container > div:nth-child(3),
+  #videos .container > div:nth-child(4) {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
 
   <!-- Schedule -->
 <section id="schedule" class="section" style="padding:3rem 0;">

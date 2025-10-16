@@ -334,7 +334,7 @@ p.lead,
 /* ========== PROGRAMS ========== */
 .programs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   max-width: 1300px;
   margin: 0 auto;
@@ -596,10 +596,11 @@ footer {
     padding: 0 16px;
   }
 
-  .schedule-wrapper {
-    grid-template-columns: 1fr;
-    gap: 24px;
+@media (max-width: 768px) {
+  .programs-grid {
+    grid-template-columns: 1fr !important;
   }
+}
 
   .schedule-quick-action {
     position: static;
@@ -878,4 +879,18 @@ footer {
 @keyframes blink-caret {
   from, to { border-color: transparent; }
   50% { border-color: var(--accent); }
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 24px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .programs-grid {
+    grid-template-columns: 1fr !important;
+  }
 }

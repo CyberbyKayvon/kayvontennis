@@ -1554,3 +1554,83 @@ iframe[src*="juicer.io"] {
     padding: 0 0.5rem !important;
   }
 }
+
+/* Perfect Center for Schedule Section on Mobile */
+@media (max-width: 768px) {
+  #schedule .container {
+    max-width: 100%;
+    padding: 0 12px !important;
+  }
+
+  .schedule-wrapper {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 20px;
+  }
+
+  .schedule-calendar {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Session Selector */
+  .session-selector {
+    width: 100%;
+    padding: 16px;
+  }
+
+  /* Info Cards */
+  .info-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 100%;
+  }
+
+  /* Calendar */
+  .calendar-container {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .calendar-grid {
+    gap: 4px !important; /* Reduce gap on mobile */
+  }
+
+  .day-cell {
+    font-size: 0.85rem;
+  }
+
+  /* Time Slots */
+  .timeslots-container {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .timeslots-grid {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)) !important; /* Smaller on mobile */
+    gap: 8px !important;
+  }
+
+  .time-slot {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+
+  /* Book Button */
+  .book-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 16px;
+  }
+
+  /* Right Column Cards */
+  .right-column-cards {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .quick-action-card {
+    padding: 20px;
+  }
+}

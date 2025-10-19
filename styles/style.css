@@ -1270,13 +1270,13 @@ footer a {
   }
 
   nav a {
-    padding: 10px 6px;
+    padding: 8px 4px;
     font-size: 0.8rem;
     text-align: center;
   }
 
   .video-slider {
-    height: 280px;
+    height: 300px;
     min-height: auto;
   }
 

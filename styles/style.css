@@ -1414,47 +1414,42 @@ footer a {
 
 /* 2. Reduce space between nav tabs on mobile */
 @media (max-width: 768px) {
-  header.site nav {
-    gap: 4px; /* or whatever is smaller than current */
-  }
-
-  header.site nav a {
-    font-size: 0.85rem;
-    padding: 4px 6px; /* Reduce padding */
-  }
-
   .topbar {
-    padding: 12px 0;
-  }
-}
-
-/* 3. Center schedule section on mobile */
-@media (max-width: 768px) {
-  #schedule {
-    padding: 40px 0;
-  }
-
-  #schedule .container {
-    display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+  }
+
+  .brandwrap {
+    margin-left: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .brand {
+    font-size: 1.4rem;
+  }
+
+  .tagline {
+    font-size: 0.7rem;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
     padding: 0 12px;
   }
 
-  .schedule-wrapper {
-    width: 100%;
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
+  nav a {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    text-align: center;
+    white-space: nowrap;
   }
-
-  .schedule-calendar,
-  .right-column-cards {
-    width: 100%;
-    max-width: 100%;
-  }
-}
 
 /* 4. Fix videos.html responsiveness */
 @media (max-width: 768px) {

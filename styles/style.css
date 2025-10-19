@@ -1322,13 +1322,13 @@ footer a {
 
 @media (max-width: 480px) {
   nav {
-    gap: 6px;
+    gap: 4px;
     padding: 0 8px;
   }
 
   nav a {
     font-size: 0.7rem;
-    padding: 8px 4px;
+    padding: 6px 4px;
   }
 
   .brand {

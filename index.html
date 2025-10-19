@@ -6,6 +6,8 @@
   <title>Kayvon Tennis – Elite Coaching</title>
   <meta name="description" content="Professional tennis coaching from former D1 player. Private lessons, group clinics, and tournament prep." />
   <link rel="stylesheet" href="styles/style.css">
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 <body>
   <!-- Header -->
@@ -80,11 +82,11 @@
           <div class="bio-features">
             <div class="bio-feature">
               <span class="bio-bullet">▶</span>
-              <span>Professional Tennis Coach – USTA Certified</span>
+              <span>Professional Tennis Coach</span>
             </div>
             <div class="bio-feature">
               <span class="bio-bullet">▶</span>
-              <span>Specialized Training – Beginner to Advanced</span>
+              <span>USPTA Certified & USTA SAFE Play Certified</span>
             </div>
             <div class="bio-feature">
               <span class="bio-bullet">▶</span>
@@ -92,7 +94,7 @@
             </div>
             <div class="bio-feature">
               <span class="bio-bullet">▶</span>
-              <span>Mental Game & Confidence Building</span>
+              <span>Specialized Training – Beginner to Advanced</span>
             </div>
           </div>
         </div>
@@ -303,7 +305,7 @@
             <div class="info-card">
               <div class="info-icon">💰</div>
               <div class="info-title">Rate</div>
-              <div class="info-text">$9      v 0 per session</div>
+              <div class="info-text">$90 per hour</div>
             </div>
           </div>
 
@@ -704,10 +706,10 @@
       if (bookButton) {
         bookButton.addEventListener('click', () => {
           if (selectedDate && selectedTime) {
-            const sessionInput = document.querySelector('input[name="session"]:checked');
-            const sessionType = sessionInput ? sessionInput.value : 'private';
-            const sessionName = sessionType === 'private' ? 'Private Lesson' : 'Weekly Clinic';
-            alert(`Booking confirmed!\n\n${sessionName}\n${selectedDate.toDateString()}\n${selectedTime}\n\nYou will receive a confirmation email shortly!`);
+            // Open Calendly popup
+            Calendly.initPopupWidget({
+              url: 'https://calendly.com/kayvontennis/30min'
+            });
           }
         });
       }

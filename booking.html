@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport"="width=device-width, initial-scale=1.0">
     <title>Book a Session - Kayvon Tennis</title>
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     <style>
         * {
             margin: 0;
@@ -563,12 +565,13 @@
         }
 
         document.getElementById('bookButton').addEventListener('click', () => {
-            if (selectedDate && selectedTime) {
-                const sessionType = document.querySelector('input[name="session"]:checked').value;
-                const sessionName = sessionType === 'private' ? 'Private Lesson' : 'Weekly Clinic';
-                alert(`Booking confirmed!\n\n${sessionName}\n${selectedDate.toDateString()}\n${selectedTime}\n\nYou will receive a confirmation email at kayvontennis@gmail.com`);
-            }
+    if (selectedDate && selectedTime) {
+        // Open Calendly popup
+        Calendly.initPopupWidget({
+            url: 'https://calendly.com/kayvontennis/30min'
         });
+    }
+});
 
         // Initialize calendar
         renderCalendar();

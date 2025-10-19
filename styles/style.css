@@ -1233,31 +1233,60 @@ footer a {
   .schedule-calendar {
     order: 1;
   }
-
-  .schedule-calendar iframe {
-    height: 1000px;
-  }
 }
 
 @media (max-width: 768px) {
-  .schedule-wrapper {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  /* Nav header fixes */
+  .topbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 0;
   }
 
-  .schedule-calendar,
-  .right-column-cards {
+  .brandwrap {
+    margin-left: 0;
+    text-align: center;
     width: 100%;
   }
 
-  .right-column-cards {
-    position: static;
+  .brand {
+    font-size: 1.4rem;
   }
-}
 
+  .tagline {
+    font-size: 0.7rem;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    padding: 0 8px;
+  }
+
+  nav a {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* Video slider */
   .video-slider {
-    height: 300px;
+    height: 50vh;
     min-height: auto;
+  }
+
+  .slider-video {
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .slider-overlay {
+    padding: 20px;
   }
 
   .slider-overlay h1 {
@@ -1273,6 +1302,7 @@ footer a {
     font-size: 0.9rem;
   }
 
+  /* Sections */
   .section-title {
     font-size: 1.5rem;
   }
@@ -1298,23 +1328,48 @@ footer a {
     text-align: center;
   }
 
+  /* Videos */
   .videos-grid-2col,
   .videos-grid-3col {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 16px;
   }
 
+  .featured-video-container {
+    padding: 0;
+  }
+
+  .video-card,
+  .video-card-short {
+    width: 100%;
+  }
+
+  /* Programs */
   .programs-grid {
     grid-template-columns: 1fr;
   }
 
-  .schedule-calendar iframe {
-    height: 1050px;
+  /* Schedule - FIXED */
+  .schedule-wrapper {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
+  .schedule-calendar,
+  .right-column-cards {
+    width: 100%;
+  }
+
+  .right-column-cards {
+    position: static;
+  }
+
+  /* Testimonials */
   .testimonials-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Container */
   .container {
     padding: 0 12px;
   }
@@ -1362,10 +1417,6 @@ footer a {
 
   .bio-title {
     font-size: 1.5rem;
-  }
-
-  .schedule-calendar iframe {
-    height: 1100px;
   }
 
   .container {

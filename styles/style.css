@@ -1540,3 +1540,17 @@ footer a {
 iframe[src*="juicer.io"] {
   margin-bottom: -50px !important;
 }
+
+/* Instagram Feed Mobile Fix */
+@media (max-width: 820px) {
+  .juicer-feed iframe,
+  iframe[src*="juicer.io"] {
+    height: 800px !important;
+    max-width: 100% !important;
+  }
+
+  /* Adjust container padding on mobile */
+  #videos div[style*="max-width: 1000px"] {
+    padding: 0 0.5rem !important;
+  }
+}

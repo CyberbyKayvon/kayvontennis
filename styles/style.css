@@ -1392,3 +1392,84 @@ footer a {
     padding: 0 8px;
   }
 }
+
+/* ===== MOBILE FIXES ===== */
+
+/* 1. Remove black space above/below video slider on mobile */
+@media (max-width: 768px) {
+  .video-slider {
+    min-height: 50vh; /* Reduce from whatever it currently is */
+    height: 50vh;
+  }
+
+  .slider-video {
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .video-slider .slider-overlay {
+    padding: 20px;
+  }
+}
+
+/* 2. Reduce space between nav tabs on mobile */
+@media (max-width: 768px) {
+  header.site nav {
+    gap: 4px; /* or whatever is smaller than current */
+  }
+
+  header.site nav a {
+    font-size: 0.85rem;
+    padding: 4px 6px; /* Reduce padding */
+  }
+
+  .topbar {
+    padding: 12px 0;
+  }
+}
+
+/* 3. Center schedule section on mobile */
+@media (max-width: 768px) {
+  #schedule {
+    padding: 40px 0;
+  }
+
+  #schedule .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 12px;
+  }
+
+  .schedule-wrapper {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .schedule-calendar,
+  .right-column-cards {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* 4. Fix videos.html responsiveness */
+@media (max-width: 768px) {
+  .videos-grid-2col,
+  .videos-grid-3col {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .featured-video-container {
+    padding: 0;
+  }
+
+  .video-card,
+  .video-card-short {
+    width: 100%;
+  }
+}

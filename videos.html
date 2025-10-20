@@ -5,97 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Video Library - Kayvon Tennis</title>
   <meta name="description" content="Browse all tennis coaching videos, tutorials, and tips from Kayvon Tennis." />
+  <link rel="stylesheet" href="styles/style.css?v=7">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* Videos page specific styles only - header styles come from style.css */
     body {
       background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    body {
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    /* ADD ALL OF FIX 2 HERE ⬇️ */
-    /* Header Styles for videos.html */
-    header.site {
-      background: #1a1a1a;
-      border-bottom: 1px solid rgba(0, 255, 0, 0.3);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 255, 0, 0.2);
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 0;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .brandwrap {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #ffffff;
-    }
-
-    .tagline {
-      font-size: 0.75rem;
-      color: #00ff00;
-      font-weight: 600;
-    }
-
-    nav {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    nav a {
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      transition: all 0.2s;
-      color: #ffffff;
-      white-space: nowrap;
-    }
-
-    nav a:hover {
-      background: rgba(0, 255, 0, 0.1);
-      color: #00ff00;
-    }
-    /* END OF FIX 2 ⬆️ */
-
-    .videos-wrapper {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 40px 20px;
     }
 
     .videos-wrapper {
@@ -249,24 +163,6 @@
     .profile-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Section Headers */
-    .section-header {
-      margin: 40px 0 24px 0;
-    }
-
-    .section-header h2 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 6px;
-    }
-
-    .section-header p {
-      font-size: 0.95rem;
-      color: #808080;
-      font-weight: 600;
     }
 
     /* Section Headers */
@@ -473,6 +369,69 @@
       transform: scale(1.1);
     }
 
+    /* Connect Section */
+    #connect {
+      background: #000000;
+      padding: 40px 0 30px 0;
+      margin-top: 40px;
+    }
+
+    #connect .section-title {
+      color: #ffffff;
+      font-size: 2rem;
+      font-weight: 800;
+      text-align: center;
+      margin: 0 0 15px 0;
+    }
+
+    #connect .section-lead {
+      font-size: 1rem;
+      text-align: center;
+      color: #808080;
+      margin: 0 0 40px 0;
+      font-weight: 600;
+    }
+
+    .connect-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .connect-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: #2a2a2a;
+      border-radius: 6px;
+      transition: all 0.2s;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .connect-btn:hover {
+      background: #00ff00;
+      color: #000;
+    }
+
+    .connect-btn.youtube {
+      color: #ff0000;
+    }
+
+    .connect-btn.linkedin {
+      color: #0a66c2;
+    }
+
+    .connect-btn.instagram {
+      color: #e4405f;
+    }
+
+    .connect-btn.email {
+      color: #ea4335;
+    }
+
     /* Responsive */
     @media (max-width: 1024px) {
       .videos-grid-3col {
@@ -480,120 +439,41 @@
       }
     }
 
-    /* Profile Cards */
-    .profile-card {
-      background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
-      border: 2px solid rgba(0, 255, 0, 0.3);
-      border-radius: 16px;
-      padding: 24px 32px;
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      transition: all 0.3s;
-      max-width: 700px;
-    }
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 40px 20px;
+      }
 
-    .profile-card:hover {
-      border-color: #00ff00;
-      box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
-    }
+      .hero-section h1 {
+        font-size: 2rem;
+      }
 
-    .profile-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 3px solid #00ff00;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
+      .profile-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        max-width: 100%;
+      }
 
-    .profile-info {
-      flex-grow: 1;
-    }
+      .profile-stats {
+        justify-content: center;
+      }
 
-    .profile-name {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 4px;
-    }
+      .profile-btn {
+        width: 100%;
+        justify-content: center;
+      }
 
-    .profile-handle {
-      color: #00ff00;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
+      .videos-grid-3col,
+      .videos-grid-2col {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+      }
 
-    .profile-stats {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .stat-number {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: #00ff00;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: #a0a0a0;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .profile-btn {
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.3s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-      font-size: 0.9rem;
-    }
-
-    .instagram-btn {
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      color: #ffffff;
-    }
-
-    .youtube-btn {
-      background: #ff0000;
-      color: #ffffff;
-    }
-
-    .profile-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Section Headers */
-    .section-header {
-      margin: 40px 0 24px 0;
-    }
-
-    .section-header h2 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 6px;
-    }
-
-    .section-header p {
-      font-size: 0.95rem;
-      color: #808080;
-      font-weight: 600;
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -602,151 +482,22 @@
       }
 
       .profile-avatar {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
       }
 
       .profile-name {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
       }
 
       .stat-number {
-        font-size: 1.2rem;
+        font-size: 1rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
       }
     }
-
-    /* Connect Section */
-#connect {
-  background: #000000;
-  padding: 40px 0 30px 0;  /* Changed from 60px 0 */
-  margin-top: 40px;  /* Changed from 60px */
-}
-
-#connect .section-title {
-  color: #ffffff;
-  font-size: 2rem;
-  font-weight: 800;
-  text-align: center;
-  margin: 0 0 15px 0;
-}
-
-#connect .section-lead {
-  font-size: 1rem;
-  text-align: center;
-  color: #808080;
-  margin: 0 0 40px 0;
-  font-weight: 600;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.connect-links {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.connect-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  background: #2a2a2a;
-  border-radius: 6px;
-  transition: all 0.2s;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.connect-btn:hover {
-  background: #00ff00;
-  color: #000;
-}
-
-.connect-btn.youtube {
-  color: #ff0000;
-}
-
-.connect-btn.linkedin {
-  color: #0a66c2;
-}
-
-.connect-btn.instagram {
-  color: #e4405f;
-}
-
-.connect-btn.email {
-  color: #ea4335;
-}
-
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 40px 20px;
-  }
-
-  .hero-section h1 {
-    font-size: 2rem;
-  }
-
-  /* FIX: Profile card responsiveness */
-  .profile-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-    max-width: 100%;
-  }
-
-  .profile-stats {
-    justify-content: center;
-  }
-
-  .profile-btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* FIX: Video grids to single column */
-  .videos-grid-3col,
-  .videos-grid-2col {
-    grid-template-columns: 1fr !important;
-    gap: 20px;
-  }
-
-  /* FIX: Gallery grid */
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-section h1 {
-    font-size: 1.6rem;
-  }
-
-  .profile-avatar {
-    width: 60px;
-    height: 60px;
-  }
-
-  .profile-name {
-    font-size: 1.1rem;
-  }
-
-  .stat-number {
-    font-size: 1rem;
-  }
-
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
   </style>
 </head>
 <body>
@@ -1164,6 +915,7 @@
     </div>
 
   </div>
+
   <!-- Connect -->
   <section id="connect">
     <div class="container">
@@ -1199,29 +951,29 @@
     </div>
   </section>
 
-
   <footer style="border-top: 1px solid rgba(0, 255, 0, 0.1); padding: 30px 0 20px 0; text-align: center; background: #0a0a0a; margin-top: 20px;">
-  <p style="margin: 0; color: #00ff00; font-weight: 600;">© 2025 Kayvon Tennis • <a href="mailto:kayvontennis@gmail.com" style="color: #00ff00; text-decoration: none;">kayvontennis@gmail.com</a></p>
-</footer>
-<script>
-  // Simple floating header effect
-let lastScroll = 0;
-const header = document.querySelector('header.site');
+    <p style="margin: 0; color: #00ff00; font-weight: 600;">© 2025 Kayvon Tennis • <a href="mailto:kayvontennis@gmail.com" style="color: #00ff00; text-decoration: none;">kayvontennis@gmail.com</a></p>
+  </footer>
 
-if (header) {
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+  <script>
+    // Simple floating header effect
+    let lastScroll = 0;
+    const header = document.querySelector('header.site');
 
-    // Add shadow effect when scrolled
-    if (currentScroll > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+    if (header) {
+      window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+
+        // Add shadow effect when scrolled
+        if (currentScroll > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        lastScroll = currentScroll;
+      });
     }
-
-    lastScroll = currentScroll;
-  });
-}
-</script>
+  </script>
 </body>
 </html>

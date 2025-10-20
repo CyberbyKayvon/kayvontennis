@@ -1107,7 +1107,7 @@
   <p style="margin: 0; color: #00ff00; font-weight: 600;">© 2025 Kayvon Tennis • <a href="mailto:kayvontennis@gmail.com" style="color: #00ff00; text-decoration: none;">kayvontennis@gmail.com</a></p>
 </footer>
 <script>
-  // Floating header effect on scroll
+  // Auto-hide floating header on scroll
   let lastScroll = 0;
   const header = document.querySelector('header.site');
 
@@ -1115,10 +1115,21 @@
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
 
-      if (currentScroll > 50) {
-        header.classList.add('scrolled');
-      } else {
+      // If at top, always show
+      if (currentScroll <= 0) {
+        header.classList.remove('hide-header');
         header.classList.remove('scrolled');
+        return;
+      }
+
+      // Scrolling down - HIDE
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        header.classList.add('hide-header');
+      }
+      // Scrolling up - SHOW
+      else if (currentScroll < lastScroll) {
+        header.classList.remove('hide-header');
+        header.classList.add('scrolled');
       }
 
       lastScroll = currentScroll;

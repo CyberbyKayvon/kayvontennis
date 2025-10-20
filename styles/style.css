@@ -61,12 +61,19 @@ header.site {
   z-index: 100;
   transition: all 0.3s ease;
   box-shadow: 0 2px 20px rgba(0, 255, 0, 0.1);
+  transform: translateY(0); /* Add this */
 }
 
 /* Enhanced floating effect when scrolled */
 header.site.scrolled {
   box-shadow: 0 4px 30px rgba(0, 255, 0, 0.2);
   backdrop-filter: blur(10px);
+}
+
+/* Hide header when scrolling down - ADD THIS ENTIRE BLOCK */
+header.site.hide-header {
+  transform: translateY(-100%);
+  box-shadow: none;
 }
 
 .topbar {

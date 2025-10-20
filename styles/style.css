@@ -52,12 +52,11 @@ a {
   padding: 0 var(--pad);
 }
 
-/* ==================== HEADER ==================== */
-/* ==================== HEADER ==================== */
+/* ==================== HEADER (DESKTOP - ORIGINAL + STICKY) ==================== */
 header.site {
   background: var(--card);
   border-bottom: 1px solid var(--line);
-  position: sticky;
+  position: sticky;  /* ✅ ONLY CHANGE FOR DESKTOP */
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 20px rgba(0, 255, 0, 0.1);
@@ -69,7 +68,52 @@ header.site.scrolled {
   box-shadow: 0 4px 30px rgba(0, 255, 0, 0.3);
 }
 
-/* REMOVE THE .hide-header STYLE COMPLETELY */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.brandwrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-left: 32px;
+}
+
+.brand {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--fg);
+  letter-spacing: -0.5px;
+}
+
+.tagline {
+  font-size: 0.9rem;
+  color: #0eff00;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+nav a {
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  color: var(--fg);
+}
+
+nav a:hover {
+  background: #eef4ff;
+}
 
 /* ==================== VIDEO SLIDER ==================== */
 .video-slider {
@@ -1197,43 +1241,53 @@ footer a {
   }
 }
 
+/* ==================== MOBILE HEADER (TAGLINE ON OWN LINE, ALL NAV IN 1 ROW, STICKY) ==================== */
 @media (max-width: 768px) {
-  /* CONSOLIDATED NAV HEADER */
+  /* ✅ MOBILE HEADER FIX */
   .topbar {
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    padding: 6px 0;
+    gap: 8px;
+    padding: 8px 0;
   }
 
   .brandwrap {
     margin-left: 0;
     text-align: center;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 
   .brand {
     font-size: 1.4rem;
   }
 
+  /* ✅ TAGLINE ON OWN LINE */
   .tagline {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    display: block;
+    width: 100%;
   }
 
+  /* ✅ ALL NAV TABS IN 1 ROW */
   nav {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
-    gap: 4px;
+    gap: 2px;
     width: 100%;
-    padding: 0 8px;
+    padding: 0 4px;
+    overflow-x: auto;
   }
 
   nav a {
-    padding: 6px 10px;
-    font-size: 0.75rem;
+    padding: 6px 8px;
+    font-size: 0.7rem;
     text-align: center;
     white-space: nowrap;
+    flex-shrink: 0;
   }
 
   /* Video slider */
@@ -1338,24 +1392,6 @@ footer a {
 }
 
 @media (max-width: 480px) {
-  nav {
-    gap: 4px;
-    padding: 0 8px;
-  }
-
-  nav a {
-    font-size: 0.7rem;
-    padding: 6px 4px;
-  }
-
-  .brand {
-    font-size: 1.2rem;
-  }
-
-  .tagline {
-    font-size: 0.65rem;
-  }
-
   .video-slider {
     height: 240px;
   }
@@ -1383,43 +1419,6 @@ footer a {
 
   .container {
     padding: 0 8px;
-  }
-}
-
-/* ===== MOBILE FIXES ===== */
-
-/* 1. Remove black space above/below video slider on mobile */
-@media (max-width: 768px) {
-  .video-slider {
-    min-height: 50vh; /* Reduce from whatever it currently is */
-    height: 50vh;
-  }
-
-  .slider-video {
-    object-fit: cover;
-    height: 100%;
-  }
-
-  .video-slider .slider-overlay {
-    padding: 20px;
-  }
-}
-
-/* 4. Fix videos.html responsiveness */
-@media (max-width: 768px) {
-  .videos-grid-2col,
-  .videos-grid-3col {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-  }
-
-  .featured-video-container {
-    padding: 0;
-  }
-
-  .video-card,
-  .video-card-short {
-    width: 100%;
   }
 }
 
@@ -1464,7 +1463,6 @@ iframe[src*="juicer.io"] {
   margin-bottom: -50px !important;
 }
 
-/* Instagram Feed Mobile Fix */
 @media (max-width: 820px) {
   .juicer-feed iframe,
   iframe[src*="juicer.io"] {
@@ -1472,88 +1470,7 @@ iframe[src*="juicer.io"] {
     max-width: 100% !important;
   }
 
-  /* Adjust container padding on mobile */
   #videos div[style*="max-width: 1000px"] {
     padding: 0 0.5rem !important;
-  }
-}
-
-/* Perfect Center for Schedule Section on Mobile */
-@media (max-width: 768px) {
-  #schedule .container {
-    max-width: 100%;
-    padding: 0 12px !important;
-  }
-
-  .schedule-wrapper {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 20px;
-  }
-
-  .schedule-calendar {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  /* Session Selector */
-  .session-selector {
-    width: 100%;
-    padding: 16px;
-  }
-
-  /* Info Cards */
-  .info-cards {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    width: 100%;
-  }
-
-  /* Calendar */
-  .calendar-container {
-    width: 100%;
-    padding: 16px;
-  }
-
-  .calendar-grid {
-    gap: 4px !important; /* Reduce gap on mobile */
-  }
-
-  .day-cell {
-    font-size: 0.85rem;
-  }
-
-  /* Time Slots */
-  .timeslots-container {
-    width: 100%;
-    padding: 16px;
-  }
-
-  .timeslots-grid {
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)) !important; /* Smaller on mobile */
-    gap: 8px !important;
-  }
-
-  .time-slot {
-    padding: 10px;
-    font-size: 0.85rem;
-  }
-
-  /* Book Button */
-  .book-button {
-    width: 100%;
-    font-size: 1rem;
-    padding: 16px;
-  }
-
-  /* Right Column Cards */
-  .right-column-cards {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .quick-action-card {
-    padding: 20px;
   }
 }

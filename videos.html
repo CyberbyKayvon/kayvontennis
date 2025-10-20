@@ -1106,5 +1106,24 @@
   <footer style="border-top: 1px solid rgba(0, 255, 0, 0.1); padding: 30px 0 20px 0; text-align: center; background: #0a0a0a; margin-top: 20px;">
   <p style="margin: 0; color: #00ff00; font-weight: 600;">© 2025 Kayvon Tennis • <a href="mailto:kayvontennis@gmail.com" style="color: #00ff00; text-decoration: none;">kayvontennis@gmail.com</a></p>
 </footer>
+<script>
+  // Floating header effect on scroll
+  let lastScroll = 0;
+  const header = document.querySelector('header.site');
+
+  if (header) {
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      lastScroll = currentScroll;
+    });
+  }
+</script>
 </body>
 </html>

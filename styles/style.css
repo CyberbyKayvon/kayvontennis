@@ -56,10 +56,17 @@ a {
 header.site {
   background: var(--card);
   border-bottom: 1px solid var(--line);
-  box-shadow: 0 2px 20px rgba(0, 255, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 20px rgba(0, 255, 0, 0.1);
+}
+
+/* Enhanced floating effect when scrolled */
+header.site.scrolled {
+  box-shadow: 0 4px 30px rgba(0, 255, 0, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .topbar {
@@ -1236,12 +1243,12 @@ footer a {
 }
 
 @media (max-width: 768px) {
-  /* Nav header fixes */
+  /* CONSOLIDATED NAV HEADER */
   .topbar {
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    padding: 8px 0;
+    gap: 4px;
+    padding: 6px 0;
   }
 
   .brandwrap {
@@ -1442,45 +1449,6 @@ footer a {
     padding: 20px;
   }
 }
-
-/* 2. Reduce space between nav tabs on mobile */
-@media (max-width: 768px) {
-  .topbar {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 0;
-  }
-
-  .brandwrap {
-    margin-left: 0;
-    text-align: center;
-    width: 100%;
-  }
-
-  .brand {
-    font-size: 1.4rem;
-  }
-
-  .tagline {
-    font-size: 0.7rem;
-  }
-
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px;
-    width: 100%;
-    padding: 0 12px;
-  }
-
-  nav a {
-    padding: 8px 12px;
-    font-size: 0.75rem;
-    text-align: center;
-    white-space: nowrap;
-  }
 
 /* 4. Fix videos.html responsiveness */
 @media (max-width: 768px) {

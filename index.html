@@ -532,6 +532,22 @@
     // Set year
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Floating header effect on scroll
+    let lastScroll = 0;
+    const header = document.querySelector('header.site');
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      lastScroll = currentScroll;
+    });
+
     // Video autoplay handler
     document.addEventListener('DOMContentLoaded', function() {
       const video = document.getElementById('heroVideo');

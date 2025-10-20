@@ -19,6 +19,85 @@
       line-height: 1.6;
     }
 
+    body {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ADD ALL OF FIX 2 HERE ⬇️ */
+    /* Header Styles for videos.html */
+    header.site {
+      background: #1a1a1a;
+      border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 255, 0, 0.2);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .brandwrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .tagline {
+      font-size: 0.75rem;
+      color: #00ff00;
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    nav a {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      background: rgba(0, 255, 0, 0.1);
+      color: #00ff00;
+    }
+    /* END OF FIX 2 ⬆️ */
+
+    .videos-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
     .videos-wrapper {
       max-width: 1400px;
       margin: 0 auto;
@@ -671,6 +750,24 @@
   </style>
 </head>
 <body>
+  <!-- Header -->
+  <header class="site">
+    <div class="topbar container">
+      <div class="brandwrap">
+        <span class="brand">Kayvon Tennis</span>
+        <span class="tagline">Elite Coaching | Former D1 | 30+ Years</span>
+      </div>
+      <nav>
+        <a href="index.html#about">About</a>
+        <a href="index.html#videos">Videos</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="index.html#schedule">Schedule</a>
+        <a href="index.html#testimonials">Testimonials</a>
+        <a href="index.html#connect">Connect</a>
+      </nav>
+    </div>
+  </header>
+
   <div class="videos-wrapper">
     <!-- Hero Header -->
     <div class="hero-section">
@@ -1107,34 +1204,24 @@
   <p style="margin: 0; color: #00ff00; font-weight: 600;">© 2025 Kayvon Tennis • <a href="mailto:kayvontennis@gmail.com" style="color: #00ff00; text-decoration: none;">kayvontennis@gmail.com</a></p>
 </footer>
 <script>
-  // Auto-hide floating header on scroll
-  let lastScroll = 0;
-  const header = document.querySelector('header.site');
+  // Simple floating header effect
+let lastScroll = 0;
+const header = document.querySelector('header.site');
 
-  if (header) {
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
+if (header) {
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
 
-      // If at top, always show
-      if (currentScroll <= 0) {
-        header.classList.remove('hide-header');
-        header.classList.remove('scrolled');
-        return;
-      }
+    // Add shadow effect when scrolled
+    if (currentScroll > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
 
-      // Scrolling down - HIDE
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        header.classList.add('hide-header');
-      }
-      // Scrolling up - SHOW
-      else if (currentScroll < lastScroll) {
-        header.classList.remove('hide-header');
-        header.classList.add('scrolled');
-      }
-
-      lastScroll = currentScroll;
-    });
-  }
+    lastScroll = currentScroll;
+  });
+}
 </script>
 </body>
 </html>

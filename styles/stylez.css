@@ -7,7 +7,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  scroll-padding-top: 120px; /* Increased from 100px for better section alignment */
 }
 
 body {
@@ -54,7 +54,7 @@ body {
   opacity: 0.8;
 }
 
-/* MOBILE NAV - 3 COLUMNS x 2 ROWS */
+/* MOBILE NAV - 3 COLUMNS x 2 ROWS - NEON GREEN ON BLACK */
 .main-nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -68,18 +68,29 @@ body {
   text-align: center;
   font-size: 0.8rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000; /* Black text for better readability */
   text-decoration: none;
-  background: rgba(0, 255, 0, 0.1);
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  background: #00ff00; /* Bright neon green background */
+  border: 1px solid #00ff00;
   border-radius: 8px;
   transition: all 0.2s;
+  position: relative;
 }
 
-.main-nav a:hover {
-  background: rgba(0, 255, 0, 0.2);
+.main-nav a:hover,
+.main-nav a:active {
+  background: #00ff00;
+  color: #000000;
   border-color: #00ff00;
   transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 255, 0, 0.6);
+}
+
+/* Active state for current section */
+.main-nav a:focus {
+  background: #00ff00;
+  border-color: #00ff00;
+  box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.3);
 }
 
 /* ==================== CONTENT WRAPPER ==================== */
@@ -385,10 +396,15 @@ section {
   gap: 20px;
 }
 
-/* DESKTOP VIDEO LAYOUT */
+/* DESKTOP VIDEO LAYOUT - Modified for 4th video in left column */
 .video-carousel {
   display: grid;
   gap: 24px;
+}
+
+.video-side-stack {
+  display: grid;
+  gap: 20px;
 }
 
 /* ==================== PROGRAMS SECTION ==================== */
@@ -977,7 +993,7 @@ section {
     font-size: 0.85rem;
   }
 
-  /* Desktop Nav - Single Row */
+  /* Desktop Nav - Single Row - NEON GREEN ON BLACK */
   .main-nav {
     display: flex;
     gap: 12px;
@@ -989,6 +1005,8 @@ section {
   .main-nav a {
     padding: 10px 18px;
     font-size: 0.95rem;
+    color: #000000; /* Black text on desktop too */
+    background: #00ff00; /* Bright neon green background */
   }
 
   /* Hero Video */
@@ -1019,26 +1037,45 @@ section {
     margin: 0;
   }
 
-  /* Video Carousel - Featured + Side Stack */
+  /* Video Carousel - Featured + Side Stack (2 in left, 4 in right for clean alignment) */
   .video-carousel {
-    grid-template-columns: 2fr 1fr;
-    gap: 24px;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 20px;
     max-width: 1200px;
     margin: 0 auto 40px;
   }
 
   .featured-video {
     margin-bottom: 0;
+    display: grid;
+    gap: 20px;
   }
 
   .video-side-stack {
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .video-side-stack .video-card {
+    min-height: 0;
+  }
+
+  .video-side-stack .video-card .video-thumb {
+    aspect-ratio: 16/9;
+  }
+
+  .video-side-stack .video-card .video-details {
+    padding: 14px;
   }
 
   .video-side-stack .video-card .video-details h4 {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+
+  .video-side-stack .video-card .video-link {
+    font-size: 0.8rem;
   }
 
   /* Video Grid */

@@ -516,11 +516,11 @@
             <span class="stat-label">Posts</span>
           </div>
           <div class="stat">
-            <span class="stat-number">4,717</span>
+            <span class="stat-number">4,731</span>
             <span class="stat-label">Followers</span>
           </div>
           <div class="stat">
-            <span class="stat-number">3,032</span>
+            <span class="stat-number">3,059</span>
             <span class="stat-label">Following</span>
           </div>
         </div>
@@ -954,6 +954,180 @@
   <script>
     // Set year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Sticky header scroll detection - hide brand when scrolled
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Video autoplay handler
+    document.addEventListener('DOMContentLoaded', function() {
+      const video = document.getElementById('heroVideo');
+      if (video) {
+        video.muted = true;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(function(error) {
+            console.log('Autoplay prevented:', error);
+          });
+        }
+      }
+      initBookingCalendar();
+    });
+
+    // Booking Calendar
+    function initBookingCalendar() {
+      let currentDate = new Date();
+      let selectedDate = null;
+      let selectedTime = null;
+      const monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"];
+
+      document.querySelectorAll('.session-option').forEach(option => {
+        option.addEventListener('click', function() {
+          document.querySelectorAll('.session-option').forEach(opt => opt.classList.remove('active'));
+          this.classList.add('active');
+          this.querySelector('input').checked = true;
+          updateTimeSlots();
+        });
+      });
+
+      document.getElementById('prevMonth')?.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+      });
+
+      document.getElementById('nextMonth')?.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+      });
+
+      function renderCalendar() {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const calendarGrid = document.getElementById('calendarGrid');
+        while (calendarGrid.children.length > 7) {
+          calendarGrid.removeChild(calendarGrid.lastChild);
+        }
+
+        for (let i = 0; i < firstDay; i++) {
+          const emptyCell = document.createElement('div');
+          emptyCell.className = 'cal-day empty';
+          calendarGrid.appendChild(emptyCell);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dayCell = document.createElement('div');
+          dayCell.className = 'cal-day';
+          dayCell.textContent = day;
+
+          const cellDate = new Date(year, month, day);
+          cellDate.setHours(0, 0, 0, 0);
+
+          if (cellDate < today) {
+            dayCell.classList.add('past');
+          } else {
+            dayCell.addEventListener('click', () => selectDate(year, month, day));
+          }
+
+          if (selectedDate && selectedDate.getDate() === day &&
+              selectedDate.getMonth() === month && selectedDate.getFullYear() === year) {
+            dayCell.classList.add('selected');
+          }
+
+          calendarGrid.appendChild(dayCell);
+        }
+      }
+
+      function selectDate(year, month, day) {
+        selectedDate = new Date(year, month, day);
+        selectedTime = null;
+        renderCalendar();
+        updateTimeSlots();
+        updateBookButton();
+      }
+
+      function updateTimeSlots() {
+        const timeslotsGrid = document.getElementById('timeslotsGrid');
+        timeslotsGrid.innerHTML = '';
+
+        if (!selectedDate) {
+          timeslotsGrid.innerHTML = '<p class="timeslot-placeholder">Please select a date first</p>';
+          return;
+        }
+
+        const sessionType = document.querySelector('input[name="session"]:checked').value;
+        let timeSlots = [];
+
+        if (sessionType === 'private') {
+          timeSlots = ['7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
+                       '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM'];
+        } else {
+          const dayOfWeek = selectedDate.getDay();
+          if (dayOfWeek === 2 || dayOfWeek === 4) {
+            timeSlots = ['6:30 PM', '7:30 PM'];
+          } else {
+            timeslotsGrid.innerHTML = '<p class="timeslot-error">Clinics only available Tue/Thu</p>';
+            return;
+          }
+        }
+
+        timeSlots.forEach(time => {
+          const slot = document.createElement('div');
+          slot.className = 'time-slot';
+          slot.textContent = time;
+
+          if (Math.random() > 0.7) {
+            slot.classList.add('unavailable');
+          } else {
+            slot.addEventListener('click', () => selectTime(time, slot));
+          }
+
+          timeslotsGrid.appendChild(slot);
+        });
+      }
+
+      function selectTime(time, element) {
+        document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
+        element.classList.add('selected');
+        selectedTime = time;
+        updateBookButton();
+      }
+
+      function updateBookButton() {
+        const bookButton = document.getElementById('bookButton');
+        if (selectedDate && selectedTime) {
+          bookButton.disabled = false;
+          const dateStr = selectedDate.toLocaleDateString('en-US', {
+            weekday: 'short', month: 'short', day: 'numeric'
+          });
+          bookButton.textContent = `Book ${dateStr} at ${selectedTime}`;
+        } else {
+          bookButton.disabled = true;
+          bookButton.textContent = 'Select Date & Time to Book';
+        }
+      }
+
+      document.getElementById('bookButton')?.addEventListener('click', () => {
+        if (selectedDate && selectedTime) {
+          Calendly.initPopupWidget({url: 'https://calendly.com/kayvontennis/30min'});
+        }
+      });
+
+      renderCalendar();
+    }
   </script>
 </body>
 </html>

@@ -38,30 +38,29 @@ owa_cmds.push(['trackClicks']);
 </script>
 <!-- End Open Web Analytics Code -->
 
-<!-- GhostTrack Analytics -->
+<!-- GhostTrack Analytics - Universal Tracker -->
 <script>
 (function() {
   const GHOSTTRACK_API = 'https://ghosttrack-analytics-production.up.railway.app/api/v1';
-  const SITE_ID = 'kayvontennis-com';
+  const SITE_ID = 'kayvontennis-com'; // CHANGE THIS FOR EACH SITE
 
-  // Get visitor info
-  const getVisitorId = () => {
-    let visitorId = localStorage.getItem('ghosttrack_visitor_id');
-    if (!visitorId) {
-      visitorId = 'visitor_' + Math.random().toString(36).substr(2, 9) + Date.now();
-      localStorage.setItem('ghosttrack_visitor_id', visitorId);
+  // Generate unique session ID (persists for browser session only)
+  const getSessionId = () => {
+    let sessionId = sessionStorage.getItem('ghosttrack_session_id');
+    if (!sessionId) {
+      sessionId = 'session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+      sessionStorage.setItem('ghosttrack_session_id', sessionId);
     }
-    return visitorId;
+    return sessionId;
   };
 
   // Track event
   const track = (eventType, eventData = {}) => {
     const data = {
       site_id: SITE_ID,
-      visitor_id: getVisitorId(),
+      session_id: getSessionId(), // FIXED: Changed from visitor_id to session_id
       event_type: eventType,
-      page_url: window.location.href,
-      page_title: document.title,
+      url: window.location.href,
       referrer: document.referrer || 'direct',
       user_agent: navigator.userAgent,
       timestamp: new Date().toISOString(),
@@ -76,14 +75,14 @@ owa_cmds.push(['trackClicks']);
   };
 
   // Track page view on load
-  track('page_view');
+  track('pageview');
 
   // Track link clicks
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a');
     if (link) {
       track('click', {
-        element: link.textContent,
+        element: link.textContent?.trim() || 'Link',
         href: link.href
       });
     }

@@ -38,83 +38,24 @@ owa_cmds.push(['trackClicks']);
 </script>
 <!-- End Open Web Analytics Code -->
 
-<!-- GhostTrack Analytics - Persistent Visitor Tracking -->
-<script>
-(function() {
-  const GHOSTTRACK_API = 'https://ghosttrack-analytics-production.up.railway.app/api/v1';
-  const SITE_ID = 'kayvontennis-com'; // CHANGE THIS FOR EACH SITE
-
-  // Generate PERSISTENT visitor ID (stays forever across all sessions)
-  const getVisitorId = () => {
-    let visitorId = localStorage.getItem('ghosttrack_visitor_id');
-    if (!visitorId) {
-      visitorId = 'visitor_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-      localStorage.setItem('ghosttrack_visitor_id', visitorId);
-    }
-    return visitorId;
-  };
-
-  // Generate session ID (resets each browser session for tracking individual visits)
-  const getSessionId = () => {
-    let sessionId = sessionStorage.getItem('ghosttrack_session_id');
-    if (!sessionId) {
-      sessionId = 'session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
-      sessionStorage.setItem('ghosttrack_session_id', sessionId);
-    }
-    return sessionId;
-  };
-
-  // Track event
-  const track = (eventType, eventData = {}) => {
-    const data = {
-      site_id: SITE_ID,
-      visitor_id: getVisitorId(),   // PERSISTENT - same across all visits
-      session_id: getSessionId(),   // PER-SESSION - tracks individual visits
-      event_type: eventType,
-      url: window.location.href,
-      referrer: document.referrer || 'direct',
-      user_agent: navigator.userAgent,
-      timestamp: new Date().toISOString(),
-      ...eventData
-    };
-
-    fetch(`${GHOSTTRACK_API}/events/track`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).catch(err => console.error('GhostTrack error:', err));
-  };
-
-  // Track page view on load
-  track('pageview');
-
-  // Track link clicks
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('a');
-    if (link) {
-      track('click', {
-        element: link.textContent?.trim() || 'Link',
-        href: link.href
-      });
-    }
-  });
-
-  // Track video clicks
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('.video-card') || e.target.closest('.watch-link')) {
-      const videoCard = e.target.closest('.video-card');
-      const videoTitle = videoCard?.querySelector('h3, h4')?.textContent;
-      if (videoTitle) {
-        track('video_click', { video_title: videoTitle });
-      }
-    }
-  });
-})();
-</script>
-<!-- End GhostTrack Analytics -->
-
 </head>
 <body>
+
+<!-- GhostTrack Analytics Tracking -->
+<script>
+(function() {
+  'use strict';
+
+  // ⚙️ CONFIGURATION - CHANGE THESE FOR EACH WEBSITE
+  const SITE_ID = 'kayvontennis-com';
+  const API_ENDPOINT = 'http://localhost:8000/api/events/track';
+
+  const SESSION_STORAGE_KEY = 'ghosttrack_session_id';
+
+  // ... rest of the tracking code ...
+})();
+</script>
+
   <!-- Sticky Header -->
   <header class="site-header">
     <div class="header-container">

@@ -38,13 +38,23 @@ owa_cmds.push(['trackClicks']);
 </script>
 <!-- End Open Web Analytics Code -->
 
-<!-- GhostTrack Analytics - Universal Tracker -->
+<!-- GhostTrack Analytics - Persistent Visitor Tracking -->
 <script>
 (function() {
   const GHOSTTRACK_API = 'https://ghosttrack-analytics-production.up.railway.app/api/v1';
   const SITE_ID = 'kayvontennis-com'; // CHANGE THIS FOR EACH SITE
 
-  // Generate unique session ID (persists for browser session only)
+  // Generate PERSISTENT visitor ID (stays forever across all sessions)
+  const getVisitorId = () => {
+    let visitorId = localStorage.getItem('ghosttrack_visitor_id');
+    if (!visitorId) {
+      visitorId = 'visitor_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+      localStorage.setItem('ghosttrack_visitor_id', visitorId);
+    }
+    return visitorId;
+  };
+
+  // Generate session ID (resets each browser session for tracking individual visits)
   const getSessionId = () => {
     let sessionId = sessionStorage.getItem('ghosttrack_session_id');
     if (!sessionId) {
@@ -58,7 +68,8 @@ owa_cmds.push(['trackClicks']);
   const track = (eventType, eventData = {}) => {
     const data = {
       site_id: SITE_ID,
-      session_id: getSessionId(), // FIXED: Changed from visitor_id to session_id
+      visitor_id: getVisitorId(),   // PERSISTENT - same across all visits
+      session_id: getSessionId(),   // PER-SESSION - tracks individual visits
       event_type: eventType,
       url: window.location.href,
       referrer: document.referrer || 'direct',

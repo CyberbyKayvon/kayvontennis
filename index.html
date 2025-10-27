@@ -38,6 +38,71 @@ owa_cmds.push(['trackClicks']);
 </script>
 <!-- End Open Web Analytics Code -->
 
+<!-- GhostTrack Analytics -->
+<script>
+(function() {
+  const GHOSTTRACK_API = 'https://ghosttrack-analytics-production.up.railway.app/api/v1';
+  const SITE_ID = 'kayvontennis-com';
+
+  // Get visitor info
+  const getVisitorId = () => {
+    let visitorId = localStorage.getItem('ghosttrack_visitor_id');
+    if (!visitorId) {
+      visitorId = 'visitor_' + Math.random().toString(36).substr(2, 9) + Date.now();
+      localStorage.setItem('ghosttrack_visitor_id', visitorId);
+    }
+    return visitorId;
+  };
+
+  // Track event
+  const track = (eventType, eventData = {}) => {
+    const data = {
+      site_id: SITE_ID,
+      visitor_id: getVisitorId(),
+      event_type: eventType,
+      page_url: window.location.href,
+      page_title: document.title,
+      referrer: document.referrer || 'direct',
+      user_agent: navigator.userAgent,
+      timestamp: new Date().toISOString(),
+      ...eventData
+    };
+
+    fetch(`${GHOSTTRACK_API}/events/track`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(err => console.error('GhostTrack error:', err));
+  };
+
+  // Track page view on load
+  track('page_view');
+
+  // Track link clicks
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link) {
+      track('click', {
+        element: link.textContent,
+        href: link.href
+      });
+    }
+  });
+
+  // Track video clicks
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.video-card') || e.target.closest('.watch-link')) {
+      const videoCard = e.target.closest('.video-card');
+      const videoTitle = videoCard?.querySelector('h3, h4')?.textContent;
+      if (videoTitle) {
+        track('video_click', { video_title: videoTitle });
+      }
+    }
+  });
+})();
+</script>
+<!-- End GhostTrack Analytics -->
+
 </head>
 <body>
   <!-- Sticky Header -->
@@ -69,6 +134,7 @@ owa_cmds.push(['trackClicks']);
       <a href="#programs" class="hero-cta">Book a Lesson</a>
     </div>
   </section>
+
 
   <!-- About Section -->
   <section id="about" class="section-about">

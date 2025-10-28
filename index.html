@@ -41,20 +41,27 @@ owa_cmds.push(['trackClicks']);
 </head>
 <body>
 
-<!-- GhostTrack Analytics Tracking Script -->
+<!-- GhostTrack Analytics Tracking Script - IMPROVED VERSION -->
+<!--
+  KEY IMPROVEMENTS:
+  1. Uses localStorage instead of sessionStorage for persistent session tracking
+  2. Sessions persist across tabs and page reloads
+  3. More accurate session numbering in dashboard
+-->
 <script>
 (function() {
   'use strict';
 
   const SITE_ID = 'kayvontennis-com';
   const API_ENDPOINT = 'https://ghosttrack-analytics-production.up.railway.app/api/v1/events/track';
-  const SESSION_STORAGE_KEY = 'ghosttrack_session_id';
+  const SESSION_STORAGE_KEY = 'ghosttrack_session_id'; // Now using localStorage instead!
 
+  // IMPROVED: Use localStorage for persistent sessions (not sessionStorage)
   function getSessionId() {
-    let sessionId = sessionStorage.getItem(SESSION_STORAGE_KEY);
+    let sessionId = localStorage.getItem(SESSION_STORAGE_KEY);
     if (!sessionId) {
       sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-      sessionStorage.setItem(SESSION_STORAGE_KEY, sessionId);
+      localStorage.setItem(SESSION_STORAGE_KEY, sessionId);
     }
     return sessionId;
   }
@@ -83,6 +90,7 @@ owa_cmds.push(['trackClicks']);
     }
   }
 
+  // Track page view on load
   window.addEventListener('load', function() {
     trackEvent({
       event_type: 'pageview',
@@ -90,6 +98,7 @@ owa_cmds.push(['trackClicks']);
     });
   });
 
+  // Track all clicks
   document.addEventListener('click', function(e) {
     trackEvent({
       event_type: 'click',
@@ -101,6 +110,7 @@ owa_cmds.push(['trackClicks']);
     });
   });
 
+  // Track page exit with time on page
   let pageLoadTime = Date.now();
   window.addEventListener('beforeunload', function() {
     const timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000);
@@ -110,6 +120,7 @@ owa_cmds.push(['trackClicks']);
     });
   });
 
+  // Track scroll depth
   let maxScrollDepth = 0;
   window.addEventListener('scroll', function() {
     const scrollPercentage = Math.round(

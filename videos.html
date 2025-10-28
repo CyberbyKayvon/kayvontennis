@@ -479,13 +479,10 @@
 (function() {
   'use strict';
 
-  // ⚙️ CONFIGURATION - CHANGE THESE FOR YOUR SETUP
   const SITE_ID = 'kayvontennis-com';
-  const API_ENDPOINT = 'http://localhost:8000/api/v1/events/track';  // Change to your actual backend URL when deployed
-
+  const API_ENDPOINT = 'https://ghosttrack-analytics-production.up.railway.app/api/v1/events/track';
   const SESSION_STORAGE_KEY = 'ghosttrack_session_id';
 
-  // Generate or retrieve session ID
   function getSessionId() {
     let sessionId = sessionStorage.getItem(SESSION_STORAGE_KEY);
     if (!sessionId) {
@@ -495,7 +492,6 @@
     return sessionId;
   }
 
-  // Send tracking event to backend
   function trackEvent(eventData) {
     const data = {
       site_id: SITE_ID,
@@ -503,17 +499,14 @@
       url: window.location.href,
       referrer: document.referrer || null,
       user_agent: navigator.userAgent,
-      ip_address: null, // Backend will capture this
       timestamp: new Date().toISOString(),
       ...eventData
     };
 
-    // Use sendBeacon for reliability (works even when page is closing)
     if (navigator.sendBeacon) {
       const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
       navigator.sendBeacon(API_ENDPOINT, blob);
     } else {
-      // Fallback to fetch for older browsers
       fetch(API_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -523,7 +516,6 @@
     }
   }
 
-  // Track page view on load
   window.addEventListener('load', function() {
     trackEvent({
       event_type: 'pageview',
@@ -531,7 +523,6 @@
     });
   });
 
-  // Track all clicks
   document.addEventListener('click', function(e) {
     trackEvent({
       event_type: 'click',
@@ -543,35 +534,6 @@
     });
   });
 
-  // Track link clicks specifically
-  document.addEventListener('click', function(e) {
-    const link = e.target.closest('a');
-    if (link) {
-      trackEvent({
-        event_type: 'link_click',
-        event_data: {
-          url: link.href,
-          text: link.innerText?.substring(0, 100) || ''
-        }
-      });
-    }
-  });
-
-  // Track button clicks
-  document.addEventListener('click', function(e) {
-    const button = e.target.closest('button');
-    if (button) {
-      trackEvent({
-        event_type: 'button_click',
-        event_data: {
-          text: button.innerText?.substring(0, 100) || '',
-          id: button.id || null
-        }
-      });
-    }
-  });
-
-  // Track time on page (send when leaving)
   let pageLoadTime = Date.now();
   window.addEventListener('beforeunload', function() {
     const timeOnPage = Math.floor((Date.now() - pageLoadTime) / 1000);
@@ -581,7 +543,6 @@
     });
   });
 
-  // Track scroll depth
   let maxScrollDepth = 0;
   window.addEventListener('scroll', function() {
     const scrollPercentage = Math.round(
@@ -592,14 +553,12 @@
     }
   });
 
-  // Send scroll depth on exit
   window.addEventListener('beforeunload', function() {
     trackEvent({
       event_type: 'scroll_depth',
       event_data: { max_depth: maxScrollDepth }
     });
   });
-
 })();
 </script>
 

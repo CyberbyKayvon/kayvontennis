@@ -4,8 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Video Library - Kayvon Tennis</title>
-  <link rel="stylesheet" href="styles/stylez.css">
   <meta name="description" content="Browse all tennis coaching videos, tutorials, and tips from Kayvon Tennis." />
+
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://ghosttrack-analytics-production.up.railway.app; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; frame-src https://www.juicer.io; connect-src 'self' https://ghosttrack-analytics-production.up.railway.app;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+  <link rel="stylesheet" href="styles/stylez.css">
   <style>
     /* Additional styles specific to videos page */
     body {
@@ -954,7 +961,7 @@
 
   <!-- Footer -->
   <footer class="videos-footer">
-    <p>© <span id="year"></span> Kayvon Tennis • <a href="mailto:kayvontennis@gmail.com">kayvontennis@gmail.com</a></p>
+    <p>© <span id="year"></span> Kayvon Tennis • <a href="mailto:kayvontennis@gmail.com">kayvontennis@gmail.com</a> • <a href="privacy.html">Privacy Policy</a></p>
   </footer>
 
   <script>

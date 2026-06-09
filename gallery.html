@@ -1,366 +1,629 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles/style.css?v=36">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="favicon.ico">
-  <title>Media Gallery — Kayvon Karimi</title>
-  <meta name="description" content="Cybersecurity project images and highlights from Kayvon Karimi's portfolio." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | Coach Kayvon</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
-    /* Masonry collage layout */
-    .masonry-grid {
-      column-count: 3;
-      column-gap: 1.5rem;
-      padding: 2rem 0;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --surface: #111111;
+      --surface2: #181818;
+      --border: #242424;
+      --green: #22c55e;
+      --green-dim: #16a34a;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --gray-light: #d1d5db;
     }
 
-    @media (max-width: 1024px) {
-      .masonry-grid {
-        column-count: 2;
-      }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--gray-light);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
     }
 
-    @media (max-width: 640px) {
-      .masonry-grid {
-        column-count: 1;
-      }
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .masonry-item {
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s, box-shadow 0.3s;
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-badge {
+      width: 34px; height: 34px;
+      background: var(--green);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      color: var(--black);
+    }
+
+    .nav-logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray-light);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .btn-nav {
+      background: var(--green);
+      color: var(--black) !important;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      padding: 8px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
       cursor: pointer;
     }
 
-    .masonry-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(15,23,42,0.2);
+    .hamburger span {
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
     }
 
-    .masonry-item img {
+    /* HERO */
+    .page-hero {
+      padding: 120px 2rem 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.0;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-sub {
+      font-size: 17px;
+      color: var(--gray-light);
+      line-height: 1.75;
+    }
+
+    /* FILTER TABS */
+    .filter-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 2.5rem;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 1px;
+      padding: 8px 18px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--gray-light);
+      cursor: pointer;
+      transition: all 0.2s;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .filter-btn:hover { border-color: var(--green); color: var(--green); }
+    .filter-btn.active { background: var(--green); color: var(--black); border-color: var(--green); }
+
+    /* MASONRY GRID */
+    .gallery-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 80px;
+      columns: 4;
+      column-gap: 12px;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gallery-item img {
       width: 100%;
-      height: auto;
       display: block;
+      transition: transform 0.4s, filter 0.3s;
+      filter: brightness(0.9);
     }
 
-    .masonry-caption {
-      padding: 1rem;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--fg);
-      background: var(--card);
+    .gallery-item:hover img {
+      transform: scale(1.03);
+      filter: brightness(1);
     }
 
-    [data-theme="dark"] .masonry-caption {
-      color: #e8f1ff;
+    .gallery-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    [data-theme="light"] .masonry-caption {
-      color: #0f172a;
+    .gallery-item:hover .overlay { opacity: 1; }
+
+    .overlay-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 1.5rem;
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .back-link:hover {
-      text-decoration: underline;
-    }
-
-    /* Lightbox */
-    #lightbox {
+    /* LIGHTBOX */
+    .lightbox {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.95);
-      z-index: 9999;
-      justify-content: center;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 999;
       align-items: center;
-      flex-direction: column;
-      padding: 2rem;
-      overflow-y: auto;
+      justify-content: center;
+      padding: 20px;
     }
 
-    #lightbox.active {
-      display: flex;
+    .lightbox.open { display: flex; }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
     }
 
-    #lightbox-img {
-      max-width: 85%;
-      max-height: 75%;
-      border-radius: 8px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-      margin-bottom: 1rem;
+    .lightbox-inner img {
+      max-width: 90vw;
+      max-height: 85vh;
       object-fit: contain;
-    }
-
-    #lightbox-description {
-      color: #fff;
-      font-size: 1.05rem;
-      max-width: 700px;
-      text-align: center;
-      padding: 1.5rem;
-      background: rgba(255,255,255,0.1);
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.15);
-      line-height: 1.6;
-      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      display: block;
     }
 
     .lightbox-close {
       position: absolute;
-      top: 20px;
-      right: 30px;
-      color: white;
-      font-size: 40px;
-      font-weight: bold;
+      top: -44px;
+      right: 0;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 32px;
       cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
       transition: opacity 0.2s;
     }
 
-    .lightbox-close:hover {
-      opacity: 0.7;
+    .lightbox-close:hover { opacity: 1; }
+
+    .lightbox-prev, .lightbox-next {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: var(--white);
+      font-size: 28px;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 1000;
     }
 
-    @media (max-width: 768px) {
-      #lightbox-img {
-        max-width: 95%;
-        max-height: 60%;
-      }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.2); }
 
-      #lightbox-description {
-        font-size: 0.95rem;
-        padding: 1rem;
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 30px 2rem;
+      text-align: center;
+    }
+
+    .footer-bottom {
+      font-size: 13px;
+      color: var(--gray);
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--green);
+      text-decoration: none;
+      margin-bottom: 1rem;
+      letter-spacing: 0.3px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .back-link:hover { opacity: 0.8; }
+
+    @media (max-width: 900px) {
+      .gallery-wrap { columns: 3; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 60px; left: 0; right: 0;
+        background: var(--black);
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
       }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-wrap { columns: 2; }
     }
   </style>
 </head>
-
 <body>
-  <!-- Header -->
-  <header class="site">
-    <div class="topbar container">
-      <div class="brandwrap">
-        <span class="brand">Kayvon Karimi</span>
-        <span class="tagline">Cybersecurity Engineer | Web Security | Pen Test</span>
-      </div>
 
-      <nav aria-label="Primary">
-        <a href="index.html#about">About</a>
-        <a href="index.html#skills">Skills</a>
-        <a href="index.html#education">Education</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#media">Media</a>
-        <a href="index.html#connect">Connect</a>
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-badge">CK</div>
+    <span class="nav-logo-text">Coach Kayvon</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#lessons">Lessons</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#videos">Videos</a></li>
+    <li><a href="index.html#contact" class="btn-nav">Book a Lesson</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-        <button id="theme-toggle" aria-label="Toggle dark mode" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 0; margin-left: 12px;">
-          <span id="theme-icon">🌙</span>
-        </button>
-      </nav>
-    </div>
-  </header>
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <a href="index.html" class="back-link">← Back to Home</a>
+  <p class="section-label">Gallery</p>
+  <h1 class="page-title">On the court.</h1>
+  <p class="page-sub">Lessons, clinics, match play, and moments from the journey.</p>
+</div>
 
-  <main>
-    <section class="section">
-      <div class="container">
-        <a href="index.html#media" class="back-link">← Back to Main Portfolio</a>
+<!-- FILTERS -->
+<div class="filter-wrap">
+  <button class="filter-btn active" onclick="filterGallery('all', this)">All</button>
+  <button class="filter-btn" onclick="filterGallery('action', this)">Action</button>
+  <button class="filter-btn" onclick="filterGallery('coaching', this)">Coaching</button>
+  <button class="filter-btn" onclick="filterGallery('highlights', this)">Highlights</button>
+</div>
 
-        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; text-align: center;">Media Gallery</h1>
-        <p class="lead">Complete collection of cybersecurity projects, labs, and technical demonstrations. Click any image to view full size with details.</p>
+<!-- GALLERY GRID -->
+<div class="gallery-wrap" id="galleryWrap">
 
-        <div class="masonry-grid">
-
-          <!-- Media 1 -->
-          <div class="masonry-item" onclick="openLightbox(0)">
-            <img src="media/media1.png" alt="DNS Queries Wireshark Capture">
-            <div class="masonry-caption">DNS Queries Wireshark Capture</div>
-          </div>
-
-          <!-- Media 2 -->
-          <div class="masonry-item" onclick="openLightbox(1)">
-            <img src="media/media2.png" alt="WireGuard VPN Architecture Diagram">
-            <div class="masonry-caption">WireGuard VPN Architecture Diagram</div>
-          </div>
-
-          <!-- Media 3 -->
-          <div class="masonry-item" onclick="openLightbox(2)">
-            <img src="media/media3.png" alt="WPA2 Handshake Capture in Kali Linux">
-            <div class="masonry-caption">WPA2 Handshake Capture in Kali Linux</div>
-          </div>
-
-          <!-- Media 4 -->
-          <div class="masonry-item" onclick="openLightbox(3)">
-            <img src="media/media4.png" alt="Kali Linux GRUB Boot Login Bypass">
-            <div class="masonry-caption">Kali Linux GRUB Boot Login Bypass</div>
-          </div>
-
-          <!-- Media 5 -->
-          <div class="masonry-item" onclick="openLightbox(4)">
-            <img src="media/media5.png" alt="Conducting a Self-Signed Certificate">
-            <div class="masonry-caption">Conducting a Self-Signed Certificate</div>
-          </div>
-
-          <!-- Media 6 -->
-          <div class="masonry-item" onclick="openLightbox(5)">
-            <img src="media/media6.png" alt="Aircrack-ng WPA2 Key Found">
-            <div class="masonry-caption">Aircrack-ng WPA2 Key Found</div>
-          </div>
-
-          <!-- Media 7 -->
-          <div class="masonry-item" onclick="openLightbox(6)">
-            <img src="media/media7.png" alt="Configuring Snort Event Summary Dashboard">
-            <div class="masonry-caption">Configuring Snort Event Summary Dashboard</div>
-          </div>
-
-          <!-- Media 8 -->
-          <div class="masonry-item" onclick="openLightbox(7)">
-            <img src="media/media8.png" alt="Snort Configuration in Nano Editor">
-            <div class="masonry-caption">Snort Configuration in Nano Editor</div>
-          </div>
-
-          <!-- Media 9 -->
-          <div class="masonry-item" onclick="openLightbox(8)">
-            <img src="media/media9.png" alt="Configuring TLS Session Key Capture in Wireshark">
-            <div class="masonry-caption">Configuring TLS Session Key Capture in Wireshark</div>
-          </div>
-
-          <!-- Media 10 -->
-          <div class="masonry-item" onclick="openLightbox(9)">
-            <img src="media/media10.png" alt="Wireshark TLS Packet Capture">
-            <div class="masonry-caption">Wireshark TLS Packet Capture</div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Lightbox Modal -->
-  <div id="lightbox" onclick="closeLightbox()">
-    <span class="lightbox-close">&times;</span>
-    <img id="lightbox-img" src="" alt="">
-    <div id="lightbox-description"></div>
+  <div class="gallery-item" data-cat="action" onclick="openLightbox(this)">
+    <img src="media/new1.JPEG" alt="On court" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
   </div>
 
-  <footer>
-  <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-    <span>© <span id="y"></span> Kayvon Karimi</span>
-    <a href="mailto:cyberbykayvon@gmail.com" style="text-decoration: none; color: inherit; font-weight: 600;" class="footer-email">cyberbykayvon@gmail.com</a>
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/new2.JPEG" alt="Training" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
   </div>
+
+  <div class="gallery-item" data-cat="action" onclick="openLightbox(this)">
+    <img src="media/new3.JPG" alt="Court" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/new4.JPEG" alt="Clinic" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="highlights" onclick="openLightbox(this)">
+    <img src="media/new6.JPEG" alt="On court" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="action" onclick="openLightbox(this)">
+    <img src="media/backhand.JPEG" alt="Backhand" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="action" onclick="openLightbox(this)">
+    <img src="media/forehandexample.JPEG" alt="Forehand" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="action" onclick="openLightbox(this)">
+    <img src="media/jump_fh.jpg" alt="Jump forehand" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="action" onclick="openLightbox(this)">
+    <img src="media/unit_turn.jpg" alt="Unit turn" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="action" onclick="openLightbox(this)">
+    <img src="media/red_clay.jpg" alt="Red clay" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/diana.JPEG" alt="Student Diana" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/ethan.JPEG" alt="Student Ethan" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/IMG_0436.JPEG" alt="On court" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/gallery1.jpg" alt="On court" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/gallery2.jpg" alt="Training" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="highlights" onclick="openLightbox(this)">
+    <img src="media/gallery3.jpg" alt="Highlights" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="highlights" onclick="openLightbox(this)">
+    <img src="media/gallery4.jpg" alt="Highlights" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="action" onclick="openLightbox(this)">
+    <img src="media/gallery5.jpg" alt="On court" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="highlights" onclick="openLightbox(this)">
+    <img src="media/gallery6.jpg" alt="Highlights" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/gallery7.jpg" alt="Group" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="action" onclick="openLightbox(this)">
+    <img src="media/gallery9.jpg" alt="On court" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="action" onclick="openLightbox(this)">
+    <img src="media/gallery10.jpg" alt="On court" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="action" onclick="openLightbox(this)">
+    <img src="media/gallery11.jpg" alt="On court" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="highlights" onclick="openLightbox(this)">
+    <img src="media/gallery14.jpg" alt="Highlights" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/gallery15.jpg" alt="Coaching" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="highlights" onclick="openLightbox(this)">
+    <img src="media/gallery16.jpg" alt="Highlights" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="highlights" onclick="openLightbox(this)">
+    <img src="media/gallery17.jpg" alt="Highlights" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/gallery18.jpg" alt="Coaching" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/gallery19.jpg" alt="Coaching" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+  <div class="gallery-item" data-cat="coaching" onclick="openLightbox(this)">
+    <img src="media/gallery20.jpg" alt="Coaching" loading="lazy" />
+    <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+  <button class="lightbox-prev" onclick="shiftLightbox(-1)">&#8592;</button>
+  <button class="lightbox-next" onclick="shiftLightbox(1)">&#8594;</button>
+</div>
+
+<footer>
+  <div style="margin-bottom:12px;">
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+  <div class="footer-bottom">© 2026 Coach Kayvon. All rights reserved.</div>
 </footer>
 
-  <script>
-    const projectData = [
-      {
-        src: 'media/media1.png',
-        title: 'DNS Queries Wireshark Capture',
-        desc: 'Capturing and analyzing DNS traffic using Wireshark, demonstrating DNS query patterns, resolution processes, and network behavior analysis.'
-      },
-      {
-        src: 'media/media2.png',
-        title: 'WireGuard VPN Architecture Diagram',
-        desc: 'Network architecture design implementing WireGuard VPN for secure encrypted communications and remote access.'
-      },
-      {
-        src: 'media/media3.png',
-        title: 'WPA2 Handshake Capture in Kali Linux',
-        desc: 'Capturing WPA2 authentication handshakes using Kali Linux tools, essential for wireless security assessment and penetration testing.'
-      },
-      {
-        src: 'media/media4.png',
-        title: 'Kali Linux GRUB Boot Login Bypass',
-        desc: 'Demonstrating bootloader security vulnerabilities through GRUB authentication bypass with remediation strategies.'
-      },
-      {
-        src: 'media/media5.png',
-        title: 'Conducting a Self-Signed Certificate',
-        desc: 'Creating and implementing self-signed certificates for testing SSL/TLS configurations and certificate authority operations.'
-      },
-      {
-        src: 'media/media6.png',
-        title: 'Aircrack-ng WPA2 Key Found',
-        desc: 'Offline WPA2 password cracking using aircrack-ng, demonstrating the importance of strong wireless encryption credentials.'
-      },
-      {
-        src: 'media/media7.png',
-        title: 'Configuring Snort Event Summary Dashboard',
-        desc: 'Building a Snort IDS event summary dashboard for real-time intrusion detection and threat monitoring.'
-      },
-      {
-        src: 'media/media8.png',
-        title: 'Snort Configuration in Nano Editor',
-        desc: 'Configuring Snort rules and detection settings using command-line editors for intrusion detection system customization.'
-      },
-      {
-        src: 'media/media9.png',
-        title: 'Configuring TLS Session Key Capture in Wireshark',
-        desc: 'Setting up TLS pre-shared keys in Wireshark to decrypt and analyze encrypted traffic for security research.'
-      },
-      {
-        src: 'media/media10.png',
-        title: 'Wireshark TLS Packet Capture',
-        desc: 'Capturing and analyzing TLS handshakes and encrypted communications using Wireshark packet analysis tools.'
+<script>
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Filter
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
       }
-    ];
-
-    function openLightbox(index) {
-      const data = projectData[index];
-      document.getElementById('lightbox-img').src = data.src;
-      document.getElementById('lightbox-description').innerHTML = '<strong>' + data.title + '</strong><br><br>' + data.desc;
-      document.getElementById('lightbox').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
     });
+  }
 
-    document.getElementById('lightbox').addEventListener('click', (e) => {
-      if (e.target.id === 'lightbox') closeLightbox();
+  // Lightbox
+  let currentIndex = 0;
+  let visibleItems = [];
+
+  function openLightbox(el) {
+    visibleItems = Array.from(document.querySelectorAll('.gallery-item')).filter(i => i.style.display !== 'none');
+    currentIndex = visibleItems.indexOf(el);
+    const img = el.querySelector('img');
+    document.getElementById('lightboxImg').src = img.src;
+    document.getElementById('lightboxImg').alt = img.alt;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOutside(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+
+  function shiftLightbox(dir) {
+    currentIndex = (currentIndex + dir + visibleItems.length) % visibleItems.length;
+    const img = visibleItems[currentIndex].querySelector('img');
+    document.getElementById('lightboxImg').src = img.src;
+    document.getElementById('lightboxImg').alt = img.alt;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') shiftLightbox(1);
+    if (e.key === 'ArrowLeft') shiftLightbox(-1);
+  });
+
+  // Fade in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
     });
+  }, { threshold: 0.05 });
 
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Dark mode toggle
-    (function() {
-      const themeToggle = document.getElementById('theme-toggle');
-      const themeIcon = document.getElementById('theme-icon');
-      const html = document.documentElement;
-
-      const savedTheme = localStorage.getItem('theme');
-      const currentTheme = savedTheme || 'dark';
-
-      html.setAttribute('data-theme', currentTheme);
-      themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
-
-      themeToggle.addEventListener('click', function() {
-        const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-      });
-    })();
-  </script>
+  document.querySelectorAll('.gallery-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>

@@ -641,6 +641,63 @@
     .gallery-item:hover img { transform: scale(1.06); filter: brightness(1); }
     .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
 
+    /* REELS */
+    .reels-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+      margin-top: 3rem;
+    }
+
+    .reel-card {
+      display: block;
+      text-decoration: none;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .reel-card:hover { border-color: var(--green-dim); transform: translateY(-4px); }
+
+    .reel-thumb { position: relative; aspect-ratio: 9/16; overflow: hidden; }
+
+    .reel-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .reel-card:hover .reel-thumb img { transform: scale(1.05); }
+
+    .reel-views {
+      position: absolute;
+      left: 9px; bottom: 9px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(10,10,10,0.8);
+      backdrop-filter: blur(6px);
+      color: var(--green);
+      font-family: var(--cond);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      padding: 4px 9px;
+      border-radius: 6px;
+    }
+
+    .reel-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--gray-light);
+      line-height: 1.5;
+      padding: 12px 13px 15px;
+    }
+
+    .social-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
     /* VIDEOS */
     .video-bg { background: var(--surface); }
 
@@ -989,12 +1046,14 @@
       .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
       .videos-grid { grid-template-columns: 1fr; }
       .videos-small { grid-template-columns: 1fr; }
+      .reels-grid { grid-template-columns: repeat(3, 1fr); }
       .testimonials-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; gap: 40px; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
     }
 
     @media (max-width: 600px) {
+      .reels-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .gallery-grid { grid-template-columns: 1fr; }
       .gallery-item:nth-child(1) { grid-column: span 1; }
     }
@@ -1275,72 +1334,78 @@
 <section id="videos">
   <div class="container">
     <p class="section-label">Follow Along</p>
-    <h2 class="section-title">From the gram.</h2>
-    <p class="section-sub">Drills, breakdowns, and student wins — straight from court.</p>
-    <div class="videos-grid">
-      <a href="https://www.youtube.com/watch?v=V2Jj40Jfjrg" target="_blank" rel="noopener" class="video-card">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/V2Jj40Jfjrg/maxresdefault.jpg" alt="My Number 1 Volley Tip" loading="lazy" />
-          <div class="video-play">
-            <div class="play-btn">
-              <svg width="18" height="20" viewBox="0 0 18 20" fill="none">
-                <path d="M1 1l16 9-16 9V1z" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="1.5" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </div>
+    <h2 class="section-title">Straight from the gram.</h2>
+    <p class="section-sub">Free breakdowns every week. Same eye, same approach, just a shorter version of what you get in a full analysis.</p>
+    <!--
+      REELS: covers live in media/reels/<reel-id>.jpg and the link uses the same id.
+      To swap one in, save a new cover as media/reels/<new-id>.jpg and update the id,
+      the view count, and the caption in the block below.
+    -->
+    <div class="reels-grid">
+      <a href="https://www.instagram.com/reel/Dap8Qsay4ei/" target="_blank" rel="noopener" class="reel-card">
+        <div class="reel-thumb">
+          <img src="media/reels/Dap8Qsay4ei.jpg" alt="Life is hard. You can make it harder. Wall practice that actually transfers." loading="lazy" />
+          <span class="reel-views">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            71.8K
+          </span>
         </div>
-        <div class="video-info">
-          <span class="video-badge">FEATURED</span>
-          <div class="video-title">My Number 1 Volley Tip</div>
-          <div class="video-desc">Master the fundamentals of net play with this essential technique</div>
-        </div>
+        <p class="reel-title">Life is hard. You can make it harder. Wall practice that actually transfers.</p>
       </a>
-      <a href="https://www.youtube.com/watch?v=eDNkts9Hrgw" target="_blank" rel="noopener" class="video-card">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/eDNkts9Hrgw/maxresdefault.jpg" alt="Touch Drill" loading="lazy" />
-          <div class="video-play">
-            <div class="play-btn">
-              <svg width="18" height="20" viewBox="0 0 18 20" fill="none">
-                <path d="M1 1l16 9-16 9V1z" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="1.5" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </div>
+      <a href="https://www.instagram.com/reel/DcHE1sHyL7o/" target="_blank" rel="noopener" class="reel-card">
+        <div class="reel-thumb">
+          <img src="media/reels/DcHE1sHyL7o.jpg" alt="Struggling on the slice serve? Underhand slice feed, continental grip, work the toss." loading="lazy" />
+          <span class="reel-views">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            46K
+          </span>
         </div>
-        <div class="video-info">
-          <span class="video-badge">DRILL</span>
-          <div class="video-title">Touch Drill</div>
-          <div class="video-desc">Develop precision and control with this essential practice drill</div>
+        <p class="reel-title">Struggling on the slice serve? Underhand slice feed, continental grip, work the toss.</p>
+      </a>
+      <a href="https://www.instagram.com/reel/DWwXdN1kh9R/" target="_blank" rel="noopener" class="reel-card">
+        <div class="reel-thumb">
+          <img src="media/reels/DWwXdN1kh9R.jpg" alt="Trying the Kyrgios backhand. It is all in the left hand." loading="lazy" />
+          <span class="reel-views">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            34.9K
+          </span>
         </div>
+        <p class="reel-title">Trying the Kyrgios backhand. It is all in the left hand.</p>
+      </a>
+      <a href="https://www.instagram.com/reel/DWegJ0eEg2p/" target="_blank" rel="noopener" class="reel-card">
+        <div class="reel-thumb">
+          <img src="media/reels/DWegJ0eEg2p.jpg" alt="Backhand tip. Keep the racket head up for more speed at contact." loading="lazy" />
+          <span class="reel-views">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            26.9K
+          </span>
+        </div>
+        <p class="reel-title">Backhand tip. Keep the racket head up for more speed at contact.</p>
+      </a>
+      <a href="https://www.instagram.com/reel/Da79pTOyC4u/" target="_blank" rel="noopener" class="reel-card">
+        <div class="reel-thumb">
+          <img src="media/reels/Da79pTOyC4u.jpg" alt="Lead with the butt cap. The one thing most players get backwards." loading="lazy" />
+          <span class="reel-views">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            16.8K
+          </span>
+        </div>
+        <p class="reel-title">Lead with the butt cap. The one thing most players get backwards.</p>
+      </a>
+      <a href="https://www.instagram.com/reel/DVkKzp-ksrB/" target="_blank" rel="noopener" class="reel-card">
+        <div class="reel-thumb">
+          <img src="media/reels/DVkKzp-ksrB.jpg" alt="Luciano Darderi working the X-Drill for footwork progressions." loading="lazy" />
+          <span class="reel-views">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            14.8K
+          </span>
+        </div>
+        <p class="reel-title">Luciano Darderi working the X-Drill for footwork progressions.</p>
       </a>
     </div>
-    <div class="videos-small" style="margin-top:12px;">
-      <a href="https://www.youtube.com/watch?v=65bneZCcLVA" target="_blank" rel="noopener" class="video-small">
-        <div class="video-small-thumb">
-          <img src="https://img.youtube.com/vi/65bneZCcLVA/hqdefault.jpg" alt="Backhand Slice" loading="lazy" />
-        </div>
-        <div class="video-small-title">Wall Practice — Backhand Slice</div>
-      </a>
-      <a href="https://www.youtube.com/watch?v=WQvCuUv1rY0" target="_blank" rel="noopener" class="video-small">
-        <div class="video-small-thumb">
-          <img src="https://img.youtube.com/vi/WQvCuUv1rY0/hqdefault.jpg" alt="Serve Plus One" loading="lazy" />
-        </div>
-        <div class="video-small-title">Serve Plus One</div>
-      </a>
-      <a href="https://www.youtube.com/shorts/NJfD9T1tPFQ" target="_blank" rel="noopener" class="video-small">
-        <div class="video-small-thumb">
-          <img src="https://img.youtube.com/vi/NJfD9T1tPFQ/hqdefault.jpg" alt="Backhand Slice Tip" loading="lazy" />
-        </div>
-        <div class="video-small-title">Backhand Slice Tip</div>
-      </a>
-      <a href="https://www.youtube.com/shorts/YqmixuBd4JY" target="_blank" rel="noopener" class="video-small">
-        <div class="video-small-thumb">
-          <img src="https://img.youtube.com/vi/YqmixuBd4JY/hqdefault.jpg" alt="Kick Serve" loading="lazy" />
-        </div>
-        <div class="video-small-title">Learn How to Hit a Kick Serve</div>
-      </a>
-    </div>
-    <div style="text-align:center;margin-top:2.5rem;">
-      <a href="https://www.instagram.com/coachkayvon" target="_blank" rel="noopener" class="ig-follow-btn">Follow @coachkayvon on Instagram</a>
+    <div class="social-btns" style="margin-top:2.5rem;">
+      <a href="https://www.instagram.com/coachkayvon" target="_blank" rel="noopener" class="btn-primary">Follow @coachkayvon</a>
+      <a href="https://www.youtube.com/@coachkayvon" target="_blank" rel="noopener" class="btn-outline">Watch on YouTube</a>
     </div>
   </div>
 </section>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Submit your tennis swing video for a full technical breakdown. Annotated screenshots and written analysis back within three days." />
+  <title>Submit Your Video | Coach Kayvon</title>
+  <link rel="canonical" href="https://kayvontennis.com/submit.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kayvontennis.com/submit.html" />
+  <meta property="og:title" content="Submit Your Swing Video | Coach Kayvon" />
+  <meta property="og:description" content="Send your clip and get a full technical breakdown back within three days." />
+  <meta property="og:image" content="https://kayvontennis.com/media/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root{
+      --black:#0a0a0a; --surface:#111; --surface2:#181818; --border:#242424;
+      --green:#22c55e; --green-dim:#16a34a; --green-muted:#14532d;
+      --white:#fff; --gray:#6b7280; --gray-light:#d1d5db; --text:#e5e7eb;
+      --display:'Anton','Barlow Condensed',sans-serif; --cond:'Barlow Condensed',sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.94);backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo-badge{width:34px;height:34px;background:var(--green);border-radius:8px;display:flex;align-items:center;
+      justify-content:center;font-family:var(--cond);font-weight:900;font-size:14px;color:var(--black)}
+    .nav-logo-text{font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.3px;color:var(--white)}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{color:var(--gray-light);text-decoration:none;font-size:15px;font-weight:500}
+    .nav-links a:hover{color:var(--white)}
+    .nav-links a.active{color:var(--green)}
+
+    .wrap{max-width:1080px;margin:0 auto;padding:120px 2rem 40px}
+    .back{display:inline-flex;align-items:center;gap:8px;font-family:var(--cond);font-weight:800;font-size:16px;
+      letter-spacing:.3px;color:var(--green);text-decoration:none;margin-bottom:1.25rem}
+    .back:hover{opacity:.8}
+    .label{font-family:var(--cond);font-size:15px;font-weight:800;letter-spacing:4px;text-transform:uppercase;
+      color:var(--green);text-shadow:0 0 22px rgba(34,197,94,.5);margin-bottom:.85rem}
+    h1{font-family:var(--display);font-size:clamp(42px,6vw,68px);font-weight:400;letter-spacing:.5px;
+      color:var(--white);line-height:1.02;text-shadow:0 6px 26px rgba(0,0,0,.9);margin-bottom:.9rem}
+    .sub{font-size:18px;color:var(--gray-light);line-height:1.75;max-width:640px}
+
+    .cols{display:grid;grid-template-columns:1.35fr .65fr;gap:24px;margin-top:3rem;align-items:start}
+    .panel{background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:34px}
+
+    .field{margin-bottom:1.35rem}
+    .field label{display:block;font-family:var(--cond);font-size:14px;font-weight:800;letter-spacing:1.8px;
+      text-transform:uppercase;color:var(--gray-light);margin-bottom:7px}
+    .req{color:var(--green)}
+    .field input,.field select,.field textarea{width:100%;background:var(--black);border:1px solid var(--border);
+      border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;padding:12px 14px;transition:border-color .2s}
+    .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green)}
+    .field textarea{resize:vertical;min-height:110px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .hint{font-size:12.5px;color:var(--gray);margin-top:6px;line-height:1.6}
+
+    .drop{border:2px dashed var(--border);border-radius:12px;padding:26px;text-align:center;cursor:pointer;
+      transition:border-color .2s,background .2s;background:var(--black)}
+    .drop:hover,.drop.over{border-color:var(--green);background:rgba(34,197,94,.05)}
+    .drop svg{stroke:var(--green);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:10px}
+    .drop b{display:block;font-family:var(--cond);font-size:19px;font-weight:800;letter-spacing:.5px;color:var(--white)}
+    .drop span{font-size:13px;color:var(--gray);display:block;margin-top:5px}
+    .drop input[type=file]{display:none}
+    .files{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:8px}
+    .files li{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--black);
+      border:1px solid var(--border);border-radius:8px;padding:10px 13px;font-size:13.5px}
+    .files .nm{color:var(--gray-light);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .files .sz{color:var(--gray);flex:none;font-family:var(--cond);font-weight:800;letter-spacing:.5px}
+    .files .sz.bad{color:#fca5a5}
+    .meter{height:5px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:14px}
+    .meter i{display:block;height:100%;background:var(--green);width:0;transition:width .25s}
+    .meter-txt{font-size:12.5px;color:var(--gray);margin-top:7px;display:flex;justify-content:space-between}
+
+    .divider{display:flex;align-items:center;gap:12px;margin:1.6rem 0;font-family:var(--cond);font-size:12px;
+      font-weight:800;letter-spacing:2.5px;color:var(--gray)}
+    .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+    .submit{width:100%;background:var(--green);color:var(--black);font-family:var(--cond);font-weight:900;
+      font-size:20px;letter-spacing:.5px;padding:16px 28px;border:none;border-radius:10px;cursor:pointer;
+      transition:background .2s,transform .15s;-webkit-font-smoothing:antialiased}
+    .submit:hover{background:#4ade80;transform:translateY(-2px)}
+    .submit:disabled{opacity:.55;cursor:not-allowed;transform:none}
+    .status{font-size:14px;line-height:1.6;margin-top:14px;padding:12px 15px;border-radius:8px;display:none}
+    .status.show{display:block}
+    .status.err{background:#3f1d1d;color:#fca5a5}
+    .status.ok{background:var(--green-muted);color:var(--green)}
+
+    .side h3{font-family:var(--display);font-size:24px;font-weight:400;color:var(--white);letter-spacing:.3px;margin-bottom:.6rem}
+    .side .price{font-family:var(--display);font-size:52px;color:var(--green);line-height:1;letter-spacing:.5px;
+      text-shadow:0 0 34px rgba(34,197,94,.5);margin:.4rem 0}
+    .side .price small{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--gray);font-weight:400}
+    .list{list-style:none;display:flex;flex-direction:column;gap:11px;margin:1.4rem 0}
+    .list li{font-size:14.5px;color:var(--gray-light);display:flex;gap:10px;align-items:flex-start;line-height:1.6}
+    .list li::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;margin-top:8px;flex:none;
+      box-shadow:0 0 10px rgba(34,197,94,.7)}
+    .side p.fine{font-size:13px;color:var(--gray);line-height:1.65;border-top:1px solid var(--border);padding-top:1.1rem;margin-top:1.2rem}
+
+    footer{border-top:1px solid var(--border);padding:40px 2rem;text-align:center;color:var(--gray);font-size:14px;margin-top:60px}
+    footer a{color:var(--green);text-decoration:none}
+
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .cols{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
+      .wrap{padding-top:100px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-badge">CK</div>
+    <span class="nav-logo-text">Coach Kayvon</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="submit.html" class="active">Send Your Video</a></li>
+    <li><a href="index.html#lessons">Lessons</a></li>
+    <li><a href="about.html">My Story</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+  <a href="index.html" class="back">← Back to Home</a>
+  <p class="label">Swing Analysis</p>
+  <h1>Send your video.</h1>
+  <p class="sub">Fill this out and I will get back to you with a full technical breakdown within three days. Takes about two minutes.</p>
+
+  <div class="cols">
+    <div class="panel">
+      <!--
+        ============================================================
+        WHERE SUBMISSIONS GO
+
+        This form posts to FormSubmit, a free relay that emails you
+        the entry plus any attached file. No account needed.
+
+        ONE TIME SETUP: submit this form yourself once from the live
+        site. FormSubmit emails coachkayvon@gmail.com asking you to
+        confirm. Click that link and the form is live permanently.
+
+        The _autoresponse field below is the confirmation email the
+        player receives. Edit that text to change what they get.
+
+        HIDING YOUR ADDRESS: after activating, FormSubmit gives you a
+        hashed endpoint. Swap it into the action attribute and your
+        email no longer appears in the page source.
+        ============================================================
+      -->
+      <form id="analysisForm" action="https://formsubmit.co/coachkayvon@gmail.com" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_subject" value="New swing analysis submission" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next" value="https://kayvontennis.com/thanks.html" />
+        <input type="hidden" name="_autoresponse" value="Thanks for sending your swing video. I have got it and I will go through your footage frame by frame and send your full breakdown back within three days. It will include annotated screenshots pulled from your own clip, written analysis on every correction, and drills you can take straight to the court. Payment details come with the report, nothing is charged until you have seen it. If you need to add anything, just reply to this email. Kayvon" />
+        <input type="text" name="_honey" style="display:none" />
+
+        <div class="row">
+          <div class="field">
+            <label for="name">Your name <span class="req">*</span></label>
+            <input type="text" id="name" name="Name" required placeholder="First and last" />
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="Email" required placeholder="you@email.com" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="stroke">What should I look at <span class="req">*</span></label>
+            <select id="stroke" name="Stroke" required>
+              <option value="">Choose one</option>
+              <option>Forehand</option>
+              <option>Backhand</option>
+              <option>Serve</option>
+              <option>Volley</option>
+              <option>Return of serve</option>
+              <option>Movement and footwork</option>
+              <option>Full match review</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="level">Your level <span class="req">*</span></label>
+            <select id="level" name="Level" required>
+              <option value="">Choose one</option>
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+              <option>Junior, tournament player</option>
+              <option>Adult, league or tournament</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Upload your video or photos</label>
+          <label class="drop" id="drop" for="files">
+            <svg width="30" height="30" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v13"/></svg>
+            <b>Tap to choose files</b>
+            <span>or drag them here</span>
+            <input type="file" id="files" name="attachment" accept="video/*,image/*" multiple />
+          </label>
+          <ul class="files" id="fileList"></ul>
+          <div class="meter" id="meterWrap" style="display:none"><i id="meter"></i></div>
+          <div class="meter-txt" id="meterTxt" style="display:none"><span id="meterUsed"></span><span>20MB limit</span></div>
+          <p class="hint">Photos and short clips work here. Phone videos over about 20MB are too big to email, so use the link box below instead. It takes ten seconds and there is no size limit.</p>
+        </div>
+
+        <div class="divider">OR PASTE A LINK</div>
+
+        <div class="field">
+          <label for="link">Video link</label>
+          <input type="url" id="link" name="Video link" placeholder="Google Drive, Dropbox, iCloud or unlisted YouTube" />
+          <p class="hint">Best option for full length or high resolution footage. Set the link so anyone with it can view, otherwise I cannot open it.</p>
+        </div>
+
+        <div class="field">
+          <label for="notes">Anything I should know</label>
+          <textarea id="notes" name="Notes" placeholder="What feels off, what you have already tried, what you are working toward, anything a coach has told you before"></textarea>
+        </div>
+
+        <button type="submit" class="submit" id="btn">Send My Video</button>
+        <div class="status" id="status"></div>
+      </form>
+    </div>
+
+    <div class="panel side">
+      <h3>Swing Analysis</h3>
+      <div class="price">$40 <small>/ video</small></div>
+      <ul class="list">
+        <li>Frame by frame technical review</li>
+        <li>Annotated screenshots with arrows and circles</li>
+        <li>Written analysis of every correction</li>
+        <li>Drills matched to what the video shows</li>
+        <li>Back within three days</li>
+        <li>One follow up question included</li>
+      </ul>
+      <p class="fine"><strong style="color:var(--white)">How to film it:</strong> side angle first, then behind if you can. Whole body in frame including your feet. Six to ten reps of the same shot, not one. Daylight, phone steady or propped.</p>
+      <p class="fine">Payment details come with your report. Nothing is charged until you have seen the breakdown.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2026 Coach Kayvon · Boca Raton, FL · <a href="mailto:coachkayvon@gmail.com">coachkayvon@gmail.com</a> · <a href="privacy.html">Privacy</a>
+</footer>
+
+<script>
+  var MAX = 20 * 1024 * 1024;
+  var input = document.getElementById('files');
+  var drop = document.getElementById('drop');
+  var list = document.getElementById('fileList');
+  var note = document.getElementById('status');
+  var btn = document.getElementById('btn');
+  var meterWrap = document.getElementById('meterWrap');
+  var meter = document.getElementById('meter');
+  var meterTxt = document.getElementById('meterTxt');
+  var meterUsed = document.getElementById('meterUsed');
+  var linkEl = document.getElementById('link');
+
+  function mb(b){ return (b/1048576).toFixed(1) + 'MB'; }
+
+  function say(msg, kind){
+    note.textContent = msg;
+    note.className = 'status show ' + kind;
+  }
+  function clear(){ note.className = 'status'; }
+
+  function total(){
+    var t = 0;
+    for (var i = 0; i < input.files.length; i++) t += input.files[i].size;
+    return t;
+  }
+
+  function render(){
+    list.innerHTML = '';
+    var t = total();
+    for (var i = 0; i < input.files.length; i++){
+      var f = input.files[i];
+      var li = document.createElement('li');
+      var nm = document.createElement('span');
+      nm.className = 'nm'; nm.textContent = f.name;
+      var sz = document.createElement('span');
+      sz.className = 'sz' + (t > MAX ? ' bad' : ''); sz.textContent = mb(f.size);
+      li.appendChild(nm); li.appendChild(sz); list.appendChild(li);
+    }
+    if (input.files.length){
+      meterWrap.style.display = 'block';
+      meterTxt.style.display = 'flex';
+      meter.style.width = Math.min(100, (t / MAX) * 100) + '%';
+      meter.style.background = t > MAX ? '#ef4444' : 'var(--green)';
+      meterUsed.textContent = mb(t) + ' selected';
+    } else {
+      meterWrap.style.display = 'none';
+      meterTxt.style.display = 'none';
+    }
+    if (t > MAX){
+      say('That is ' + mb(t) + ', too big to send by email. Upload it to Google Drive, Dropbox or iCloud and paste the link in the box below instead.', 'err');
+    } else {
+      clear();
+    }
+  }
+
+  input.addEventListener('change', render);
+
+  ['dragenter','dragover'].forEach(function(e){
+    drop.addEventListener(e, function(ev){ ev.preventDefault(); drop.classList.add('over'); });
+  });
+  ['dragleave','drop'].forEach(function(e){
+    drop.addEventListener(e, function(ev){ ev.preventDefault(); drop.classList.remove('over'); });
+  });
+  drop.addEventListener('drop', function(ev){
+    if (ev.dataTransfer && ev.dataTransfer.files.length){
+      input.files = ev.dataTransfer.files;
+      render();
+    }
+  });
+
+  document.getElementById('analysisForm').addEventListener('submit', function(e){
+    var t = total();
+    var hasLink = linkEl.value.trim().length > 0;
+
+    if (!input.files.length && !hasLink){
+      e.preventDefault();
+      say('Add your video before sending. Either choose a file or paste a link to it.', 'err');
+      note.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    if (t > MAX){
+      e.preventDefault();
+      say('Those files total ' + mb(t) + '. Remove them and paste a Google Drive, Dropbox or iCloud link instead.', 'err');
+      note.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    say('Uploading. Do not close this tab.', 'ok');
+  });
+</script>
+
+</body>
+</html>

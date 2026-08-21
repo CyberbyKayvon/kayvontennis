@@ -61,9 +61,10 @@
     a{color:var(--green);text-decoration:none}
     a:hover{text-decoration:underline}
     ul{list-style:none;margin:1rem 0 1.4rem}
-    ul li{font-size:16px;color:var(--gray-light);line-height:1.75;display:flex;gap:12px;align-items:flex-start;margin-bottom:11px}
-    ul li::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;margin-top:10px;flex:none;
-      box-shadow:0 0 10px rgba(34,197,94,.7)}
+    /* not flex: a <strong> lead-in would become its own flex item and split the line into columns */
+    ul li{font-size:16px;color:var(--gray-light);line-height:1.75;position:relative;padding-left:23px;margin-bottom:11px}
+    ul li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;background:var(--green);
+      border-radius:50%;box-shadow:0 0 10px rgba(34,197,94,.7)}
 
     .contact{background:var(--surface2);border:1px solid var(--green-dim);border-radius:14px;padding:28px 30px;margin:2.8rem 0 0}
     .contact h2{border:none;padding:0;margin:0 0 .8rem}

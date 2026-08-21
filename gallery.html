@@ -7,7 +7,7 @@
   <link rel="icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -21,6 +21,8 @@
       --white: #ffffff;
       --gray: #6b7280;
       --gray-light: #d1d5db;
+      --display: 'Anton', 'Barlow Condensed', sans-serif;
+      --cond: 'Barlow Condensed', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -61,16 +63,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--cond);
       font-weight: 900;
       font-size: 14px;
       color: var(--black);
     }
 
     .nav-logo-text {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 19px;
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 20px;
+      letter-spacing: 0.3px;
       color: var(--white);
     }
 
@@ -94,7 +97,7 @@
     .btn-nav {
       background: var(--green);
       color: var(--black) !important;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--cond);
       font-weight: 900;
       font-size: 15px;
       padding: 8px 18px;
@@ -124,21 +127,24 @@
     }
 
     .section-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
+      font-family: var(--cond);
+      font-size: 15px;
       font-weight: 800;
-      letter-spacing: 3.5px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--green);
-      margin-bottom: 0.75rem;
+      text-shadow: 0 0 22px rgba(34,197,94,0.5);
+      margin-bottom: 0.85rem;
     }
 
     .page-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(48px, 7vw, 80px);
-      font-weight: 900;
+      font-family: var(--display);
+      font-size: clamp(46px, 6.6vw, 78px);
+      font-weight: 400;
+      letter-spacing: 0.5px;
       color: var(--white);
-      line-height: 1.0;
+      line-height: 1.02;
+      text-shadow: 0 6px 26px rgba(0,0,0,0.9), 0 2px 6px rgba(0,0,0,0.7);
       margin-bottom: 0.75rem;
     }
 
@@ -159,7 +165,7 @@
     }
 
     .filter-btn {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--cond);
       font-weight: 800;
       font-size: 14px;
       letter-spacing: 1px;
@@ -313,7 +319,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: var(--cond);
       font-weight: 800;
       font-size: 16px;
       color: var(--green);
@@ -357,7 +363,9 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="index.html#lessons">Lessons</a></li>
+    <li><a href="index.html#analysis">Swing Analysis</a></li>
     <li><a href="index.html#about">About</a></li>
+    <li><a href="about.html">My Story</a></li>
     <li><a href="index.html#videos">Videos</a></li>
     <li><a href="index.html#contact" class="btn-nav">Book a Lesson</a></li>
   </ul>

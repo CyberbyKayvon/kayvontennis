@@ -146,7 +146,12 @@
       inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: 62% center;
+      /* Kayvon sits at roughly 30% across the source frame. Anchoring the zoom to the
+         left edge pushes him toward centre instead of away from it, and the 25% vertical
+         origin keeps his head in frame while trimming sky off the top. */
+      object-position: 0% center;
+      transform: scale(1.35);
+      transform-origin: 0% 25%;
       filter: brightness(0.28);
       z-index: 0;
     }
@@ -1023,6 +1028,9 @@
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
+
+      /* narrow screens crop far more off the sides, so shift the window right to keep him centred */
+      .hero-video { object-position: 27% center; }
 
       .nav-links.open {
         display: flex;

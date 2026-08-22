@@ -38,6 +38,11 @@
     .nav-links a{color:var(--gray-light);text-decoration:none;font-size:15px;font-weight:500}
     .nav-links a:hover{color:var(--white)}
     .nav-links a.active{color:var(--green)}
+    .btn-nav{background:var(--green);color:var(--black)!important;font-family:var(--cond);font-weight:800;
+      font-size:15px;letter-spacing:.5px;padding:8px 18px;border-radius:8px;text-decoration:none;transition:.2s}
+    .btn-nav:hover{background:#4ade80;transform:translateY(-1px)}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:10px 4px}
+    .hamburger span{width:24px;height:2px;background:var(--white);border-radius:2px}
 
     .wrap{max-width:1080px;margin:0 auto;padding:120px 2rem 40px}
     .back{display:inline-flex;align-items:center;gap:8px;font-family:var(--cond);font-weight:800;font-size:16px;
@@ -109,9 +114,36 @@
 
     @media(max-width:900px){
       .nav-links{display:none}
+      .hamburger{display:flex}
+      .nav-links.open{display:flex;flex-direction:column;align-items:flex-start;position:fixed;top:60px;left:0;right:0;
+        background:var(--black);border-bottom:1px solid var(--border);padding:1.5rem 2rem;gap:1.25rem}
       .cols{grid-template-columns:1fr}
       .row{grid-template-columns:1fr}
       .wrap{padding-top:100px}
+    }
+
+    @media(max-width:600px){
+      /* 20px gutters give a 390px phone 350px of content instead of 326px */
+      nav{padding:0 1.25rem;height:58px}
+      .nav-links.open{padding:1.4rem 1.25rem}
+      .wrap{padding:92px 1.25rem 32px}
+      footer{padding:36px 1.25rem}
+      .panel{padding:24px 20px}
+      .cols{gap:18px;margin-top:2.2rem}
+      h1{font-size:clamp(38px,11vw,54px)}
+      .sub{font-size:16.5px}
+      .label{font-size:13px;letter-spacing:3px}
+      .field{margin-bottom:1.15rem}
+      .drop{padding:22px 16px}
+      .drop b{font-size:17px}
+      .side .price{font-size:46px}
+      .submit{font-size:19px;padding:17px 24px}
+      .back{min-height:44px;align-items:center}
+      .nav-logo{min-height:44px}
+      /* iOS zooms the whole page on focus if a control is under 16px */
+      input,select,textarea,.field input,.field select,.field textarea{font-size:16px}
+      footer a{display:inline-block;padding:8px 2px}
+      a,button{-webkit-tap-highlight-color:rgba(34,197,94,0.18)}
     }
   </style>
 </head>
@@ -122,12 +154,14 @@
     <div class="nav-logo-badge">CK</div>
     <span class="nav-logo-text">Coach Kayvon</span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="submit.html" class="active">Send Your Video</a></li>
     <li><a href="index.html#lessons">Lessons</a></li>
     <li><a href="about.html">My Story</a></li>
+    <li><a href="index.html#analysis">How It Works</a></li>
   </ul>
+  <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
 </nav>
 
 <div class="wrap">
@@ -256,6 +290,11 @@
 </footer>
 
 <script>
+  function toggleNav(){ document.getElementById('navLinks').classList.toggle('open'); }
+  document.querySelectorAll('#navLinks a').forEach(function(l){
+    l.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('open'); });
+  });
+
   var MAX = 20 * 1024 * 1024;
   var input = document.getElementById('files');
   var drop = document.getElementById('drop');

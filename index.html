@@ -709,124 +709,173 @@
     .form-status.err { background: #3f1d1d; color: #fca5a5; }
 
     /* SAMPLE BREAKDOWN */
-    .sample-wrap {
-      margin-top: 26px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 40px;
-    }
+    .see-sample { margin: 4px 0 20px; }
 
-    .sample-head { max-width: 720px; margin-bottom: 2rem; }
-
-    .sample-head h3 {
-      font-family: var(--display);
-      font-size: clamp(30px, 3.6vw, 42px);
-      font-weight: 400;
-      letter-spacing: 0.4px;
-      color: var(--white);
-      line-height: 1.06;
-      margin-bottom: 0.7rem;
-    }
-
-    .sample-head p {
-      font-family: var(--body);
+    .see-sample a {
+      font-family: var(--cond);
+      font-weight: 800;
       font-size: 16px;
-      color: var(--gray-light);
-      line-height: 1.75;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green);
+      text-decoration: none;
+      border-bottom: 1px solid var(--green-muted);
+      padding-bottom: 3px;
     }
 
-    .sample-grid {
+    .see-sample a:hover { border-bottom-color: var(--green); }
+
+    .proof-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 26px;
+      grid-template-columns: repeat(2, minmax(0, 250px));
+      gap: 20px;
+      justify-content: center;
+      margin-top: 2.4rem;
     }
 
-    .sample-item {
+    .proof-tile {
       background: var(--surface2);
       border: 1px solid var(--border);
       border-radius: 14px;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      cursor: pointer;
+      text-align: left;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.2s;
+      display: block;
+      width: 100%;
     }
 
-    .sample-shot {
-      position: relative;
-      background: var(--black);
-      border-bottom: 1px solid var(--border);
+    .proof-tile:hover { border-color: var(--green-dim); transform: translateY(-3px); }
+    .proof-tile:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+    .proof-shot { position: relative; aspect-ratio: 4 / 5; background: var(--black); overflow: hidden; }
+
+    .proof-shot img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 42%;
+      display: block;
+      transition: transform 0.4s;
     }
 
-    .sample-shot img { width: 100%; height: auto; display: block; }
+    .proof-tile:hover .proof-shot img { transform: scale(1.05); }
 
-    .sample-tag {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      font-family: var(--cond);
-      font-weight: 800;
-      font-size: 13px;
-      letter-spacing: 2.2px;
-      text-transform: uppercase;
-      color: var(--black);
-      background: var(--green);
-      padding: 6px 13px;
-      border-radius: 99px;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+    .proof-tag {
+      position: absolute; top: 10px; left: 10px;
+      font-family: var(--cond); font-weight: 800; font-size: 11.5px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--black); background: var(--green);
+      padding: 5px 11px; border-radius: 99px;
     }
 
-    .sample-notes { padding: 26px 26px 28px; }
-
-    .sample-notes h4 {
-      font-family: var(--display);
-      font-size: 22px;
-      font-weight: 400;
-      letter-spacing: 0.3px;
-      color: var(--white);
-      margin-bottom: 0.3rem;
+    .proof-zoom {
+      position: absolute; bottom: 10px; right: 10px;
+      width: 32px; height: 32px; border-radius: 9px;
+      background: rgba(10,10,10,0.72);
+      border: 1px solid rgba(255,255,255,0.18);
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(6px);
     }
 
-    .sample-notes .who {
-      font-family: var(--cond);
-      font-weight: 800;
-      font-size: 13px;
-      letter-spacing: 2.4px;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 1.1rem;
+    .proof-zoom svg { stroke: var(--white); fill: none; stroke-width: 2; stroke-linecap: round; }
+
+    .proof-cap { padding: 13px 15px 15px; }
+
+    .proof-cap b {
+      display: block;
+      font-family: var(--display); font-weight: 400; font-size: 17px;
+      letter-spacing: 0.3px; color: var(--white); line-height: 1.15;
     }
 
-    .sample-notes ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
-
-    .sample-notes li {
-      font-family: var(--body);
-      font-size: 14.5px;
-      color: var(--gray-light);
-      line-height: 1.65;
-      display: flex;
-      gap: 11px;
-      align-items: flex-start;
+    .proof-cap span {
+      display: block;
+      font-family: var(--cond); font-weight: 800; font-size: 11.5px;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gray); margin-top: 5px;
     }
 
-    .sample-notes li::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--green);
-      border-radius: 50%;
-      margin-top: 8px;
-      flex: none;
+    .proof-foot {
+      margin: 1.9rem auto 0;
+      max-width: 560px;
+      text-align: center;
+      font-family: var(--body); font-size: 14.5px;
+      color: var(--gray); line-height: 1.7;
+    }
+
+    /* lightbox */
+    .lb {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(6,6,6,0.94);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 3vh 2rem;
+    }
+
+    .lb.open { display: flex; }
+
+    .lb-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 30px;
+      align-items: center;
+      max-width: 1000px;
+      width: 100%;
+      max-height: 94vh;
+    }
+
+    .lb-inner img {
+      max-height: 94vh;
+      max-width: 100%;
+      width: auto;
+      justify-self: end;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    .lb-notes h4 {
+      font-family: var(--display); font-weight: 400; font-size: 27px;
+      letter-spacing: 0.3px; color: var(--white); margin-bottom: 0.25rem;
+    }
+
+    .lb-notes .who {
+      font-family: var(--cond); font-weight: 800; font-size: 12.5px;
+      letter-spacing: 2.4px; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1.3rem;
+    }
+
+    .lb-notes ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+    .lb-notes li {
+      font-family: var(--body); font-size: 15px; color: var(--gray-light);
+      line-height: 1.65; display: flex; gap: 11px; align-items: flex-start;
+    }
+
+    .lb-notes li::before {
+      content: ''; width: 6px; height: 6px; background: var(--green);
+      border-radius: 50%; margin-top: 8px; flex: none;
       box-shadow: 0 0 10px rgba(34,197,94,0.7);
     }
 
-    .sample-foot {
-      margin-top: 1.8rem;
-      padding-top: 1.4rem;
-      border-top: 1px solid var(--border);
-      font-family: var(--body);
-      font-size: 14px;
-      color: var(--gray);
-      line-height: 1.7;
+    .lb-close, .lb-nav {
+      position: absolute;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: var(--white);
+      width: 46px; height: 46px; border-radius: 50%;
+      font-size: 22px; line-height: 1;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
     }
+
+    .lb-close:hover, .lb-nav:hover { background: rgba(255,255,255,0.16); }
+    .lb-close { top: 22px; right: 24px; }
+    .lb-nav.prev { left: 20px; top: 50%; transform: translateY(-50%); }
+    .lb-nav.next { right: 20px; top: 50%; transform: translateY(-50%); }
 
     /* REVIEWS */
     .reviews-empty {
@@ -1345,9 +1394,11 @@
       .cards-grid { grid-template-columns: 1fr; }
       .analysis-steps { grid-template-columns: 1fr; }
       .analysis-wrap { grid-template-columns: 1fr; }
-      .sample-grid { grid-template-columns: 1fr; }
       .review-grid { grid-template-columns: 1fr; }
-      .sample-wrap { padding: 28px 22px; }
+      .lb-inner { grid-template-columns: 1fr; gap: 18px; overflow-y: auto; }
+      .lb-inner img { justify-self: center; max-height: 56vh; }
+      .lb { padding: 68px 1.25rem 2rem; align-items: flex-start; }
+      .lb-nav { display: none; }
       .film-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
@@ -1478,55 +1529,7 @@
       </div>
     </div>
 
-    <!-- =========================================================
-         SAMPLE BREAKDOWN
-         These are two real annotated frames from a breakdown.
-         Swap the images and the bullet notes as better ones come in.
-         ========================================================= -->
-    <div class="sample-wrap">
-      <div class="sample-head">
-        <h3>This is what lands in your inbox.</h3>
-        <p>Not a form letter and not a score out of ten. Real frames pulled from your own footage, marked up where it matters, with the written notes that go beside them. Below is an actual breakdown from a junior I coach.</p>
-      </div>
-
-      <div class="sample-grid">
-        <div class="sample-item">
-          <div class="sample-shot">
-            <span class="sample-tag">Serve</span>
-            <img src="media/sample-serve.jpg" alt="Annotated serve contact position with arrows marking hips, chest and head" loading="lazy" width="900" height="1600" />
-          </div>
-          <div class="sample-notes">
-            <h4>Contact position</h4>
-            <div class="who">Emma &middot; Serve</div>
-            <ul>
-              <li>Body needs to stay sideways through contact with the chest up</li>
-              <li>Hips staying closed instead of opening early</li>
-              <li>Head up and eyes staying at the contact longer</li>
-              <li>Left hand finishing higher and across to the right side</li>
-              <li>Watching the serve land and not resetting for the next ball</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="sample-item">
-          <div class="sample-shot">
-            <span class="sample-tag">Forehand</span>
-            <img src="media/sample-forehand.jpg" alt="Annotated forehand contact with head position circled" loading="lazy" width="900" height="1581" />
-          </div>
-          <div class="sample-notes">
-            <h4>Best rep of the set</h4>
-            <div class="who">Emma &middot; Forehand</div>
-            <ul>
-              <li>Slight head tilt to the left at contact, work on keeping it level</li>
-              <li>Racket stays level through the strike on this one, which is why it is the cleanest ball of the group</li>
-              <li>Balance holds through the finish instead of falling away</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <p class="sample-foot">A full breakdown runs six to ten frames like these across the strokes you asked about, each one with the written reasoning and a drill to take to the court. Back in your inbox within 48 hours.</p>
-    </div>
+    <p class="see-sample"><a href="#sample">See a real breakdown &darr;</a></p>
 
     <div class="analysis-wrap">
       <!-- PRICING: flat rate. change the number in .card-price below to adjust. -->
@@ -1593,56 +1596,6 @@
   </div>
 </section>
 
-<!-- LESSONS -->
-<section class="teach-bg" id="lessons">
-  <div class="container">
-    <p class="section-label">Also Available · Boca Raton</p>
-    <h2 class="section-title">In person, if you are local.</h2>
-    <p class="section-sub">If you are in Boca Raton or the surrounding South Florida area, we can do this on court instead. Same eye for detail, live reps, and immediate feedback. Video analysis is available to everyone, everywhere. These are for the people close enough to hit.</p>
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-popular">MOST POPULAR</div>
-        <div class="card-title">Private Lessons</div>
-        <div class="card-sub">One-on-One Coaching</div>
-        <div class="card-price">$90 <span>/ hour</span></div>
-        <ul class="card-features">
-          <li>One-on-one coaching with personalized drills</li>
-          <li>Video review and technique breakdown</li>
-          <li>Custom development plan</li>
-          <li>Flexible scheduling</li>
-          <li>All levels welcome</li>
-        </ul>
-        <a href="mailto:coachkayvon@gmail.com?subject=Private%20Lesson%20Inquiry" class="btn-primary" style="width:100%;text-align:center;display:block;">Book a Session</a>
-      </div>
-      <div class="card">
-        <div class="card-title">Semi-Private</div>
-        <div class="card-sub">2-3 Players</div>
-        <div class="card-price">$50 <span>/ person / hour</span></div>
-        <ul class="card-features">
-          <li>Partner drills and point play</li>
-          <li>Shared technical work at a great rate</li>
-          <li>Competitive practice scenarios</li>
-          <li>Personalized feedback for each player</li>
-          <li>Great value for training partners</li>
-        </ul>
-        <a href="mailto:coachkayvon@gmail.com?subject=Semi-Private%20Lesson%20Inquiry" class="btn-primary" style="width:100%;text-align:center;display:block;">Book a Session</a>
-      </div>
-      <div class="card">
-        <div class="card-title">Group Clinics</div>
-        <div class="card-sub">4-8 Players</div>
-        <div class="card-price">$25 <span>/ person / hour</span></div>
-        <ul class="card-features">
-          <li>Live-ball drills and match scenarios</li>
-          <li>High-rep cardio tennis</li>
-          <li>Fun group environment</li>
-          <li>Skill development for all levels</li>
-          <li>Social tennis with music</li>
-        </ul>
-        <a href="mailto:coachkayvon@gmail.com?subject=Group%20Clinic%20Inquiry" class="btn-primary" style="width:100%;text-align:center;display:block;">Book a Session</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ABOUT -->
 <section id="about">
@@ -1790,6 +1743,118 @@
   </div>
 </section>
 
+
+<!-- SAMPLE BREAKDOWN -->
+<section id="sample">
+  <div class="container">
+    <p class="section-label">The Deliverable</p>
+    <h2 class="section-title">This is what lands in your inbox.</h2>
+    <p class="section-sub">Not a form letter and not a score out of ten. Real frames pulled from your own footage, marked up where it matters, with the written notes beside them. Two from an actual breakdown below. Tap either one to read it.</p>
+
+    <!-- ============================================================
+         PROOF TILES. Swap the images and the notes as better
+         breakdowns come in. The notes live in the data-notes
+         attribute, one bullet per line.
+         ============================================================ -->
+    <div class="proof-grid">
+      <button type="button" class="proof-tile" data-shot="media/sample-serve.jpg"
+        data-title="Contact position" data-who="Emma &middot; Serve"
+        data-notes="Body needs to stay sideways through contact with the chest up
+Hips staying closed instead of opening early
+Head up and eyes staying at the contact longer
+Left hand finishing higher and across to the right side
+Watching the serve land and not resetting for the next ball">
+        <div class="proof-shot">
+          <span class="proof-tag">Serve</span>
+          <img src="media/sample-serve.jpg" alt="Annotated serve contact position with arrows marking hips, chest and head" loading="lazy" width="900" height="1600" />
+          <span class="proof-zoom"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+        </div>
+        <div class="proof-cap"><b>Contact position</b><span>Emma &middot; Serve</span></div>
+      </button>
+
+      <button type="button" class="proof-tile" data-shot="media/sample-forehand.jpg"
+        data-title="Best rep of the set" data-who="Emma &middot; Forehand"
+        data-notes="Slight head tilt to the left at contact, work on keeping it level
+Racket stays level through the strike on this one, which is why it is the cleanest ball of the group
+Balance holds through the finish instead of falling away">
+        <div class="proof-shot">
+          <span class="proof-tag">Forehand</span>
+          <img src="media/sample-forehand.jpg" alt="Annotated forehand contact with head position circled" loading="lazy" width="900" height="1581" />
+          <span class="proof-zoom"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+        </div>
+        <div class="proof-cap"><b>Best rep of the set</b><span>Emma &middot; Forehand</span></div>
+      </button>
+    </div>
+
+    <p class="proof-foot">A full breakdown runs six to ten frames like these across the strokes you asked about, each with the written reasoning and a drill to take to the court.</p>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Sample breakdown">
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+  <button class="lb-nav next" id="lbNext" aria-label="Next">&#8250;</button>
+  <div class="lb-inner">
+    <img id="lbImg" src="" alt="" />
+    <div class="lb-notes">
+      <h4 id="lbTitle"></h4>
+      <div class="who" id="lbWho"></div>
+      <ul id="lbList"></ul>
+    </div>
+  </div>
+</div>
+
+<!-- LESSONS -->
+<section class="teach-bg" id="lessons">
+  <div class="container">
+    <p class="section-label">Also Available · Boca Raton</p>
+    <h2 class="section-title">In person, if you are local.</h2>
+    <p class="section-sub">If you are in Boca Raton or the surrounding South Florida area, we can do this on court instead. Same eye for detail, live reps, and immediate feedback. Video analysis is available to everyone, everywhere. These are for the people close enough to hit.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-popular">MOST POPULAR</div>
+        <div class="card-title">Private Lessons</div>
+        <div class="card-sub">One-on-One Coaching</div>
+        <div class="card-price">$90 <span>/ hour</span></div>
+        <ul class="card-features">
+          <li>One-on-one coaching with personalized drills</li>
+          <li>Video review and technique breakdown</li>
+          <li>Custom development plan</li>
+          <li>Flexible scheduling</li>
+          <li>All levels welcome</li>
+        </ul>
+        <a href="mailto:coachkayvon@gmail.com?subject=Private%20Lesson%20Inquiry" class="btn-primary" style="width:100%;text-align:center;display:block;">Book a Session</a>
+      </div>
+      <div class="card">
+        <div class="card-title">Semi-Private</div>
+        <div class="card-sub">2-3 Players</div>
+        <div class="card-price">$50 <span>/ person / hour</span></div>
+        <ul class="card-features">
+          <li>Partner drills and point play</li>
+          <li>Shared technical work at a great rate</li>
+          <li>Competitive practice scenarios</li>
+          <li>Personalized feedback for each player</li>
+          <li>Great value for training partners</li>
+        </ul>
+        <a href="mailto:coachkayvon@gmail.com?subject=Semi-Private%20Lesson%20Inquiry" class="btn-primary" style="width:100%;text-align:center;display:block;">Book a Session</a>
+      </div>
+      <div class="card">
+        <div class="card-title">Group Clinics</div>
+        <div class="card-sub">4-8 Players</div>
+        <div class="card-price">$25 <span>/ person / hour</span></div>
+        <ul class="card-features">
+          <li>Live-ball drills and match scenarios</li>
+          <li>High-rep cardio tennis</li>
+          <li>Fun group environment</li>
+          <li>Skill development for all levels</li>
+          <li>Social tennis with music</li>
+        </ul>
+        <a href="mailto:coachkayvon@gmail.com?subject=Group%20Clinic%20Inquiry" class="btn-primary" style="width:100%;text-align:center;display:block;">Book a Session</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- REVIEWS -->
 <section id="reviews">
@@ -1963,6 +2028,61 @@
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     observer.observe(el);
   });
+
+  /* ---- sample breakdown lightbox ---- */
+  (function(){
+    var tiles = Array.prototype.slice.call(document.querySelectorAll('.proof-tile'));
+    if (!tiles.length) return;
+    var lb = document.getElementById('lb');
+    var img = document.getElementById('lbImg');
+    var ttl = document.getElementById('lbTitle');
+    var who = document.getElementById('lbWho');
+    var list = document.getElementById('lbList');
+    var at = 0, lastFocus = null;
+
+    function show(i){
+      at = (i + tiles.length) % tiles.length;
+      var t = tiles[at];
+      img.src = t.getAttribute('data-shot');
+      img.alt = t.querySelector('img').alt;
+      ttl.textContent = t.getAttribute('data-title');
+      who.innerHTML = t.getAttribute('data-who');
+      list.innerHTML = '';
+      t.getAttribute('data-notes').split('\n').forEach(function(line){
+        if (!line.trim()) return;
+        var li = document.createElement('li');
+        li.textContent = line.trim();
+        list.appendChild(li);
+      });
+    }
+
+    function open(i){
+      lastFocus = document.activeElement;
+      show(i);
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('lbClose').focus();
+    }
+
+    function close(){
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+
+    tiles.forEach(function(t, i){ t.addEventListener('click', function(){ open(i); }); });
+    document.getElementById('lbClose').addEventListener('click', close);
+    document.getElementById('lbPrev').addEventListener('click', function(){ show(at - 1); });
+    document.getElementById('lbNext').addEventListener('click', function(){ show(at + 1); });
+    lb.addEventListener('click', function(e){ if (e.target === lb) close(); });
+    document.addEventListener('keydown', function(e){
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(at - 1);
+      if (e.key === 'ArrowRight') show(at + 1);
+    });
+  })();
+
 </script>
 
 <script type="application/ld+json">

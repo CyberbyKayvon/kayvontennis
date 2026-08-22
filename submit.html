@@ -13,10 +13,12 @@
   <meta property="og:image" content="https://kayvontennis.com/media/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0a0a0a" />
-  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root{
@@ -24,9 +26,10 @@
       --green:#22c55e; --green-dim:#16a34a; --green-muted:#14532d;
       --white:#fff; --gray:#6b7280; --gray-light:#d1d5db; --text:#e5e7eb;
       --display:'Anton','Barlow Condensed',sans-serif; --cond:'Barlow Condensed',sans-serif;
+      --body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     }
     html{scroll-behavior:smooth}
-    body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+    body{background:var(--black);color:var(--text);font-family:var(--body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-feature-settings:'cv02','cv03','cv04','cv11';font-size:16px;line-height:1.6;overflow-x:hidden}
 
     nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.94);backdrop-filter:blur(14px);
       border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
@@ -71,7 +74,7 @@
       text-transform:uppercase;color:var(--gray-light);margin-bottom:7px}
     .req{color:var(--green)}
     .field input,.field select,.field textarea{width:100%;background:var(--black);border:1px solid var(--border);
-      border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;padding:12px 14px;transition:border-color .2s}
+      border-radius:8px;color:var(--text);font-family:var(--body);font-size:15px;padding:12px 14px;transition:border-color .2s}
     .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green)}
     .field textarea{resize:vertical;min-height:110px}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -117,7 +120,7 @@
       border-radius:12px;padding:18px 20px;margin-bottom:1.2rem}
     .total .l{font-family:var(--cond);font-size:16px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gray-light)}
     .total .r{font-family:var(--display);font-size:34px;color:var(--green);letter-spacing:.5px;text-shadow:0 0 30px rgba(34,197,94,.45)}
-    .total .r s{font-family:'DM Sans',sans-serif;font-size:16px;color:var(--gray);margin-right:9px;text-shadow:none}
+    .total .r s{font-family:var(--body);font-size:16px;color:var(--gray);margin-right:9px;text-shadow:none}
 
     .submit{width:100%;background:var(--green);color:var(--black);font-family:var(--cond);font-weight:900;
       font-size:21px;letter-spacing:.5px;padding:17px 28px;border:none;border-radius:10px;cursor:pointer;
@@ -136,8 +139,8 @@
     .side .oid{font-family:var(--cond);font-size:13px;font-weight:800;letter-spacing:2px;color:var(--gray);text-transform:uppercase}
     .side .price{font-family:var(--display);font-size:52px;color:var(--green);line-height:1;letter-spacing:.5px;
       text-shadow:0 0 34px rgba(34,197,94,.5);margin:.7rem 0 .2rem}
-    .side .price s{font-family:'DM Sans',sans-serif;font-size:19px;color:var(--gray);margin-right:10px;text-shadow:none}
-    .side .price small{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--gray);font-weight:400;display:block;margin-top:6px}
+    .side .price s{font-family:var(--body);font-size:19px;color:var(--gray);margin-right:10px;text-shadow:none}
+    .side .price small{font-family:var(--body);font-size:14px;color:var(--gray);font-weight:400;display:block;margin-top:6px}
     .list{list-style:none;display:flex;flex-direction:column;gap:11px;margin:1.4rem 0}
     .list li{font-size:14.5px;color:var(--gray-light);display:flex;gap:10px;align-items:flex-start;line-height:1.6}
     .list li::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;margin-top:8px;flex:none;
@@ -216,15 +219,8 @@
 
   <div class="cols">
     <div class="panel">
-      <form id="analysisForm" action="https://formsubmit.co/coachkayvon@gmail.com" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="_subject" value="New swing analysis order" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_autoresponse" value="Your order is in. I have got your footage and I will go through it frame by frame, then send your full breakdown back within three days. It comes with annotated screenshots pulled from your own clip, written analysis on every correction, and drills you can take straight to the court. This one is on the house while I dial in the system, so there is nothing to pay. If you want to add anything, just reply to this email. Kayvon" />
+      <form id="analysisForm" novalidate="false">
         <input type="text" name="_honey" style="display:none" />
-        <input type="hidden" name="Order ID" id="orderIdField" value="" />
-        <input type="hidden" name="Amount" value="$0.00 (free test order)" />
-        <input type="hidden" name="Uploaded files" id="uploadedField" value="" />
-        <input type="hidden" name="Dropbox upload" id="dropboxField" value="No" />
 
         <div class="step"><div class="step-n">1</div><h2>Add your video</h2></div>
 
@@ -352,7 +348,7 @@
      Add upload preset, set Signing Mode to Unsigned, save. Copy the cloud
      name off the dashboard and the preset name off that screen.
      ========================================================================= */
-  var CLOUD = { cloudName: 'REPLACE_ME', preset: 'REPLACE_ME' };
+  var CLOUD = { cloudName: 'lyn5d0p9', preset: 'swing_uploads' };
   var CLOUD_ON = CLOUD.cloudName !== 'REPLACE_ME' && CLOUD.preset !== 'REPLACE_ME';
 
   var DBX = 'https://www.dropbox.com/request/xbhce1z8mn8f9522s8hv';
@@ -373,19 +369,17 @@
   var dbxBtn = document.getElementById('dbxBtn');
   var dbxConfirm = document.getElementById('dbxConfirm');
   var dbxCheck = document.getElementById('dbxCheck');
-  var dbxField = document.getElementById('dropboxField');
-  var uploadedField = document.getElementById('uploadedField');
   var form = document.getElementById('analysisForm');
 
   /* Order number. Short enough to read over the phone, unique enough in practice. */
   var orderId = 'CK-' + Date.now().toString(36).slice(-4).toUpperCase()
               + Math.random().toString(36).slice(2, 5).toUpperCase();
-  document.getElementById('orderIdField').value = orderId;
   document.getElementById('orderIdText').textContent = orderId;
 
-  /* FormSubmit ignores _next on the plain email endpoint, so the redirect is
-     done here instead. The ajax endpoint takes the same fields and the file. */
-  var POST_TO = 'https://formsubmit.co/ajax/coachkayvon@gmail.com';
+  /* Orders go to the Apps Script web app, which writes the row to the orders
+     sheet and fires both emails. Sent as text/plain on purpose: that keeps it a
+     simple cross origin request, and Apps Script cannot answer a preflight. */
+  var POST_TO = 'https://script.google.com/macros/s/AKfycbxeae-Io2T_AtK06RQDVUNfodb9-0PLFmFDEA9MCviyeyczzEVXB7XMWSlIb-UK1PJgIA/exec';
   var THANKS = 'thanks.html?order=' + orderId;
 
   if (CLOUD_ON) dropSub.textContent = 'any size, uploads right here';
@@ -496,8 +490,7 @@
       btn.textContent = 'Uploading...';
       cloudUpload(f, ui).then(function(url){
         uploaded.push(f.name + ' -> ' + url);
-        uploadedField.value = uploaded.join('\n');
-        ui.sz.className = 'sz done';
+          ui.sz.className = 'sz done';
         ui.sz.textContent = 'Uploaded';
         uploading--;
         if (!uploading){ btn.disabled = false; btn.textContent = 'Place Order'; }
@@ -542,7 +535,6 @@
   });
 
   dbxCheck.addEventListener('change', function(){
-    dbxField.value = dbxCheck.checked ? 'Yes' : 'No';
     dbxBtn.classList.toggle('ok', dbxCheck.checked);
     if (dbxCheck.checked) clear();
   });
@@ -573,10 +565,28 @@
     btn.textContent = 'Placing order...';
     say('Sending your order. Do not close this tab.', 'ok');
 
-    fetch(POST_TO, { method: 'POST', body: new FormData(form) })
+    var payload = {
+      action: 'order',
+      orderId: orderId,
+      name: document.getElementById('name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      stroke: document.getElementById('stroke').value,
+      level: document.getElementById('level').value,
+      notes: document.getElementById('notes').value.trim(),
+      videoLink: linkEl.value.trim(),
+      uploads: uploaded.join('\n'),
+      dropbox: dbxCheck.checked ? 'Yes' : 'No',
+      amount: '$0.00 (free test order)'
+    };
+
+    fetch(POST_TO, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    })
       .then(function(r){ return r.json(); })
       .then(function(res){
-        if (res && String(res.success) === 'true'){ window.location.href = THANKS; return; }
+        if (res && res.ok){ window.location.href = THANKS; return; }
         throw new Error('rejected');
       })
       .catch(function(){

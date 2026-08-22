@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Kayvon Karimi: number one ranked junior in Texas, top ten nationally, four years of Division I tennis at Texas A&M under Steve Denton, and fifteen plus years coaching. Now offering video swing analysis and lessons in Boca Raton, Florida." />
   <title>My Story | Coach Kayvon</title>
-  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -26,6 +28,7 @@
       --text: #e5e7eb;
       --display: 'Anton', 'Barlow Condensed', sans-serif;
       --cond: 'Barlow Condensed', sans-serif;
+      --body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -33,7 +36,10 @@
     body {
       background: var(--black);
       color: var(--text);
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: 'cv02','cv03','cv04','cv11';
       font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
@@ -148,7 +154,7 @@
     }
 
     .page-sub {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--body);
       font-size: 18px;
       color: var(--gray-light);
       max-width: 640px;
@@ -180,7 +186,7 @@
     }
 
     .stat-label {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--body);
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 2.2px;
@@ -216,7 +222,7 @@
     .chapter.flip .chapter-media { order: -1; }
 
     .prose p {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--body);
       font-size: 17px;
       color: var(--gray-light);
       line-height: 1.8;
@@ -254,7 +260,7 @@
     .facts { list-style: none; margin-top: 1.75rem; display: flex; flex-direction: column; gap: 12px; }
 
     .facts li {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--body);
       font-size: 15px;
       color: var(--gray-light);
       display: flex;
@@ -295,9 +301,9 @@
       margin-bottom: 5px;
     }
 
-    .card-sub { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--gray); margin-bottom: 1.1rem; }
+    .card-sub { font-family: var(--body); font-size: 13px; color: var(--gray); margin-bottom: 1.1rem; }
 
-    .card-body { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--gray-light); line-height: 1.75; }
+    .card-body { font-family: var(--body); font-size: 14px; color: var(--gray-light); line-height: 1.75; }
 
     /* CTA */
     .cta { background: var(--green); padding: 84px 2rem; text-align: center; }
@@ -314,7 +320,7 @@
     }
 
     .cta p {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--body);
       font-size: 18px;
       color: rgba(0,0,0,0.65);
       max-width: 500px;
@@ -373,7 +379,7 @@
     }
 
     .footer-brand-text {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--body);
       font-size: 14px;
       color: var(--gray);
       line-height: 1.7;
@@ -412,7 +418,7 @@
     .footer-col ul li { margin-bottom: 10px; }
 
     .footer-col ul li a {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--body);
       color: var(--gray);
       text-decoration: none;
       font-size: 14px;
@@ -428,7 +434,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--body);
       font-size: 13px;
       color: var(--gray);
     }

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Orders | Coach Kayvon</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root{
+      --black:#0a0a0a; --surface:#111; --surface2:#181818; --border:#242424;
+      --green:#22c55e; --green-dim:#16a34a; --green-muted:#14532d;
+      --white:#fff; --gray:#6b7280; --gray-light:#d1d5db; --text:#e5e7eb;
+      --amber:#f59e0b; --red:#ef4444;
+      --display:'Anton','Barlow Condensed',sans-serif; --cond:'Barlow Condensed',sans-serif;
+      --body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    }
+    body{background:var(--black);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.6;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      font-feature-settings:'cv02','cv03','cv04','cv11';overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.94);backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo-badge{width:34px;height:34px;background:var(--green);border-radius:9px;display:flex;align-items:center;
+      justify-content:center;font-family:var(--cond);font-weight:900;font-size:14px;color:var(--black)}
+    .nav-logo-text{font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.4px;color:var(--white)}
+    .nav-right{display:flex;align-items:center;gap:1rem}
+    .nav-right a{color:var(--gray-light);text-decoration:none;font-size:14.5px;font-weight:500}
+    .nav-right a:hover{color:var(--white)}
+    .ghost{background:none;border:1px solid var(--border);border-radius:8px;color:var(--gray-light);
+      font-family:var(--cond);font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase;
+      padding:8px 14px;cursor:pointer;transition:.2s}
+    .ghost:hover{border-color:var(--green);color:var(--white)}
+
+    .wrap{max-width:1340px;margin:0 auto;padding:96px 2rem 60px}
+
+    /* ---------------------------------------------------------- gate */
+    .gate{max-width:400px;margin:9vh auto 0;text-align:center}
+    .gate .badge{width:60px;height:60px;margin:0 auto 1.6rem;border-radius:16px;background:var(--green);
+      display:flex;align-items:center;justify-content:center;font-family:var(--cond);font-weight:900;
+      font-size:24px;color:var(--black);box-shadow:0 0 46px rgba(34,197,94,.4)}
+    .gate h1{font-family:var(--display);font-size:44px;font-weight:400;letter-spacing:.6px;color:var(--white);line-height:1}
+    .gate p{color:var(--gray);font-size:14.5px;margin:.6rem 0 1.8rem}
+    .gate input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;
+      color:var(--text);font-family:var(--body);font-size:16px;padding:14px 16px;text-align:center;letter-spacing:1px}
+    .gate input:focus{outline:none;border-color:var(--green)}
+    .gate button{width:100%;margin-top:12px;background:var(--green);color:var(--black);font-family:var(--cond);
+      font-weight:900;font-size:19px;letter-spacing:.6px;padding:14px;border:none;border-radius:10px;cursor:pointer}
+    .gate button:hover{background:#4ade80}
+    .gate .err{color:#fca5a5;font-size:14px;margin-top:12px;min-height:20px}
+
+    /* --------------------------------------------------------- panel */
+    .head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:1.8rem}
+    .label{font-family:var(--cond);font-size:14px;font-weight:800;letter-spacing:4px;text-transform:uppercase;
+      color:var(--green);text-shadow:0 0 22px rgba(34,197,94,.5);margin-bottom:.4rem}
+    h1.page{font-family:var(--display);font-size:clamp(38px,5vw,56px);font-weight:400;letter-spacing:.6px;
+      color:var(--white);line-height:1}
+    .head .tools{display:flex;gap:10px;align-items:center}
+    .search{background:var(--surface2);border:1px solid var(--border);border-radius:9px;color:var(--text);
+      font-family:var(--body);font-size:14.5px;padding:10px 14px;min-width:230px}
+    .search:focus{outline:none;border-color:var(--green)}
+
+    .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:1.6rem}
+    .stat{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:18px 20px}
+    .stat .n{font-family:var(--display);font-size:36px;line-height:1;letter-spacing:.5px;color:var(--white)}
+    .stat .n.g{color:var(--green);text-shadow:0 0 28px rgba(34,197,94,.45)}
+    .stat .n.a{color:var(--amber)}
+    .stat .n.r{color:#fca5a5}
+    .stat .k{font-family:var(--cond);font-size:12.5px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;
+      color:var(--gray);margin-top:8px}
+
+    .tabs{display:flex;gap:8px;margin-bottom:1.1rem;flex-wrap:wrap}
+    .tab{background:var(--surface2);border:1px solid var(--border);border-radius:99px;color:var(--gray-light);
+      font-family:var(--cond);font-weight:800;font-size:14px;letter-spacing:1.4px;text-transform:uppercase;
+      padding:8px 18px;cursor:pointer;transition:.15s}
+    .tab:hover{color:var(--white)}
+    .tab.on{background:var(--green);border-color:var(--green);color:var(--black)}
+
+    .board{background:var(--surface2);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+    .scroll{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;min-width:940px}
+    th{font-family:var(--cond);font-size:12.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+      color:var(--gray);text-align:left;padding:15px 18px;border-bottom:1px solid var(--border);white-space:nowrap;
+      background:var(--surface)}
+    td{padding:16px 18px;border-bottom:1px solid var(--border);vertical-align:top;font-size:14.5px}
+    tr:last-child td{border-bottom:none}
+    tr.row:hover{background:rgba(255,255,255,.02)}
+    .oid{font-family:var(--cond);font-weight:800;font-size:15px;letter-spacing:1.4px;color:var(--green)}
+    .who{color:var(--white);font-weight:600}
+    .who small{display:block;color:var(--gray);font-weight:400;font-size:13px;margin-top:2px}
+    .meta{color:var(--gray-light)}
+    .meta small{display:block;color:var(--gray);font-size:13px;margin-top:2px}
+    .vid a{color:var(--green);text-decoration:none;font-size:13.5px;display:block;max-width:210px;
+      overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .vid a:hover{text-decoration:underline}
+    .vid span{color:var(--gray);font-size:13.5px}
+    .when{white-space:nowrap;color:var(--gray-light);font-size:13.5px}
+    .when small{display:block;color:var(--gray);font-size:12.5px;margin-top:2px}
+    .when.late{color:#fca5a5}
+    .pill{display:inline-block;font-family:var(--cond);font-weight:800;font-size:12.5px;letter-spacing:1.6px;
+      text-transform:uppercase;padding:5px 12px;border-radius:99px;white-space:nowrap}
+    .pill.New{background:rgba(34,197,94,.14);color:var(--green)}
+    .pill.Working{background:rgba(245,158,11,.14);color:var(--amber)}
+    .pill.Delivered{background:rgba(107,114,128,.16);color:var(--gray-light)}
+    .acts{display:flex;gap:6px;flex-wrap:wrap}
+    .act{background:none;border:1px solid var(--border);border-radius:7px;color:var(--gray-light);
+      font-family:var(--cond);font-weight:800;font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase;
+      padding:6px 11px;cursor:pointer;transition:.15s;white-space:nowrap}
+    .act:hover{border-color:var(--green);color:var(--white)}
+    .act.on{background:var(--green);border-color:var(--green);color:var(--black)}
+    .notes{color:var(--gray);font-size:13.5px;line-height:1.6;max-width:260px;white-space:pre-wrap}
+    .empty{padding:70px 20px;text-align:center;color:var(--gray)}
+    .empty b{display:block;font-family:var(--display);font-size:26px;color:var(--gray-light);
+      font-weight:400;letter-spacing:.5px;margin-bottom:.4rem}
+    .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+      margin-top:1.1rem;color:var(--gray);font-size:13px}
+    .foot a{color:var(--green);text-decoration:none}
+
+    @media(max-width:1000px){ .stats{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:640px){
+      nav{padding:0 1.25rem;height:58px}
+      .wrap{padding:88px 1.25rem 40px}
+      .head{align-items:flex-start;flex-direction:column}
+      .search{min-width:0;width:100%;font-size:16px}
+      .head .tools{width:100%}
+      .stats{gap:10px}
+      .stat{padding:15px 16px}
+      .stat .n{font-size:30px}
+      .gate input{font-size:16px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-badge">CK</div>
+    <span class="nav-logo-text">Coach Kayvon</span>
+  </a>
+  <div class="nav-right">
+    <a href="index.html">Site</a>
+    <a href="https://docs.google.com/spreadsheets/d/1_D9bXykbS0SIS7So6aiY5vGsI4LxqTOJK__OO3dx3bU/edit" target="_blank" rel="noopener">Sheet</a>
+    <button class="ghost" id="refreshBtn">Refresh</button>
+    <button class="ghost" id="outBtn" style="display:none">Lock</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="gate" id="gate">
+    <div class="badge">CK</div>
+    <h1>Orders</h1>
+    <p>Private. Enter your key to see the board.</p>
+    <input type="password" id="keyIn" placeholder="Key" autocomplete="current-password" />
+    <button id="unlock">Unlock</button>
+    <div class="err" id="gateErr"></div>
+  </div>
+
+  <div id="app" style="display:none">
+    <div class="head">
+      <div>
+        <p class="label">Swing Analysis</p>
+        <h1 class="page">Orders</h1>
+      </div>
+      <div class="tools">
+        <input class="search" id="q" placeholder="Search name, email, order number" />
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n g" id="sOpen">0</div><div class="k">Open</div></div>
+      <div class="stat"><div class="n a" id="sToday">0</div><div class="k">Due today</div></div>
+      <div class="stat"><div class="n r" id="sLate">0</div><div class="k">Overdue</div></div>
+      <div class="stat"><div class="n" id="sDone">0</div><div class="k">Delivered</div></div>
+      <div class="stat"><div class="n" id="sAll">0</div><div class="k">All time</div></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab on" data-f="open">Open</button>
+      <button class="tab" data-f="late">Overdue</button>
+      <button class="tab" data-f="done">Delivered</button>
+      <button class="tab" data-f="all">Everything</button>
+    </div>
+
+    <div class="board">
+      <div class="scroll">
+        <table>
+          <thead><tr>
+            <th>Order</th><th>Player</th><th>Looking at</th><th>Video</th>
+            <th>Notes</th><th>Placed</th><th>Due</th><th>Status</th><th></th>
+          </tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="empty" style="display:none"><b>Nothing here yet.</b>Orders show up the second someone submits.</div>
+    </div>
+
+    <div class="foot">
+      <span id="stamp">&nbsp;</span>
+      <span>Backed by <a href="https://docs.google.com/spreadsheets/d/1_D9bXykbS0SIS7So6aiY5vGsI4LxqTOJK__OO3dx3bU/edit" target="_blank" rel="noopener">your orders sheet</a></span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  /* ==========================================================================
+     Paste the Apps Script web app URL here after deploying. It ends in /exec.
+     ========================================================================== */
+  var API = 'https://script.google.com/macros/s/AKfycbxeae-Io2T_AtK06RQDVUNfodb9-0PLFmFDEA9MCviyeyczzEVXB7XMWSlIb-UK1PJgIA/exec';
+
+  var key = '';
+  var orders = [];
+  var filter = 'open';
+  var timer = null;
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* Apps Script cannot answer a CORS preflight, so everything goes out as
+     text/plain, which the browser treats as a simple request. */
+  function call(payload){
+    return fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    }).then(function(r){ return r.json(); });
+  }
+
+  /* -------------------------------------------------------------- gate */
+
+  function unlock(){
+    var v = $('keyIn').value.trim();
+    if (!v) return;
+    $('gateErr').textContent = 'Checking...';
+    key = v;
+    call({ action: 'list', key: key }).then(function(res){
+      if (!res || !res.ok){ key = ''; $('gateErr').textContent = 'That key did not work.'; return; }
+      try { localStorage.setItem('ck_key', v); } catch(e){}
+      $('gateErr').textContent = '';
+      $('gate').style.display = 'none';
+      $('app').style.display = 'block';
+      $('outBtn').style.display = 'inline-block';
+      take(res.orders);
+      timer = setInterval(load, 60000);
+    }).catch(function(){
+      key = '';
+      $('gateErr').textContent = 'Could not reach the server. Check your connection.';
+    });
+  }
+
+  $('unlock').addEventListener('click', unlock);
+  $('keyIn').addEventListener('keydown', function(e){ if (e.key === 'Enter') unlock(); });
+  $('outBtn').addEventListener('click', function(){
+    try { localStorage.removeItem('ck_key'); } catch(e){}
+    location.reload();
+  });
+  $('refreshBtn').addEventListener('click', function(){ if (key) load(); });
+
+  /* -------------------------------------------------------------- data */
+
+  function load(){
+    call({ action: 'list', key: key }).then(function(res){
+      if (res && res.ok) take(res.orders);
+    }).catch(function(){});
+  }
+
+  function take(list){
+    orders = list || [];
+    stamp();
+    stats();
+    render();
+  }
+
+  function stamp(){
+    var d = new Date();
+    $('stamp').textContent = 'Updated ' + d.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
+  }
+
+  function midnight(d){ var x = new Date(d); x.setHours(0,0,0,0); return x.getTime(); }
+
+  function state(o){
+    if (o.status === 'Delivered') return 'done';
+    if (o.due && midnight(new Date(o.due)) < midnight(new Date())) return 'late';
+    return 'open';
+  }
+
+  function stats(){
+    var today = midnight(new Date());
+    var open = 0, due = 0, late = 0, done = 0;
+    orders.forEach(function(o){
+      var s = state(o);
+      if (s === 'done'){ done++; return; }
+      open++;
+      if (s === 'late') late++;
+      else if (o.due && midnight(new Date(o.due)) === today) due++;
+    });
+    $('sOpen').textContent = open;
+    $('sToday').textContent = due;
+    $('sLate').textContent = late;
+    $('sDone').textContent = done;
+    $('sAll').textContent = orders.length;
+  }
+
+  /* ------------------------------------------------------------ render */
+
+  function fmt(iso, withYear){
+    if (!iso) return '';
+    var d = new Date(iso);
+    var o = { month:'short', day:'numeric' };
+    if (withYear) o.year = 'numeric';
+    return d.toLocaleDateString([], o);
+  }
+
+  function el(tag, cls, text){
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  function videoCell(v){
+    var td = el('td', 'vid');
+    var parts = String(v || '').split('\n').filter(Boolean);
+    if (!parts.length){ td.appendChild(el('span', null, 'nothing attached')); return td; }
+    parts.forEach(function(p){
+      if (/^https?:\/\//.test(p)){
+        var a = el('a', null, p.replace(/^https?:\/\/(www\.)?/, ''));
+        a.href = p; a.target = '_blank'; a.rel = 'noopener';
+        td.appendChild(a);
+      } else {
+        td.appendChild(el('span', null, p));
+      }
+    });
+    return td;
+  }
+
+  function statusButtons(o){
+    var td = el('td');
+    var box = el('div', 'acts');
+    ['New','Working','Delivered'].forEach(function(s){
+      var b = el('button', 'act' + (o.status === s ? ' on' : ''), s);
+      b.addEventListener('click', function(){
+        b.disabled = true;
+        call({ action: 'status', key: key, id: o.id, status: s }).then(function(res){
+          if (res && res.ok){ o.status = s; stats(); render(); }
+          else b.disabled = false;
+        }).catch(function(){ b.disabled = false; });
+      });
+      box.appendChild(b);
+    });
+    td.appendChild(box);
+    return td;
+  }
+
+  function render(){
+    var q = $('q').value.trim().toLowerCase();
+    var rows = $('rows');
+    rows.innerHTML = '';
+
+    var list = orders.filter(function(o){
+      var s = state(o);
+      if (filter === 'open' && s === 'done') return false;
+      if (filter === 'late' && s !== 'late') return false;
+      if (filter === 'done' && s !== 'done') return false;
+      if (!q) return true;
+      return (String(o.id) + ' ' + o.name + ' ' + o.email + ' ' + o.stroke).toLowerCase().indexOf(q) > -1;
+    });
+
+    $('empty').style.display = list.length ? 'none' : 'block';
+
+    list.forEach(function(o){
+      var tr = el('tr', 'row');
+
+      var a = el('td'); a.appendChild(el('div', 'oid', o.id)); tr.appendChild(a);
+
+      var b = el('td', 'who'); b.textContent = o.name;
+      var mail = el('small'); mail.textContent = o.email; b.appendChild(mail);
+      tr.appendChild(b);
+
+      var c = el('td', 'meta'); c.textContent = o.stroke || '';
+      var lv = el('small'); lv.textContent = o.level || ''; c.appendChild(lv);
+      tr.appendChild(c);
+
+      tr.appendChild(videoCell(o.video));
+      tr.appendChild(el('td', 'notes', o.notes || ''));
+      tr.appendChild(el('td', 'when', fmt(o.placed)));
+
+      var late = state(o) === 'late';
+      var d = el('td', 'when' + (late ? ' late' : ''));
+      d.textContent = fmt(o.due);
+      if (late) d.appendChild(el('small', null, 'overdue'));
+      else if (o.status === 'Delivered' && o.delivered) d.appendChild(el('small', null, 'sent ' + fmt(o.delivered)));
+      tr.appendChild(d);
+
+      var st = el('td');
+      st.appendChild(el('span', 'pill ' + (o.status || 'New'), o.status || 'New'));
+      tr.appendChild(st);
+
+      tr.appendChild(statusButtons(o));
+      rows.appendChild(tr);
+    });
+  }
+
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('on'); });
+      t.classList.add('on');
+      filter = t.getAttribute('data-f');
+      render();
+    });
+  });
+  $('q').addEventListener('input', render);
+
+  /* remembered key, so he is not typing it every morning */
+  try {
+    var saved = localStorage.getItem('ck_key');
+    if (saved){ $('keyIn').value = saved; unlock(); }
+  } catch(e){}
+</script>
+
+</body>
+</html>

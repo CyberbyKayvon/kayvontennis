@@ -29,8 +29,9 @@
     nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.94);backdrop-filter:blur(14px);
       border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
     .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .nav-logo-badge{width:34px;height:34px;background:var(--green);border-radius:8px;display:flex;align-items:center;
-      justify-content:center;font-family:var(--cond);font-weight:900;font-size:14px;color:var(--black)}
+    .nav-logo-mark{width:32px;height:32px;flex:none;display:block;
+      filter:drop-shadow(0 0 10px rgba(34,197,94,.45));transition:transform .25s}
+    .nav-logo:hover .nav-logo-mark{transform:rotate(-14deg)}
     .nav-logo-text{font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.3px;color:var(--white)}
     .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
     .nav-links a{color:var(--gray-light);text-decoration:none;font-size:15px;font-weight:500;transition:color .2s}
@@ -106,7 +107,7 @@
 
 <nav>
   <a href="index.html" class="nav-logo">
-    <div class="nav-logo-badge">CK</div>
+    <svg class="nav-logo-mark" width="32" height="32" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#22c55e"/><path d="M8.5 15c7.5 9.5 7.5 24.5 0 34M55.5 15c-7.5 9.5-7.5 24.5 0 34" fill="none" stroke="#0a0a0a" stroke-width="3.4" stroke-linecap="round"/></svg>
     <span class="nav-logo-text">Coach Kayvon</span>
   </a>
   <ul class="nav-links" id="navLinks">

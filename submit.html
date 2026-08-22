@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Submit your tennis swing video for a full technical breakdown. Annotated screenshots and written analysis back within three days." />
+  <meta name="description" content="Submit your tennis swing video for a full technical breakdown. Annotated screenshots and written analysis back within 48 hours." />
   <title>Submit Your Video | Coach Kayvon</title>
   <link rel="canonical" href="https://kayvontennis.com/submit.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kayvontennis.com/submit.html" />
   <meta property="og:title" content="Submit Your Swing Video | Coach Kayvon" />
-  <meta property="og:description" content="Send your clip and get a full technical breakdown back within three days." />
+  <meta property="og:description" content="Send your clip and get a full technical breakdown back within 48 hours." />
   <meta property="og:image" content="https://kayvontennis.com/media/og-image.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0a0a0a" />
@@ -34,8 +34,9 @@
     nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.94);backdrop-filter:blur(14px);
       border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
     .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .nav-logo-badge{width:34px;height:34px;background:var(--green);border-radius:8px;display:flex;align-items:center;
-      justify-content:center;font-family:var(--cond);font-weight:900;font-size:14px;color:var(--black)}
+    .nav-logo-mark{width:32px;height:32px;flex:none;display:block;
+      filter:drop-shadow(0 0 10px rgba(34,197,94,.45));transition:transform .25s}
+    .nav-logo:hover .nav-logo-mark{transform:rotate(-14deg)}
     .nav-logo-text{font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.3px;color:var(--white)}
     .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
     .nav-links a{color:var(--gray-light);text-decoration:none;font-size:15px;font-weight:500}
@@ -193,7 +194,7 @@
 
 <nav>
   <a href="index.html" class="nav-logo">
-    <div class="nav-logo-badge">CK</div>
+    <svg class="nav-logo-mark" width="32" height="32" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#22c55e"/><path d="M8.5 15c7.5 9.5 7.5 24.5 0 34M55.5 15c-7.5 9.5-7.5 24.5 0 34" fill="none" stroke="#0a0a0a" stroke-width="3.4" stroke-linecap="round"/></svg>
     <span class="nav-logo-text">Coach Kayvon</span>
   </a>
   <ul class="nav-links" id="navLinks">
@@ -210,7 +211,7 @@
   <a href="index.html" class="back">&larr; Back to Home</a>
   <p class="label">Swing Analysis</p>
   <h1>Send your video.</h1>
-  <p class="sub">Upload your clip, tell me what to look at, place the order. I go through your footage frame by frame and send the full breakdown back within three days.</p>
+  <p class="sub">Upload your clip, tell me what to look at, place the order. I go through your footage frame by frame and send the full breakdown back within 48 hours.</p>
 
   <div class="testbar">
     <b>Free right now</b>
@@ -219,7 +220,7 @@
 
   <div class="cols">
     <div class="panel">
-      <form id="analysisForm" novalidate="false">
+      <form id="analysisForm">
         <input type="text" name="_honey" style="display:none" />
 
         <div class="step"><div class="step-n">1</div><h2>Add your video</h2></div>
@@ -322,11 +323,11 @@
         <li>Annotated screenshots with arrows and circles</li>
         <li>Written analysis of every correction</li>
         <li>Drills matched to what the video shows</li>
-        <li>Back within three days</li>
+        <li>Back within 48 hours</li>
         <li>One follow up question included</li>
       </ul>
       <p class="fine"><strong style="color:var(--white)">How to film it:</strong> side angle first, then behind if you can. Whole body in frame including your feet. Six to ten reps of the same shot, not one. Daylight, phone steady or propped.</p>
-      <p class="fine">You will get a confirmation email the second you place the order.</p>
+      <p class="fine">You get a confirmation email with your order number the second you place this. That email is your receipt.</p>
     </div>
   </div>
 </div>
@@ -539,8 +540,41 @@
     if (dbxCheck.checked) clear();
   });
 
+  /* belt and braces. the browser blocks empty required fields on its own, but the
+     order also has to survive autofill quirks and anyone poking at the DOM, so the
+     four fields that make an order usable get checked again right here. */
+  function need(){
+    var missing = [];
+    var nm = document.getElementById('name').value.trim();
+    var em = document.getElementById('email').value.trim();
+    if (!nm) missing.push('your name');
+    if (!em) missing.push('your email');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) missing.push('a working email address');
+    if (!document.getElementById('stroke').value) missing.push('what to look at');
+    if (!document.getElementById('level').value) missing.push('your level');
+    return missing;
+  }
+
+  function focusFirstEmpty(){
+    var ids = ['name','email','stroke','level'];
+    for (var i = 0; i < ids.length; i++){
+      var el = document.getElementById(ids[i]);
+      if (!el.value.trim()){ el.focus(); el.scrollIntoView({behavior:'smooth', block:'center'}); return; }
+    }
+  }
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
+
+    var missing = need();
+    if (missing.length){
+      var msg = missing.length === 1
+        ? 'I need ' + missing[0] + ' before this can go through.'
+        : 'Still need ' + missing.slice(0, -1).join(', ') + ' and ' + missing[missing.length - 1] + '.';
+      say(msg + ' Without an email I have nowhere to send your breakdown.', 'err');
+      focusFirstEmpty();
+      return;
+    }
 
     if (uploading){
       say('Still uploading your video. Give it a second and the button will come back.', 'err');

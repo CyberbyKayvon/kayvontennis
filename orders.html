@@ -26,8 +26,9 @@
     nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,.94);backdrop-filter:blur(14px);
       border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
     .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .nav-logo-badge{width:34px;height:34px;background:var(--green);border-radius:9px;display:flex;align-items:center;
-      justify-content:center;font-family:var(--cond);font-weight:900;font-size:14px;color:var(--black)}
+    .nav-logo-mark{width:32px;height:32px;flex:none;display:block;
+      filter:drop-shadow(0 0 10px rgba(34,197,94,.45));transition:transform .25s}
+    .nav-logo:hover .nav-logo-mark{transform:rotate(-14deg)}
     .nav-logo-text{font-family:var(--display);font-weight:400;font-size:20px;letter-spacing:.4px;color:var(--white)}
     .nav-right{display:flex;align-items:center;gap:1rem}
     .nav-right a{color:var(--gray-light);text-decoration:none;font-size:14.5px;font-weight:500}
@@ -41,9 +42,8 @@
 
     /* ---------------------------------------------------------- gate */
     .gate{max-width:400px;margin:9vh auto 0;text-align:center}
-    .gate .badge{width:60px;height:60px;margin:0 auto 1.6rem;border-radius:16px;background:var(--green);
-      display:flex;align-items:center;justify-content:center;font-family:var(--cond);font-weight:900;
-      font-size:24px;color:var(--black);box-shadow:0 0 46px rgba(34,197,94,.4)}
+    .gate .badge{width:62px;height:62px;display:block;margin:0 auto 1.6rem;
+      filter:drop-shadow(0 0 26px rgba(34,197,94,.5))}
     .gate h1{font-family:var(--display);font-size:44px;font-weight:400;letter-spacing:.6px;color:var(--white);line-height:1}
     .gate p{color:var(--gray);font-size:14.5px;margin:.6rem 0 1.8rem}
     .gate input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;
@@ -142,7 +142,7 @@
 
 <nav>
   <a href="index.html" class="nav-logo">
-    <div class="nav-logo-badge">CK</div>
+    <svg class="nav-logo-mark" width="32" height="32" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#22c55e"/><path d="M8.5 15c7.5 9.5 7.5 24.5 0 34M55.5 15c-7.5 9.5-7.5 24.5 0 34" fill="none" stroke="#0a0a0a" stroke-width="3.4" stroke-linecap="round"/></svg>
     <span class="nav-logo-text">Coach Kayvon</span>
   </a>
   <div class="nav-right">
@@ -156,7 +156,7 @@
 <div class="wrap">
 
   <div class="gate" id="gate">
-    <div class="badge">CK</div>
+    <svg class="badge" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#22c55e"/><path d="M8.5 15c7.5 9.5 7.5 24.5 0 34M55.5 15c-7.5 9.5-7.5 24.5 0 34" fill="none" stroke="#0a0a0a" stroke-width="3.4" stroke-linecap="round"/></svg>
     <h1>Orders</h1>
     <p>Private. Enter your key to see the board.</p>
     <input type="password" id="keyIn" placeholder="Key" autocomplete="current-password" />

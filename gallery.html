@@ -62,19 +62,9 @@
       text-decoration: none;
     }
 
-    .nav-logo-badge {
-      width: 34px; height: 34px;
-      background: var(--green);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--cond);
-      font-weight: 900;
-      font-size: 14px;
-      color: var(--black);
-    }
-
+    .nav-logo-mark{width:32px;height:32px;flex:none;display:block;
+      filter:drop-shadow(0 0 10px rgba(34,197,94,.45));transition:transform .25s}
+    .nav-logo:hover .nav-logo-mark{transform:rotate(-14deg)}
     .nav-logo-text {
       font-family: var(--display);
       font-weight: 400;
@@ -372,7 +362,7 @@
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <div class="nav-logo-badge">CK</div>
+    <svg class="nav-logo-mark" width="32" height="32" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#22c55e"/><path d="M8.5 15c7.5 9.5 7.5 24.5 0 34M55.5 15c-7.5 9.5-7.5 24.5 0 34" fill="none" stroke="#0a0a0a" stroke-width="3.4" stroke-linecap="round"/></svg>
     <span class="nav-logo-text">Coach Kayvon</span>
   </a>
   <ul class="nav-links" id="navLinks">
@@ -484,7 +474,7 @@
   </div>
 
   <div class="gallery-item" data-cat="highlights" onclick="openLightbox(this)">
-    <img src="media/gallery3.jpg" alt="Highlights" loading="lazy" />
+    <img src="media/littlemo26.jpg" alt="Little Mo Nationals champions with Coach Kayvon" loading="lazy" />
     <div class="overlay"><div class="overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
   </div>
 

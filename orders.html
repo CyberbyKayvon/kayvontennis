@@ -83,7 +83,9 @@
 
     .board{background:var(--surface2);border:1px solid var(--border);border-radius:16px;overflow:hidden}
     .scroll{overflow-x:auto}
-    table{width:100%;border-collapse:collapse;min-width:940px}
+    table{width:100%;border-collapse:collapse;min-width:1080px;table-layout:fixed}
+    col.c-ord{width:96px}col.c-who{width:190px}col.c-look{width:130px}col.c-vid{width:190px}
+    col.c-note{width:230px}col.c-when{width:92px}col.c-act{width:230px}
     th{font-family:var(--cond);font-size:12.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
       color:var(--gray);text-align:left;padding:15px 18px;border-bottom:1px solid var(--border);white-space:nowrap;
       background:var(--surface)}
@@ -91,11 +93,11 @@
     tr:last-child td{border-bottom:none}
     tr.row:hover{background:rgba(255,255,255,.02)}
     .oid{font-family:var(--cond);font-weight:800;font-size:15px;letter-spacing:1.4px;color:var(--green)}
-    .who{color:var(--white);font-weight:600}
-    .who small{display:block;color:var(--gray);font-weight:400;font-size:13px;margin-top:2px}
+    .who{color:var(--white);font-weight:600;overflow:hidden;text-overflow:ellipsis}
+    .who small{display:block;color:var(--gray);font-weight:400;font-size:13px;margin-top:2px;overflow:hidden;text-overflow:ellipsis}
     .meta{color:var(--gray-light)}
     .meta small{display:block;color:var(--gray);font-size:13px;margin-top:2px}
-    .vid a{color:var(--green);text-decoration:none;font-size:13.5px;display:block;max-width:210px;
+    .vid a{color:var(--green);text-decoration:none;font-size:13.5px;display:block;max-width:100%;
       overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .vid a:hover{text-decoration:underline}
     .vid span{color:var(--gray);font-size:13.5px}
@@ -113,7 +115,8 @@
       padding:6px 11px;cursor:pointer;transition:.15s;white-space:nowrap}
     .act:hover{border-color:var(--green);color:var(--white)}
     .act.on{background:var(--green);border-color:var(--green);color:var(--black)}
-    .notes{color:var(--gray);font-size:13.5px;line-height:1.6;max-width:260px;white-space:pre-wrap}
+    .notes{color:var(--gray);font-size:13.5px;line-height:1.55;overflow:hidden;display:-webkit-box;
+      -webkit-line-clamp:4;-webkit-box-orient:vertical}
     .empty{padding:70px 20px;text-align:center;color:var(--gray)}
     .empty b{display:block;font-family:var(--display);font-size:26px;color:var(--gray-light);
       font-weight:400;letter-spacing:.5px;margin-bottom:.4rem}
@@ -190,9 +193,13 @@
     <div class="board">
       <div class="scroll">
         <table>
+          <colgroup>
+            <col class="c-ord"><col class="c-who"><col class="c-look"><col class="c-vid">
+            <col class="c-note"><col class="c-when"><col class="c-when"><col class="c-act">
+          </colgroup>
           <thead><tr>
             <th>Order</th><th>Player</th><th>Looking at</th><th>Video</th>
-            <th>Notes</th><th>Placed</th><th>Due</th><th>Status</th><th></th>
+            <th>Notes</th><th>Placed</th><th>Due</th><th>Status</th>
           </tr></thead>
           <tbody id="rows"></tbody>
         </table>
@@ -323,18 +330,22 @@
     return n;
   }
 
+  /* rows come in as "clip.mp4 -> https://..." or a bare link, so pull the url
+     out and label the link with the filename when there is one */
   function videoCell(v){
     var td = el('td', 'vid');
     var parts = String(v || '').split('\n').filter(Boolean);
     if (!parts.length){ td.appendChild(el('span', null, 'nothing attached')); return td; }
+
     parts.forEach(function(p){
-      if (/^https?:\/\//.test(p)){
-        var a = el('a', null, p.replace(/^https?:\/\/(www\.)?/, ''));
-        a.href = p; a.target = '_blank'; a.rel = 'noopener';
-        td.appendChild(a);
-      } else {
-        td.appendChild(el('span', null, p));
-      }
+      var m = p.match(/https?:\/\/\S+/);
+      if (!m){ td.appendChild(el('span', null, p)); return; }
+      var url = m[0];
+      var label = p.split('->')[0].trim();
+      if (!label || label === p) label = url.split('/').pop().split('?')[0] || 'open video';
+      var a = el('a', null, label);
+      a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.title = url;
+      td.appendChild(a);
     });
     return td;
   }
@@ -387,7 +398,9 @@
       tr.appendChild(c);
 
       tr.appendChild(videoCell(o.video));
-      tr.appendChild(el('td', 'notes', o.notes || ''));
+      var nt = el('td', 'notes', o.notes || '');
+      if (o.notes) nt.title = o.notes;
+      tr.appendChild(nt);
       tr.appendChild(el('td', 'when', fmt(o.placed)));
 
       var late = state(o) === 'late';
@@ -396,10 +409,6 @@
       if (late) d.appendChild(el('small', null, 'overdue'));
       else if (o.status === 'Delivered' && o.delivered) d.appendChild(el('small', null, 'sent ' + fmt(o.delivered)));
       tr.appendChild(d);
-
-      var st = el('td');
-      st.appendChild(el('span', 'pill ' + (o.status || 'New'), o.status || 'New'));
-      tr.appendChild(st);
 
       tr.appendChild(statusButtons(o));
       rows.appendChild(tr);

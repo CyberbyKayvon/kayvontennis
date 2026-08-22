@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /thanks.html
+Disallow: /orders.html
 
-Sitemap: https://kayvontennis.com/sitemap.xml
+Sitemap: https://coachkayvon.com/sitemap.xml

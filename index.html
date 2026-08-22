@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Send your swing, get the breakdown. Video swing analysis from former Division I player Kayvon Karimi: annotated screenshots pulled from your own footage plus written technical analysis, back in 48 hours. In person lessons in Boca Raton, Florida." />
   <title>Coach Kayvon | Send Your Swing, Get the Breakdown</title>
-  <link rel="canonical" href="https://kayvontennis.com/" />
+  <link rel="canonical" href="https://coachkayvon.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Coach Kayvon" />
-  <meta property="og:url" content="https://kayvontennis.com/" />
+  <meta property="og:url" content="https://coachkayvon.com/" />
   <meta property="og:title" content="Send Your Swing. Get the Breakdown. | Coach Kayvon" />
   <meta property="og:description" content="Send one clip of your stroke. Get back annotated screenshots and a full written technical breakdown from a former Division I player. Delivered in 48 hours." />
-  <meta property="og:image" content="https://kayvontennis.com/media/og-image.jpg" />
+  <meta property="og:image" content="https://coachkayvon.com/media/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Send Your Swing. Get the Breakdown. | Coach Kayvon" />
   <meta name="twitter:description" content="Send one clip of your stroke. Get back annotated screenshots and a full written technical breakdown." />
-  <meta name="twitter:image" content="https://kayvontennis.com/media/og-image.jpg" />
+  <meta name="twitter:image" content="https://coachkayvon.com/media/og-image.jpg" />
   <meta name="theme-color" content="#0a0a0a" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="alternate icon" href="favicon.ico" sizes="48x48" />
@@ -202,9 +202,12 @@
       margin-bottom: 0.3rem;
     }
 
-    .hero h1 span {
+    .hero h1 span { display: block; }
+
+    /* only the nouns go green, so the eye lands on swing and breakdown */
+    .hero h1 b {
+      font-weight: 400;
       color: var(--green);
-      display: block;
       text-shadow: 0 0 78px rgba(34,197,94,0.7), 0 0 30px rgba(34,197,94,0.45), 0 5px 18px rgba(0,0,0,0.75);
     }
 
@@ -269,8 +272,8 @@
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      max-width: 960px;
+      grid-template-columns: repeat(5, 1fr);
+      max-width: 1080px;
       margin: 0 auto;
     }
 
@@ -1128,7 +1131,8 @@
       }
 
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(2n) { border-right: none; }
+      .stat-item:last-child { grid-column: span 2; }
       .about-wrap { grid-template-columns: 1fr; }
       .about-img { max-height: 400px; aspect-ratio: auto; }
       .cards-grid { grid-template-columns: 1fr; }
@@ -1204,7 +1208,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-label">Video Swing Analysis · Free Right Now</span>
-    <h1>Send your swing.<span>Get the breakdown.</span></h1>
+    <h1>Send your <b>swing.</b><span>Get the <b>breakdown.</b></span></h1>
     <p class="hero-sub">Film your stroke on your phone and I will send back a full technical breakdown. Annotated screenshots pulled from your own footage, arrows and circles on exactly what is costing you points, and written analysis with the drills to fix it. Former Division I player, thirty years in the game, no court time required.</p>
     <div class="hero-btns">
       <a href="submit.html" class="btn-primary">Send Your Swing Video</a>
@@ -1219,6 +1223,10 @@
     <div class="stat-item">
       <span class="stat-num">30+</span>
       <span class="stat-label">Years on Court</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">15</span>
+      <span class="stat-label">Years Coaching</span>
     </div>
     <div class="stat-item">
       <span class="stat-num">D1</span>
@@ -1658,21 +1666,21 @@
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
- {"@type":"Person","@id":"https://kayvontennis.com/#kayvon","name":"Kayvon Karimi","jobTitle":"Tennis Coach",
-  "email":"coachkayvon@gmail.com","url":"https://kayvontennis.com/",
-  "image":"https://kayvontennis.com/media/profilephoto.JPEG",
+ {"@type":"Person","@id":"https://coachkayvon.com/#kayvon","name":"Kayvon Karimi","jobTitle":"Tennis Coach",
+  "email":"coachkayvon@gmail.com","url":"https://coachkayvon.com/",
+  "image":"https://coachkayvon.com/media/profilephoto.JPEG",
   "alumniOf":{"@type":"CollegeOrUniversity","name":"Texas A&M University"},
   "sameAs":["https://www.instagram.com/coachkayvon","https://www.youtube.com/@coachkayvon"]},
- {"@type":"SportsActivityLocation","@id":"https://kayvontennis.com/#business","name":"Coach Kayvon Tennis",
-  "url":"https://kayvontennis.com/","email":"coachkayvon@gmail.com",
-  "image":"https://kayvontennis.com/media/og-image.jpg",
+ {"@type":"SportsActivityLocation","@id":"https://coachkayvon.com/#business","name":"Coach Kayvon Tennis",
+  "url":"https://coachkayvon.com/","email":"coachkayvon@gmail.com",
+  "image":"https://coachkayvon.com/media/og-image.jpg",
   "address":{"@type":"PostalAddress","addressLocality":"Boca Raton","addressRegion":"FL","addressCountry":"US"},
   "areaServed":[{"@type":"City","name":"Boca Raton"},{"@type":"AdministrativeArea","name":"South Florida"}],
-  "employee":{"@id":"https://kayvontennis.com/#kayvon"}},
+  "employee":{"@id":"https://coachkayvon.com/#kayvon"}},
  {"@type":"Service","name":"Video Swing Analysis","serviceType":"Remote tennis stroke analysis",
-  "provider":{"@id":"https://kayvontennis.com/#kayvon"},"areaServed":"Worldwide",
+  "provider":{"@id":"https://coachkayvon.com/#kayvon"},"areaServed":"Worldwide",
   "description":"Submit a video of your tennis stroke and receive a technical breakdown with annotated screenshots and written analysis within 48 hours.",
-  "offers":{"@type":"Offer","price":"40","priceCurrency":"USD","url":"https://kayvontennis.com/submit.html","availability":"https://schema.org/InStock"}}
+  "offers":{"@type":"Offer","price":"40","priceCurrency":"USD","url":"https://coachkayvon.com/submit.html","availability":"https://schema.org/InStock"}}
 ]}
 </script>
 

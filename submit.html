@@ -219,7 +219,6 @@
       <form id="analysisForm" action="https://formsubmit.co/coachkayvon@gmail.com" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_subject" value="New swing analysis order" />
         <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_next" id="nextUrl" value="https://kayvontennis.com/thanks.html" />
         <input type="hidden" name="_autoresponse" value="Your order is in. I have got your footage and I will go through it frame by frame, then send your full breakdown back within three days. It comes with annotated screenshots pulled from your own clip, written analysis on every correction, and drills you can take straight to the court. This one is on the house while I dial in the system, so there is nothing to pay. If you want to add anything, just reply to this email. Kayvon" />
         <input type="text" name="_honey" style="display:none" />
         <input type="hidden" name="Order ID" id="orderIdField" value="" />
@@ -383,7 +382,11 @@
               + Math.random().toString(36).slice(2, 5).toUpperCase();
   document.getElementById('orderIdField').value = orderId;
   document.getElementById('orderIdText').textContent = orderId;
-  document.getElementById('nextUrl').value = 'https://kayvontennis.com/thanks.html?order=' + orderId;
+
+  /* FormSubmit ignores _next on the plain email endpoint, so the redirect is
+     done here instead. The ajax endpoint takes the same fields and the file. */
+  var POST_TO = 'https://formsubmit.co/ajax/coachkayvon@gmail.com';
+  var THANKS = 'thanks.html?order=' + orderId;
 
   if (CLOUD_ON) dropSub.textContent = 'any size, uploads right here';
 
@@ -545,13 +548,13 @@
   });
 
   form.addEventListener('submit', function(e){
+    e.preventDefault();
+
     if (uploading){
-      e.preventDefault();
       say('Still uploading your video. Give it a second and the button will come back.', 'err');
       return;
     }
     if (!haveVideo()){
-      e.preventDefault();
       say('Add your video first. Choose a file, use the big file button, or paste a link to it.', 'err');
       note.scrollIntoView({behavior:'smooth', block:'center'});
       return;
@@ -560,15 +563,28 @@
       var t = 0;
       for (var i = 0; i < input.files.length; i++) t += input.files[i].size;
       if (t > MAIL_MAX){
-        e.preventDefault();
         say('Those files total ' + mb(t) + '. Clear them and use the big file button instead.', 'err');
         note.scrollIntoView({behavior:'smooth', block:'center'});
         return;
       }
     }
+
     btn.disabled = true;
     btn.textContent = 'Placing order...';
     say('Sending your order. Do not close this tab.', 'ok');
+
+    fetch(POST_TO, { method: 'POST', body: new FormData(form) })
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if (res && String(res.success) === 'true'){ window.location.href = THANKS; return; }
+        throw new Error('rejected');
+      })
+      .catch(function(){
+        btn.disabled = false;
+        btn.textContent = 'Place Order';
+        say('That did not go through. Check your connection and hit place order again, or email me at coachkayvon@gmail.com and I will sort it out.', 'err');
+        note.scrollIntoView({behavior:'smooth', block:'center'});
+      });
   });
 </script>
 

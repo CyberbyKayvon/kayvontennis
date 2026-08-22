@@ -38,9 +38,6 @@
     .nav-links a{color:var(--gray-light);text-decoration:none;font-size:15px;font-weight:500}
     .nav-links a:hover{color:var(--white)}
     .nav-links a.active{color:var(--green)}
-    .btn-nav{background:var(--green);color:var(--black)!important;font-family:var(--cond);font-weight:800;
-      font-size:15px;letter-spacing:.5px;padding:8px 18px;border-radius:8px;text-decoration:none;transition:.2s}
-    .btn-nav:hover{background:#4ade80;transform:translateY(-1px)}
     .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:10px 4px}
     .hamburger span{width:24px;height:2px;background:var(--white);border-radius:2px}
 
@@ -54,8 +51,20 @@
       color:var(--white);line-height:1.02;text-shadow:0 6px 26px rgba(0,0,0,.9);margin-bottom:.9rem}
     .sub{font-size:18px;color:var(--gray-light);line-height:1.75;max-width:640px}
 
-    .cols{display:grid;grid-template-columns:1.35fr .65fr;gap:24px;margin-top:3rem;align-items:start}
+    .testbar{display:flex;align-items:center;gap:12px;background:rgba(34,197,94,.08);border:1px solid var(--green-muted);
+      border-radius:12px;padding:14px 18px;margin-top:1.6rem;max-width:720px}
+    .testbar b{font-family:var(--cond);font-size:15px;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+      color:var(--green);flex:none}
+    .testbar span{font-size:14.5px;color:var(--gray-light);line-height:1.55}
+
+    .cols{display:grid;grid-template-columns:1.35fr .65fr;gap:24px;margin-top:2.4rem;align-items:start}
     .panel{background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:34px}
+
+    .step{display:flex;align-items:center;gap:12px;margin-bottom:1.3rem}
+    .step-n{width:30px;height:30px;flex:none;border-radius:9px;background:var(--green);color:var(--black);
+      font-family:var(--cond);font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center}
+    .step h2{font-family:var(--display);font-size:24px;font-weight:400;letter-spacing:.4px;color:var(--white);line-height:1.1}
+    .step-rule{border-top:1px solid var(--border);margin:2.1rem 0 1.6rem}
 
     .field{margin-bottom:1.35rem}
     .field label{display:block;font-family:var(--cond);font-size:14px;font-weight:800;letter-spacing:1.8px;
@@ -68,29 +77,50 @@
     .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .hint{font-size:12.5px;color:var(--gray);margin-top:6px;line-height:1.6}
 
-    .drop{border:2px dashed var(--border);border-radius:12px;padding:26px;text-align:center;cursor:pointer;
+    .drop{display:block;border:2px dashed var(--border);border-radius:12px;padding:30px 24px;text-align:center;cursor:pointer;
       transition:border-color .2s,background .2s;background:var(--black)}
     .drop:hover,.drop.over{border-color:var(--green);background:rgba(34,197,94,.05)}
     .drop svg{stroke:var(--green);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:10px}
-    .drop b{display:block;font-family:var(--cond);font-size:19px;font-weight:800;letter-spacing:.5px;color:var(--white)}
+    .drop b{display:block;font-family:var(--cond);font-size:20px;font-weight:800;letter-spacing:.5px;color:var(--white)}
     .drop span{font-size:13px;color:var(--gray);display:block;margin-top:5px}
     .drop input[type=file]{display:none}
-    .files{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:8px}
-    .files li{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--black);
-      border:1px solid var(--border);border-radius:8px;padding:10px 13px;font-size:13.5px}
+
+    .files{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:10px}
+    .files li{background:var(--black);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+    .files .top{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13.5px}
     .files .nm{color:var(--gray-light);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .files .sz{color:var(--gray);flex:none;font-family:var(--cond);font-weight:800;letter-spacing:.5px}
     .files .sz.bad{color:#fca5a5}
-    .meter{height:5px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:14px}
-    .meter i{display:block;height:100%;background:var(--green);width:0;transition:width .25s}
-    .meter-txt{font-size:12.5px;color:var(--gray);margin-top:7px;display:flex;justify-content:space-between}
+    .files .sz.done{color:var(--green)}
+    .bar{height:5px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:10px}
+    .bar i{display:block;height:100%;background:var(--green);width:0;transition:width .2s}
 
-    .divider{display:flex;align-items:center;gap:12px;margin:1.6rem 0;font-family:var(--cond);font-size:12px;
+    .alt{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px}
+    .btn-alt{display:inline-flex;align-items:center;gap:9px;background:var(--black);border:1px solid var(--border);
+      border-radius:10px;color:var(--gray-light);font-family:var(--cond);font-weight:800;font-size:15px;letter-spacing:.6px;
+      padding:11px 16px;cursor:pointer;transition:.2s;text-decoration:none}
+    .btn-alt:hover{border-color:var(--green);color:var(--white)}
+    .btn-alt svg{fill:#0061ff;flex:none}
+    .btn-alt.ok{border-color:var(--green);color:var(--green)}
+
+    .confirm{display:none;align-items:flex-start;gap:11px;background:rgba(34,197,94,.06);border:1px solid var(--green-muted);
+      border-radius:10px;padding:13px 15px;margin-top:12px;cursor:pointer}
+    .confirm.show{display:flex}
+    .confirm input{width:19px;height:19px;flex:none;margin-top:2px;accent-color:var(--green)}
+    .confirm span{font-size:14px;color:var(--gray-light);line-height:1.55}
+
+    .divider{display:flex;align-items:center;gap:12px;margin:1.5rem 0;font-family:var(--cond);font-size:12px;
       font-weight:800;letter-spacing:2.5px;color:var(--gray)}
     .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
 
+    .total{display:flex;align-items:baseline;justify-content:space-between;background:var(--black);border:1px solid var(--border);
+      border-radius:12px;padding:18px 20px;margin-bottom:1.2rem}
+    .total .l{font-family:var(--cond);font-size:16px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gray-light)}
+    .total .r{font-family:var(--display);font-size:34px;color:var(--green);letter-spacing:.5px;text-shadow:0 0 30px rgba(34,197,94,.45)}
+    .total .r s{font-family:'DM Sans',sans-serif;font-size:16px;color:var(--gray);margin-right:9px;text-shadow:none}
+
     .submit{width:100%;background:var(--green);color:var(--black);font-family:var(--cond);font-weight:900;
-      font-size:20px;letter-spacing:.5px;padding:16px 28px;border:none;border-radius:10px;cursor:pointer;
+      font-size:21px;letter-spacing:.5px;padding:17px 28px;border:none;border-radius:10px;cursor:pointer;
       transition:background .2s,transform .15s;-webkit-font-smoothing:antialiased}
     .submit:hover{background:#4ade80;transform:translateY(-2px)}
     .submit:disabled{opacity:.55;cursor:not-allowed;transform:none}
@@ -98,11 +128,16 @@
     .status.show{display:block}
     .status.err{background:#3f1d1d;color:#fca5a5}
     .status.ok{background:var(--green-muted);color:var(--green)}
+    .terms{font-size:12.5px;color:var(--gray);text-align:center;margin-top:13px;line-height:1.6}
+    .terms a{color:var(--green);text-decoration:none}
 
-    .side h3{font-family:var(--display);font-size:24px;font-weight:400;color:var(--white);letter-spacing:.3px;margin-bottom:.6rem}
+    .side{position:sticky;top:80px}
+    .side h3{font-family:var(--display);font-size:24px;font-weight:400;color:var(--white);letter-spacing:.3px;margin-bottom:.2rem}
+    .side .oid{font-family:var(--cond);font-size:13px;font-weight:800;letter-spacing:2px;color:var(--gray);text-transform:uppercase}
     .side .price{font-family:var(--display);font-size:52px;color:var(--green);line-height:1;letter-spacing:.5px;
-      text-shadow:0 0 34px rgba(34,197,94,.5);margin:.4rem 0}
-    .side .price small{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--gray);font-weight:400}
+      text-shadow:0 0 34px rgba(34,197,94,.5);margin:.7rem 0 .2rem}
+    .side .price s{font-family:'DM Sans',sans-serif;font-size:19px;color:var(--gray);margin-right:10px;text-shadow:none}
+    .side .price small{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--gray);font-weight:400;display:block;margin-top:6px}
     .list{list-style:none;display:flex;flex-direction:column;gap:11px;margin:1.4rem 0}
     .list li{font-size:14.5px;color:var(--gray-light);display:flex;gap:10px;align-items:flex-start;line-height:1.6}
     .list li::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;margin-top:8px;flex:none;
@@ -120,6 +155,7 @@
       .cols{grid-template-columns:1fr}
       .row{grid-template-columns:1fr}
       .wrap{padding-top:100px}
+      .side{position:static}
     }
 
     @media(max-width:600px){
@@ -129,17 +165,20 @@
       .wrap{padding:92px 1.25rem 32px}
       footer{padding:36px 1.25rem}
       .panel{padding:24px 20px}
-      .cols{gap:18px;margin-top:2.2rem}
+      .cols{gap:18px;margin-top:2rem}
       h1{font-size:clamp(38px,11vw,54px)}
       .sub{font-size:16.5px}
       .label{font-size:13px;letter-spacing:3px}
+      .testbar{flex-direction:column;align-items:flex-start;gap:7px;padding:13px 15px}
       .field{margin-bottom:1.15rem}
-      .drop{padding:22px 16px}
-      .drop b{font-size:17px}
+      .drop{padding:24px 16px}
+      .drop b{font-size:18px}
+      .step h2{font-size:21px}
       .side .price{font-size:46px}
-      .submit{font-size:19px;padding:17px 24px}
+      .submit{font-size:20px;padding:17px 24px}
       .back{min-height:44px;align-items:center}
       .nav-logo{min-height:44px}
+      .btn-alt{width:100%;justify-content:center;min-height:46px}
       /* iOS zooms the whole page on focus if a control is under 16px */
       input,select,textarea,.field input,.field select,.field textarea{font-size:16px}
       footer a{display:inline-block;padding:8px 2px}
@@ -165,38 +204,62 @@
 </nav>
 
 <div class="wrap">
-  <a href="index.html" class="back">← Back to Home</a>
+  <a href="index.html" class="back">&larr; Back to Home</a>
   <p class="label">Swing Analysis</p>
   <h1>Send your video.</h1>
-  <p class="sub">Fill this out and I will get back to you with a full technical breakdown within three days. Takes about two minutes.</p>
+  <p class="sub">Upload your clip, tell me what to look at, place the order. I go through your footage frame by frame and send the full breakdown back within three days.</p>
+
+  <div class="testbar">
+    <b>Free right now</b>
+    <span>I am running the first round of orders at no charge while I dial in the system. You will not be asked for a card. Normally $40.</span>
+  </div>
 
   <div class="cols">
     <div class="panel">
-      <!--
-        ============================================================
-        WHERE SUBMISSIONS GO
-
-        This form posts to FormSubmit, a free relay that emails you
-        the entry plus any attached file. No account needed.
-
-        ONE TIME SETUP: submit this form yourself once from the live
-        site. FormSubmit emails coachkayvon@gmail.com asking you to
-        confirm. Click that link and the form is live permanently.
-
-        The _autoresponse field below is the confirmation email the
-        player receives. Edit that text to change what they get.
-
-        HIDING YOUR ADDRESS: after activating, FormSubmit gives you a
-        hashed endpoint. Swap it into the action attribute and your
-        email no longer appears in the page source.
-        ============================================================
-      -->
       <form id="analysisForm" action="https://formsubmit.co/coachkayvon@gmail.com" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="_subject" value="New swing analysis submission" />
+        <input type="hidden" name="_subject" value="New swing analysis order" />
         <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_next" value="https://kayvontennis.com/thanks.html" />
-        <input type="hidden" name="_autoresponse" value="Thanks for sending your swing video. I have got it and I will go through your footage frame by frame and send your full breakdown back within three days. It will include annotated screenshots pulled from your own clip, written analysis on every correction, and drills you can take straight to the court. Payment details come with the report, nothing is charged until you have seen it. If you need to add anything, just reply to this email. Kayvon" />
+        <input type="hidden" name="_next" id="nextUrl" value="https://kayvontennis.com/thanks.html" />
+        <input type="hidden" name="_autoresponse" value="Your order is in. I have got your footage and I will go through it frame by frame, then send your full breakdown back within three days. It comes with annotated screenshots pulled from your own clip, written analysis on every correction, and drills you can take straight to the court. This one is on the house while I dial in the system, so there is nothing to pay. If you want to add anything, just reply to this email. Kayvon" />
         <input type="text" name="_honey" style="display:none" />
+        <input type="hidden" name="Order ID" id="orderIdField" value="" />
+        <input type="hidden" name="Amount" value="$0.00 (free test order)" />
+        <input type="hidden" name="Uploaded files" id="uploadedField" value="" />
+        <input type="hidden" name="Dropbox upload" id="dropboxField" value="No" />
+
+        <div class="step"><div class="step-n">1</div><h2>Add your video</h2></div>
+
+        <label class="drop" id="drop" for="files">
+          <svg width="32" height="32" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v13"/></svg>
+          <b>Tap to choose your video</b>
+          <span id="dropSub">or drag it here</span>
+          <input type="file" id="files" name="attachment" accept="video/*,image/*" multiple />
+        </label>
+        <ul class="files" id="fileList"></ul>
+
+        <div class="alt">
+          <button type="button" class="btn-alt" id="dbxBtn">
+            <svg width="17" height="17" viewBox="0 0 24 24"><path d="M6 2 0 6l6 4 6-4-6-4zm12 0-6 4 6 4 6-4-6-4zM0 14l6 4 6-4-6-4-6 4zm18-4-6 4 6 4 6-4-6-4zM6 19.5l6 4 6-4-6-4-6 4z"/></svg>
+            Big file? Upload it here
+          </button>
+          <span class="hint" style="margin:0">No size limit, no account needed. Opens in a small window over this page.</span>
+        </div>
+
+        <label class="confirm" id="dbxConfirm">
+          <input type="checkbox" id="dbxCheck" />
+          <span>My video is uploaded to Dropbox. I used the same name and email I am putting in below.</span>
+        </label>
+
+        <div class="divider">OR PASTE A LINK</div>
+
+        <div class="field">
+          <label for="link">Video link</label>
+          <input type="url" id="link" name="Video link" placeholder="Google Drive, iCloud or unlisted YouTube" />
+          <p class="hint">Set it so anyone with the link can view, otherwise I cannot open it.</p>
+        </div>
+
+        <div class="step-rule"></div>
+        <div class="step"><div class="step-n">2</div><h2>Your details</h2></div>
 
         <div class="row">
           <div class="field">
@@ -237,40 +300,28 @@
         </div>
 
         <div class="field">
-          <label>Upload your video or photos</label>
-          <label class="drop" id="drop" for="files">
-            <svg width="30" height="30" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v13"/></svg>
-            <b>Tap to choose files</b>
-            <span>or drag them here</span>
-            <input type="file" id="files" name="attachment" accept="video/*,image/*" multiple />
-          </label>
-          <ul class="files" id="fileList"></ul>
-          <div class="meter" id="meterWrap" style="display:none"><i id="meter"></i></div>
-          <div class="meter-txt" id="meterTxt" style="display:none"><span id="meterUsed"></span><span>20MB limit</span></div>
-          <p class="hint">Photos and short clips work here. Phone videos over about 20MB are too big to email, so use the link box below instead. It takes ten seconds and there is no size limit.</p>
-        </div>
-
-        <div class="divider">OR PASTE A LINK</div>
-
-        <div class="field">
-          <label for="link">Video link</label>
-          <input type="url" id="link" name="Video link" placeholder="Google Drive, Dropbox, iCloud or unlisted YouTube" />
-          <p class="hint">Best option for full length or high resolution footage. Set the link so anyone with it can view, otherwise I cannot open it.</p>
-        </div>
-
-        <div class="field">
           <label for="notes">Anything I should know</label>
           <textarea id="notes" name="Notes" placeholder="What feels off, what you have already tried, what you are working toward, anything a coach has told you before"></textarea>
         </div>
 
-        <button type="submit" class="submit" id="btn">Send My Video</button>
+        <div class="step-rule"></div>
+        <div class="step"><div class="step-n">3</div><h2>Place your order</h2></div>
+
+        <div class="total">
+          <span class="l">Total due today</span>
+          <span class="r"><s>$40</s>$0.00</span>
+        </div>
+
+        <button type="submit" class="submit" id="btn">Place Order</button>
         <div class="status" id="status"></div>
+        <p class="terms">Nothing is charged. By placing this order you agree to the <a href="privacy.html">privacy policy</a>.</p>
       </form>
     </div>
 
     <div class="panel side">
       <h3>Swing Analysis</h3>
-      <div class="price">$40 <small>/ video</small></div>
+      <p class="oid">Order <span id="orderIdText">&mdash;</span></p>
+      <div class="price"><s>$40</s>$0<small>Free while I test the system</small></div>
       <ul class="list">
         <li>Frame by frame technical review</li>
         <li>Annotated screenshots with arrows and circles</li>
@@ -280,77 +331,184 @@
         <li>One follow up question included</li>
       </ul>
       <p class="fine"><strong style="color:var(--white)">How to film it:</strong> side angle first, then behind if you can. Whole body in frame including your feet. Six to ten reps of the same shot, not one. Daylight, phone steady or propped.</p>
-      <p class="fine">Payment details come with your report. Nothing is charged until you have seen the breakdown.</p>
+      <p class="fine">You will get a confirmation email the second you place the order.</p>
     </div>
   </div>
 </div>
 
 <footer>
-  © 2026 Coach Kayvon · Boca Raton, FL · <a href="mailto:coachkayvon@gmail.com">coachkayvon@gmail.com</a> · <a href="privacy.html">Privacy</a>
+  &copy; 2026 Coach Kayvon &middot; Boca Raton, FL &middot; <a href="mailto:coachkayvon@gmail.com">coachkayvon@gmail.com</a> &middot; <a href="privacy.html">Privacy</a>
 </footer>
 
 <script>
+  /* =========================================================================
+     INLINE UPLOADER CONFIG
+
+     Leave cloudName as REPLACE_ME and the page uses the email attachment
+     path, which tops out around 20MB, plus the Dropbox window and the link
+     box. Fill both values in and video files upload straight from this page
+     with a real progress bar and no size ceiling worth worrying about.
+
+     To fill it in: cloudinary.com free account, then Settings, Upload,
+     Add upload preset, set Signing Mode to Unsigned, save. Copy the cloud
+     name off the dashboard and the preset name off that screen.
+     ========================================================================= */
+  var CLOUD = { cloudName: 'REPLACE_ME', preset: 'REPLACE_ME' };
+  var CLOUD_ON = CLOUD.cloudName !== 'REPLACE_ME' && CLOUD.preset !== 'REPLACE_ME';
+
+  var DBX = 'https://www.dropbox.com/request/xbhce1z8mn8f9522s8hv';
+  var MAIL_MAX = 20 * 1024 * 1024;
+
   function toggleNav(){ document.getElementById('navLinks').classList.toggle('open'); }
   document.querySelectorAll('#navLinks a').forEach(function(l){
     l.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('open'); });
   });
 
-  var MAX = 20 * 1024 * 1024;
   var input = document.getElementById('files');
   var drop = document.getElementById('drop');
+  var dropSub = document.getElementById('dropSub');
   var list = document.getElementById('fileList');
   var note = document.getElementById('status');
   var btn = document.getElementById('btn');
-  var meterWrap = document.getElementById('meterWrap');
-  var meter = document.getElementById('meter');
-  var meterTxt = document.getElementById('meterTxt');
-  var meterUsed = document.getElementById('meterUsed');
   var linkEl = document.getElementById('link');
+  var dbxBtn = document.getElementById('dbxBtn');
+  var dbxConfirm = document.getElementById('dbxConfirm');
+  var dbxCheck = document.getElementById('dbxCheck');
+  var dbxField = document.getElementById('dropboxField');
+  var uploadedField = document.getElementById('uploadedField');
+  var form = document.getElementById('analysisForm');
+
+  /* Order number. Short enough to read over the phone, unique enough in practice. */
+  var orderId = 'CK-' + Date.now().toString(36).slice(-4).toUpperCase()
+              + Math.random().toString(36).slice(2, 5).toUpperCase();
+  document.getElementById('orderIdField').value = orderId;
+  document.getElementById('orderIdText').textContent = orderId;
+  document.getElementById('nextUrl').value = 'https://kayvontennis.com/thanks.html?order=' + orderId;
+
+  if (CLOUD_ON) dropSub.textContent = 'any size, uploads right here';
+
+  var uploaded = [];
+  var uploading = 0;
 
   function mb(b){ return (b/1048576).toFixed(1) + 'MB'; }
-
-  function say(msg, kind){
-    note.textContent = msg;
-    note.className = 'status show ' + kind;
-  }
+  function say(msg, kind){ note.textContent = msg; note.className = 'status show ' + kind; }
   function clear(){ note.className = 'status'; }
 
-  function total(){
-    var t = 0;
-    for (var i = 0; i < input.files.length; i++) t += input.files[i].size;
-    return t;
+  function haveVideo(){
+    return uploaded.length > 0
+      || (!CLOUD_ON && input.files.length > 0)
+      || linkEl.value.trim().length > 0
+      || dbxCheck.checked;
   }
 
-  function render(){
+  function rowFor(file){
+    var li = document.createElement('li');
+    var top = document.createElement('div');
+    top.className = 'top';
+    var nm = document.createElement('span');
+    nm.className = 'nm'; nm.textContent = file.name;
+    var sz = document.createElement('span');
+    sz.className = 'sz'; sz.textContent = mb(file.size);
+    top.appendChild(nm); top.appendChild(sz);
+    li.appendChild(top);
+    var bar = document.createElement('div');
+    bar.className = 'bar';
+    var fill = document.createElement('i');
+    bar.appendChild(fill); li.appendChild(bar);
+    list.appendChild(li);
+    return { sz: sz, fill: fill, bar: bar };
+  }
+
+  /* Unsigned direct upload, chunked so long phone videos do not choke.
+     Cloudinary stitches the chunks by the X-Unique-Upload-Id header. */
+  function cloudUpload(file, ui){
+    var CHUNK = 6 * 1024 * 1024;
+    var uid = 'u' + Date.now() + Math.random().toString(36).slice(2);
+    var url = 'https://api.cloudinary.com/v1_1/' + CLOUD.cloudName + '/auto/upload';
+    var sent = 0;
+
+    return new Promise(function(resolve, reject){
+      function part(){
+        var end = Math.min(sent + CHUNK, file.size);
+        var fd = new FormData();
+        fd.append('upload_preset', CLOUD.preset);
+        fd.append('file', file.slice(sent, end));
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('X-Unique-Upload-Id', uid);
+        xhr.setRequestHeader('Content-Range', 'bytes ' + sent + '-' + (end - 1) + '/' + file.size);
+
+        xhr.upload.onprogress = function(e){
+          if (!e.lengthComputable) return;
+          var pct = ((sent + e.loaded) / file.size) * 100;
+          ui.fill.style.width = Math.min(100, pct) + '%';
+        };
+        xhr.onload = function(){
+          if (xhr.status < 200 || xhr.status > 299) { reject(new Error('HTTP ' + xhr.status)); return; }
+          sent = end;
+          if (sent < file.size) { part(); return; }
+          var res = {};
+          try { res = JSON.parse(xhr.responseText); } catch(err){}
+          if (!res.secure_url) { reject(new Error('no url back')); return; }
+          ui.fill.style.width = '100%';
+          resolve(res.secure_url);
+        };
+        xhr.onerror = function(){ reject(new Error('network')); };
+        xhr.send(fd);
+      }
+      part();
+    });
+  }
+
+  function handleFiles(){
     list.innerHTML = '';
-    var t = total();
-    for (var i = 0; i < input.files.length; i++){
-      var f = input.files[i];
-      var li = document.createElement('li');
-      var nm = document.createElement('span');
-      nm.className = 'nm'; nm.textContent = f.name;
-      var sz = document.createElement('span');
-      sz.className = 'sz' + (t > MAX ? ' bad' : ''); sz.textContent = mb(f.size);
-      li.appendChild(nm); li.appendChild(sz); list.appendChild(li);
+    uploaded = [];
+    clear();
+
+    if (!input.files.length) return;
+
+    if (!CLOUD_ON){
+      /* email attachment path, so the total has to stay under the mail limit */
+      var t = 0, i;
+      for (i = 0; i < input.files.length; i++) t += input.files[i].size;
+      for (i = 0; i < input.files.length; i++){
+        var ui = rowFor(input.files[i]);
+        ui.bar.style.display = 'none';
+        if (t > MAIL_MAX) ui.sz.className = 'sz bad';
+      }
+      if (t > MAIL_MAX){
+        say('That is ' + mb(t) + '. Too big to send by email. Hit the big file button above and upload it in the window that opens, it takes about ten seconds.', 'err');
+      }
+      return;
     }
-    if (input.files.length){
-      meterWrap.style.display = 'block';
-      meterTxt.style.display = 'flex';
-      meter.style.width = Math.min(100, (t / MAX) * 100) + '%';
-      meter.style.background = t > MAX ? '#ef4444' : 'var(--green)';
-      meterUsed.textContent = mb(t) + ' selected';
-    } else {
-      meterWrap.style.display = 'none';
-      meterTxt.style.display = 'none';
-    }
-    if (t > MAX){
-      say('That is ' + mb(t) + ', too big to send by email. Upload it to Google Drive, Dropbox or iCloud and paste the link in the box below instead.', 'err');
-    } else {
-      clear();
-    }
+
+    /* cloud path, no meaningful size ceiling */
+    var files = Array.prototype.slice.call(input.files);
+    input.value = '';
+    files.forEach(function(f){
+      var ui = rowFor(f);
+      uploading++;
+      btn.disabled = true;
+      btn.textContent = 'Uploading...';
+      cloudUpload(f, ui).then(function(url){
+        uploaded.push(f.name + ' -> ' + url);
+        uploadedField.value = uploaded.join('\n');
+        ui.sz.className = 'sz done';
+        ui.sz.textContent = 'Uploaded';
+        uploading--;
+        if (!uploading){ btn.disabled = false; btn.textContent = 'Place Order'; }
+      }).catch(function(){
+        ui.sz.className = 'sz bad';
+        ui.sz.textContent = 'Failed';
+        uploading--;
+        if (!uploading){ btn.disabled = false; btn.textContent = 'Place Order'; }
+        say('That upload did not go through. Try the big file button above, or paste a link instead.', 'err');
+      });
+    });
   }
 
-  input.addEventListener('change', render);
+  input.addEventListener('change', handleFiles);
 
   ['dragenter','dragover'].forEach(function(e){
     drop.addEventListener(e, function(ev){ ev.preventDefault(); drop.classList.add('over'); });
@@ -361,29 +519,56 @@
   drop.addEventListener('drop', function(ev){
     if (ev.dataTransfer && ev.dataTransfer.files.length){
       input.files = ev.dataTransfer.files;
-      render();
+      handleFiles();
     }
   });
 
-  document.getElementById('analysisForm').addEventListener('submit', function(e){
-    var t = total();
-    var hasLink = linkEl.value.trim().length > 0;
+  /* Dropbox blocks being framed, so the next best thing is a window sized like
+     a modal that sits on top of this page. The form never navigates away. */
+  var dbxWin = null, dbxTimer = null;
+  dbxBtn.addEventListener('click', function(){
+    var w = Math.min(620, screen.width - 40), h = Math.min(720, screen.height - 80);
+    var x = (screen.width - w) / 2, y = (screen.height - h) / 2;
+    dbxWin = window.open(DBX, 'ckupload', 'width=' + w + ',height=' + h + ',left=' + x + ',top=' + y + ',resizable=yes,scrollbars=yes');
+    if (!dbxWin){ window.open(DBX, '_blank'); }
+    dbxConfirm.classList.add('show');
+    clearInterval(dbxTimer);
+    dbxTimer = setInterval(function(){
+      if (dbxWin && dbxWin.closed){ clearInterval(dbxTimer); dbxConfirm.scrollIntoView({behavior:'smooth', block:'center'}); }
+    }, 800);
+  });
 
-    if (!input.files.length && !hasLink){
+  dbxCheck.addEventListener('change', function(){
+    dbxField.value = dbxCheck.checked ? 'Yes' : 'No';
+    dbxBtn.classList.toggle('ok', dbxCheck.checked);
+    if (dbxCheck.checked) clear();
+  });
+
+  form.addEventListener('submit', function(e){
+    if (uploading){
       e.preventDefault();
-      say('Add your video before sending. Either choose a file or paste a link to it.', 'err');
+      say('Still uploading your video. Give it a second and the button will come back.', 'err');
+      return;
+    }
+    if (!haveVideo()){
+      e.preventDefault();
+      say('Add your video first. Choose a file, use the big file button, or paste a link to it.', 'err');
       note.scrollIntoView({behavior:'smooth', block:'center'});
       return;
     }
-    if (t > MAX){
-      e.preventDefault();
-      say('Those files total ' + mb(t) + '. Remove them and paste a Google Drive, Dropbox or iCloud link instead.', 'err');
-      note.scrollIntoView({behavior:'smooth', block:'center'});
-      return;
+    if (!CLOUD_ON && input.files.length){
+      var t = 0;
+      for (var i = 0; i < input.files.length; i++) t += input.files[i].size;
+      if (t > MAIL_MAX){
+        e.preventDefault();
+        say('Those files total ' + mb(t) + '. Clear them and use the big file button instead.', 'err');
+        note.scrollIntoView({behavior:'smooth', block:'center'});
+        return;
+      }
     }
     btn.disabled = true;
-    btn.textContent = 'Sending...';
-    say('Uploading. Do not close this tab.', 'ok');
+    btn.textContent = 'Placing order...';
+    say('Sending your order. Do not close this tab.', 'ok');
   });
 </script>
 

@@ -34,20 +34,25 @@ text-decoration:none;display:inline-block;transition:.2s}
 .btn-o{border:2px solid rgba(255,255,255,.32);color:var(--white)}
 .btn-o:hover{border-color:var(--white);transform:translateY(-2px)}
 .fine{font-size:13.5px;color:var(--gray);margin-top:2rem}
+.oid{display:inline-flex;align-items:center;gap:10px;background:var(--surface2);border:1px solid var(--border);
+border-radius:99px;padding:9px 20px;margin-bottom:1.6rem;font-family:var(--cond);font-size:15px;font-weight:800;
+letter-spacing:2.5px;text-transform:uppercase;color:var(--gray)}
+.oid b{color:var(--green);letter-spacing:2px}
 </style>
 </head>
 <body>
 <div class="box">
   <div class="tick"><svg width="42" height="42" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+  <p class="oid" id="oid" style="display:none">Order <b id="oidVal"></b></p>
   <h1>Got it.<span>Talk soon.</span></h1>
-  <p>Your video is in. Check your inbox for a confirmation, and if it is not there in a couple of minutes look in spam.</p>
+  <p>Your order is in. Check your inbox for the confirmation, and if it is not there in a couple of minutes look in spam.</p>
   <div class="steps">
     <h2>What happens next</h2>
     <ol>
       <li>I go through your footage frame by frame</li>
       <li>I pull screenshots at the positions that decide the shot and mark them up</li>
       <li>You get the full breakdown by email within three days</li>
-      <li>Payment details come with the report, nothing before</li>
+      <li>Nothing to pay. This round is free while I dial in the system</li>
     </ol>
   </div>
   <div class="btns">
@@ -56,5 +61,12 @@ text-decoration:none;display:inline-block;transition:.2s}
   </div>
   <p class="fine">Need to add something? Just reply to the confirmation email.</p>
 </div>
+<script>
+  var oid = new URLSearchParams(location.search).get('order');
+  if (oid && /^CK-[A-Z0-9]{4,10}$/.test(oid)){
+    document.getElementById('oidVal').textContent = oid;
+    document.getElementById('oid').style.display = 'inline-flex';
+  }
+</script>
 </body>
 </html>
